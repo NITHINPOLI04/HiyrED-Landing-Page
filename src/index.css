@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-navy: #162641;
+  --color-brand-gold: #C7AE6A;
+  --color-brand-gold-soft: #d5c28f;
+  --color-brand-gold-rich: #b99a45;
+  --color-brand-gold-light: #e3d6b4;
+  --color-brand-dark: #1a1a1a;
+
+  --font-sans: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-brand-dark bg-[#FDFCF9];
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+.glass-card {
+  @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #e3d6b4 0%, #C7AE6A 100%);
+}
+
+.navy-gradient {
+  background: linear-gradient(135deg, #162641 0%, #2a3e5f 100%);
+}
+
+/* Performance: GPU acceleration for animated elements */
+[data-motion], .glass-card {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
