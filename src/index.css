@@ -18,7 +18,7 @@
   }
 
   body {
-    @apply text-brand-dark bg-[#FDFCF9];
+    @apply text-brand-dark bg-[#fbf0cf];
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }

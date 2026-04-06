@@ -1,15 +1,16 @@
 import { motion, useInView, useReducedMotion } from "motion/react";
-import { 
-  CheckCircle2, 
-  Users, 
-  Briefcase, 
-  Bell, 
-  ShieldCheck, 
-  BarChart3, 
-  Code2, 
-  FileText, 
-  ArrowRight, 
-  ChevronLeft, 
+import { AnimatedLogoReveal } from "./components/AnimatedLogoReveal";
+import {
+  CheckCircle2,
+  Users,
+  Briefcase,
+  Bell,
+  ShieldCheck,
+  BarChart3,
+  Code2,
+  FileText,
+  ArrowRight,
+  ChevronLeft,
   ChevronRight,
   Menu,
   X
@@ -88,14 +89,14 @@ interface AnimatedSectionProps {
   amount?: number;
 }
 
-const AnimatedSection = ({ 
-  children, 
-  className = "", 
+const AnimatedSection = ({
+  children,
+  className = "",
   variants = fadeUp,
   stagger,
   delay = 0,
   once = true,
-  amount = 0.2, 
+  amount = 0.2,
 }: AnimatedSectionProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once, amount });
@@ -111,10 +112,10 @@ const AnimatedSection = ({
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={stagger || variants}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         ease: EASE_PREMIUM as unknown as number[],
-        delay 
+        delay
       }}
       className={className}
     >
@@ -129,10 +130,10 @@ const useCountUp = (target: string, duration: number = 1.5) => {
   const [count, setCount] = useState("0");
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref as RefObject<HTMLElement>, { once: true, amount: 0.5 });
-  
+
   useEffect(() => {
     if (!isInView) return;
-    
+
     // Extract number from string like "< 2 mins" -> 2, "50%+" -> 50, "90%" -> 90
     const numMatch = target.match(/(\d+)/);
     if (!numMatch) {
@@ -142,7 +143,7 @@ const useCountUp = (target: string, duration: number = 1.5) => {
     const finalNum = parseInt(numMatch[1]);
     const prefix = target.substring(0, target.indexOf(numMatch[1]));
     const suffix = target.substring(target.indexOf(numMatch[1]) + numMatch[1].length);
-    
+
     let startTime: number;
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
@@ -172,34 +173,30 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled 
-          ? "bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm" 
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
+          ? "bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm"
           : "bg-white/80 backdrop-blur-md border-b border-gray-100"
-      }`}
+        }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <motion.div 
+          <motion.div
             className="flex items-center gap-2"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <div className="w-10 h-10 bg-brand-navy rounded-xl flex items-center justify-center">
-              <span className="text-brand-gold font-bold text-xl">H</span>
-            </div>
-            <span className="text-2xl font-bold text-brand-navy tracking-tight">hiyrED</span>
+            <img src="/logo_Txt.svg" alt="hiyrED" className="h-22" />
           </motion.div>
-          
+
           <div className="hidden md:flex items-center space-x-8">
             {["For Colleges", "For Students", "For Recruiters", "How It Works", "Contact"].map((item, i) => (
-              <motion.a 
-                key={item} 
-                href="#" 
+              <motion.a
+                key={item}
+                href="#"
                 className="text-sm font-medium text-gray-600 hover:text-brand-navy transition-colors relative group"
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -212,7 +209,7 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <motion.button 
+            <motion.button
               className="px-6 py-2 text-sm font-semibold text-brand-navy hover:text-brand-gold transition-colors"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
@@ -222,7 +219,7 @@ const Navbar = () => {
             >
               Login
             </motion.button>
-            <motion.button 
+            <motion.button
               className="px-6 py-2.5 bg-brand-navy text-white text-sm font-semibold rounded-full hover:bg-brand-navy/90 transition-all shadow-lg shadow-brand-navy/20"
               whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(22,38,65,0.3)" }}
               whileTap={{ scale: 0.97 }}
@@ -235,8 +232,8 @@ const Navbar = () => {
           </div>
 
           <div className="md:hidden">
-            <motion.button 
-              onClick={() => setIsOpen(!isOpen)} 
+            <motion.button
+              onClick={() => setIsOpen(!isOpen)}
               className="p-2 text-gray-600"
               whileTap={{ scale: 0.9 }}
             >
@@ -248,7 +245,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, height: 0 }}
           animate={{ opacity: 1, height: "auto" }}
           exit={{ opacity: 0, height: 0 }}
@@ -256,9 +253,9 @@ const Navbar = () => {
           className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-4 overflow-hidden"
         >
           {["For Colleges", "For Students", "For Recruiters", "How It Works"].map((item, i) => (
-            <motion.a 
+            <motion.a
               key={item}
-              href="#" 
+              href="#"
               className="block text-base font-medium text-gray-600"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -267,7 +264,7 @@ const Navbar = () => {
               {item}
             </motion.a>
           ))}
-          <motion.button 
+          <motion.button
             className="w-full px-6 py-3 bg-brand-navy text-white font-semibold rounded-xl"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
@@ -294,26 +291,26 @@ const Hero = () => {
             initial="hidden"
             animate="visible"
           >
-            <motion.h1 
+            <motion.h1
               className="text-5xl lg:text-7xl font-bold text-brand-navy leading-[1.1] mb-6"
               variants={fadeLeft}
               transition={{ duration: 0.7, ease: EASE_PREMIUM as unknown as number[] }}
             >
               Fastest way to <span className="text-brand-gold">streamline</span> campus hiring
             </motion.h1>
-            <motion.p 
+            <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl"
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
             >
               hiyrED brings students, recruiters, and placement teams onto one intelligent platform — eliminating chaos and enabling faster, smarter hiring.
             </motion.p>
-            <motion.div 
+            <motion.div
               className="flex flex-wrap gap-4"
               variants={fadeUp}
               transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[], delay: 0.2 }}
             >
-              <motion.button 
+              <motion.button
                 className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20 flex items-center gap-2 group"
                 whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
                 whileTap={{ scale: 0.97 }}
@@ -321,7 +318,7 @@ const Hero = () => {
                 Start Hiring
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
-              <motion.button 
+              <motion.button
                 className="px-8 py-4 bg-white text-brand-navy font-bold rounded-full border-2 border-brand-navy/10 hover:border-brand-navy/20 transition-all"
                 whileHover={{ scale: 1.04, borderColor: "rgba(22,38,65,0.25)" }}
                 whileTap={{ scale: 0.97 }}
@@ -339,7 +336,7 @@ const Hero = () => {
             className="relative"
           >
             <div className="relative z-10 grid grid-cols-2 gap-4">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 40, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
@@ -360,7 +357,7 @@ const Hero = () => {
                   </div>
                   <div className="space-y-2">
                     <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                      <motion.div 
+                      <motion.div
                         className="h-full bg-brand-gold rounded-full"
                         initial={{ width: 0 }}
                         animate={{ width: "75%" }}
@@ -372,7 +369,7 @@ const Hero = () => {
                 </motion.div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.65, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
@@ -391,7 +388,7 @@ const Hero = () => {
                       <p className="font-bold text-brand-navy">Software Engineer</p>
                     </div>
                   </div>
-                  <motion.span 
+                  <motion.span
                     className="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full inline-block"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
@@ -402,7 +399,7 @@ const Hero = () => {
                 </motion.div>
               </motion.div>
 
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.8, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
@@ -419,7 +416,7 @@ const Hero = () => {
                       </div>
                       <p className="text-sm font-medium text-brand-navy">Interview Scheduled</p>
                     </div>
-                    <motion.p 
+                    <motion.p
                       className="text-xs text-gray-400"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
@@ -431,7 +428,7 @@ const Hero = () => {
                 </motion.div>
               </motion.div>
             </div>
-            
+
             {/* Background decorative elements */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-gold/5 rounded-full blur-3xl -z-10"></div>
           </motion.div>
@@ -450,13 +447,13 @@ const MetricCard = ({ value, label, index }: { key?: number; value: string; labe
     <motion.div
       ref={ref as RefObject<HTMLDivElement>}
       variants={fadeUp}
-      transition={{ 
-        duration: 0.5, 
-        ease: EASE_PREMIUM as unknown as number[], 
-        delay: index * 0.12 
+      transition={{
+        duration: 0.5,
+        ease: EASE_PREMIUM as unknown as number[],
+        delay: index * 0.12
       }}
       whileHover={{ y: -8, boxShadow: "0 20px 50px rgba(22,38,65,0.08)" }}
-      className="p-8 rounded-3xl bg-[#FDFCF9] border border-gray-100 text-center transition-shadow duration-300"
+      className="p-8 rounded-3xl bg-[#fbf0cf] border border-gray-100 text-center transition-shadow duration-300"
     >
       <h3 className="text-4xl font-bold text-[#c7ae6a] mb-2">{count}</h3>
       <p className="text-gray-500 text-sm leading-relaxed">{label}</p>
@@ -481,18 +478,18 @@ const Metrics = () => {
         </AnimatedSection>
 
         <AnimatedSection className="text-center" delay={0.2}>
-          <motion.p 
+          <motion.p
             variants={fadeUp}
             className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-10"
           >
             Trusted by 100+ Companies & Colleges
           </motion.p>
-          
+
           {/* Marquee Logo Strip */}
           <div className="overflow-hidden relative">
             <div className="absolute left-0 top-0 w-20 h-full bg-gradient-to-r from-white to-transparent z-10" />
             <div className="absolute right-0 top-0 w-20 h-full bg-gradient-to-l from-white to-transparent z-10" />
-            <motion.div 
+            <motion.div
               className="flex items-center gap-16 whitespace-nowrap"
               animate={{ x: ["0%", "-50%"] }}
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
@@ -527,12 +524,12 @@ const WhyChoose = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#FDFCF9]">
+    <section className="py-24 bg-[#fbf0cf]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Left: Points */}
           <AnimatedSection stagger={staggerContainerSlow}>
-            <motion.h2 
+            <motion.h2
               className="text-4xl lg:text-5xl font-bold text-brand-navy mb-12"
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
@@ -541,14 +538,14 @@ const WhyChoose = () => {
             </motion.h2>
             <div className="space-y-8">
               {points.map((p, i) => (
-                <motion.div 
-                  key={i} 
+                <motion.div
+                  key={i}
                   className="flex gap-4 group cursor-default"
                   variants={fadeLeft}
                   transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
                   whileHover={{ x: 6 }}
                 >
-                  <motion.div 
+                  <motion.div
                     className="mt-1"
                     whileHover={{ scale: 1.15, rotate: 5 }}
                     transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -564,58 +561,9 @@ const WhyChoose = () => {
             </div>
           </AnimatedSection>
 
-          {/* Right: Brand Card */}
+          {/* Right: Animated Brand Card */}
           <AnimatedSection variants={scaleIn} className="relative flex justify-center lg:justify-end">
-            <motion.div 
-              className="w-full max-w-[480px] h-[360px] rounded-[32px] bg-gradient-to-br from-[#162641] to-[#1e3557] relative overflow-hidden flex flex-col items-center justify-center p-12 transition-all"
-              whileHover={{ scale: 1.02, boxShadow: "0 30px 80px rgba(22,38,65,0.25)" }}
-              transition={{ duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
-            >
-              {/* Abstract Decorative Circles with subtle rotation */}
-              <motion.div 
-                className="absolute top-[-10%] left-[-10%] w-[200px] h-[200px] rounded-full border border-white/10"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div 
-                className="absolute top-[20%] right-[-15%] w-[250px] h-[250px] rounded-full border border-white/5"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div 
-                className="absolute bottom-[-20%] right-[10%] w-[300px] h-[300px] rounded-full border border-white/10"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 90, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div 
-                className="absolute bottom-[10%] left-[20%] w-[150px] h-[150px] rounded-full border border-white/5"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 70, repeat: Infinity, ease: "linear" }}
-              />
-              
-              {/* Center Content */}
-              <div className="relative z-10 text-center">
-                <motion.h3 
-                  className="text-6xl lg:text-7xl font-bold tracking-tight mb-4"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                  viewport={{ once: true }}
-                >
-                  <span className="text-white">hiyr</span>
-                  <span className="text-[#bd9d51]">ED</span>
-                </motion.h3>
-                <motion.p 
-                  className="text-[#cbd5e1] text-lg font-medium tracking-wide"
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2, duration: 0.5 }}
-                  viewport={{ once: true }}
-                >
-                  Intelligent Campus Hiring
-                </motion.p>
-              </div>
-            </motion.div>
+            <AnimatedLogoReveal />
           </AnimatedSection>
         </div>
       </div>
@@ -639,14 +587,14 @@ const HowItWorks = () => {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
-          <motion.h2 
+          <motion.h2
             className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
             variants={fadeUp}
             transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
           >
             How <span className="text-[#c7ae6a]">hiyrED</span> Works
           </motion.h2>
-          <motion.p 
+          <motion.p
             className="text-gray-500 max-w-2xl mx-auto"
             variants={fadeUp}
             transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
@@ -658,7 +606,7 @@ const HowItWorks = () => {
         <div className="relative" ref={sectionRef}>
           {/* ── Dashed connector arcs BEHIND cards using CSS borders ── */}
           {/* Entry trail */}
-          <motion.div 
+          <motion.div
             className="hidden md:block absolute pointer-events-none"
             style={{ left: "-10px", top: "45%", width: "60px", height: "40px", borderBottom: "2px dashed #c5c0b6", borderRadius: "0 0 50% 0", zIndex: 0 }}
             initial={{ opacity: 0, scaleX: 0 }}
@@ -666,7 +614,7 @@ const HowItWorks = () => {
             transition={{ duration: 0.5, delay: 0.3, ease: EASE_PREMIUM as unknown as number[] }}
           />
           {/* Arc 1→2 */}
-          <motion.div 
+          <motion.div
             className="hidden md:block absolute pointer-events-none"
             style={{ left: "30%", top: "55%", width: "12%", height: "60px", borderBottom: "2px dashed #c5c0b6", borderLeft: "2px dashed #c5c0b6", borderRight: "2px dashed #c5c0b6", borderRadius: "0 0 50% 50%", zIndex: 0, transformOrigin: "top" }}
             initial={{ opacity: 0, scaleY: 0 }}
@@ -674,7 +622,7 @@ const HowItWorks = () => {
             transition={{ duration: 0.8, delay: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
           />
           {/* Arc 2→3 */}
-          <motion.div 
+          <motion.div
             className="hidden md:block absolute pointer-events-none"
             style={{ left: "63.5%", top: "55%", width: "12%", height: "60px", borderBottom: "2px dashed #c5c0b6", borderLeft: "2px dashed #c5c0b6", borderRight: "2px dashed #c5c0b6", borderRadius: "0 0 50% 50%", zIndex: 0, transformOrigin: "top" }}
             initial={{ opacity: 0, scaleY: 0 }}
@@ -684,36 +632,36 @@ const HowItWorks = () => {
 
           {/* ── Step Cards (above connectors) ── */}
           <div style={{ position: "relative", zIndex: 1 }}>
-          <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-3 gap-8 relative">
-            {steps.map((s, i) => (
-              <motion.div
-                key={i}
-                variants={fadeUp}
-                transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
-                whileHover={{ 
-                  y: -10, 
-                  boxShadow: "0 20px 60px rgba(22,38,65,0.08)",
-                  transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
-                }}
-                className="p-10 rounded-[2.5rem] bg-[#FDFCF9] border border-gray-100 relative group cursor-default"
-              >
-                <motion.span 
-                  className="text-6xl font-black text-brand-navy/5 absolute top-8 right-8 group-hover:text-brand-gold/10 transition-colors duration-500"
+            <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-3 gap-8 relative">
+              {steps.map((s, i) => (
+                <motion.div
+                  key={i}
+                  variants={fadeUp}
+                  transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
+                  whileHover={{
+                    y: -10,
+                    boxShadow: "0 20px 60px rgba(22,38,65,0.08)",
+                    transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
+                  }}
+                  className="p-10 rounded-[2.5rem] bg-[#fbf0cf] border border-gray-100 relative group cursor-default"
                 >
-                  {s.number}
-                </motion.span>
-                <motion.div 
-                  className="w-12 h-12 bg-brand-navy text-white rounded-full flex items-center justify-center font-bold mb-8"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                >
-                  {i + 1}
+                  <motion.span
+                    className="text-6xl font-black text-brand-navy/5 absolute top-8 right-8 group-hover:text-brand-gold/10 transition-colors duration-500"
+                  >
+                    {s.number}
+                  </motion.span>
+                  <motion.div
+                    className="w-12 h-12 bg-brand-navy text-white rounded-full flex items-center justify-center font-bold mb-8"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
+                  >
+                    {i + 1}
+                  </motion.div>
+                  <h4 className="text-2xl font-bold text-brand-navy mb-4">{s.title}</h4>
+                  <p className="text-gray-600 leading-relaxed">{s.desc}</p>
                 </motion.div>
-                <h4 className="text-2xl font-bold text-brand-navy mb-4">{s.title}</h4>
-                <p className="text-gray-600 leading-relaxed">{s.desc}</p>
-              </motion.div>
-            ))}
-          </AnimatedSection>
+              ))}
+            </AnimatedSection>
           </div>
         </div>
       </div>
@@ -734,16 +682,16 @@ const Features = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#FDFCF9]">
+    <section className="py-24 bg-[#fbf0cf]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12" stagger={staggerContainer}>
-          <motion.p 
+          <motion.p
             className="text-sm font-medium text-[#bd9d51] uppercase tracking-[0.2em] mb-2"
             variants={fadeUp}
           >
             CORE MODULES
           </motion.p>
-          <motion.h2 
+          <motion.h2
             className="text-4xl lg:text-5xl font-bold text-[#162641]"
             variants={fadeUp}
             transition={{ duration: 0.6 }}
@@ -751,21 +699,21 @@ const Features = () => {
             Everything you need, built in
           </motion.h2>
         </AnimatedSection>
-        
+
         <AnimatedSection stagger={staggerContainerFast} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((f, i) => (
-            <motion.div 
-              key={i} 
+            <motion.div
+              key={i}
               variants={fadeUp}
               transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
-              whileHover={{ 
-                y: -8, 
+              whileHover={{
+                y: -8,
                 boxShadow: "0 20px 50px rgba(22,38,65,0.08)",
                 transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
               }}
               className="p-8 rounded-3xl bg-white border border-gray-100 hover:shadow-xl hover:shadow-brand-navy/5 transition-all group cursor-default"
             >
-              <motion.div 
+              <motion.div
                 className="w-14 h-14 bg-brand-gold/10 rounded-2xl flex items-center justify-center text-brand-gold mb-6"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
@@ -790,7 +738,7 @@ const Testimonial = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-center">
         <AnimatedSection variants={scaleIn} className="w-full max-w-[1150px]">
           {/* Outer Wrapper for the soft layered border effect */}
-          <motion.div 
+          <motion.div
             className="w-full p-[2px] bg-[#c4b5fd]/40 rounded-[32px]"
             whileHover={{ boxShadow: "0 20px 60px rgba(196,181,253,0.2)" }}
             transition={{ duration: 0.4 }}
@@ -798,27 +746,27 @@ const Testimonial = () => {
             {/* Inner Card */}
             <div className="w-full lg:h-[340px] rounded-[28px] bg-[#fafafa] p-8 lg:py-[40px] lg:px-[48px] flex flex-col lg:flex-row items-center lg:gap-[48px] transition-all">
               {/* Left Side: Image */}
-              <motion.div 
+              <motion.div
                 className="w-full lg:w-[280px] h-[220px] lg:h-full rounded-[20px] overflow-hidden shrink-0"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
               >
-                <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800" 
-                  alt="Maya Lin" 
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=800"
+                  alt="Maya Lin"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
               </motion.div>
 
               {/* Right Side: Content */}
-              <AnimatedSection 
+              <AnimatedSection
                 stagger={staggerContainer}
                 className="flex-1 flex flex-col justify-center text-left py-8 lg:py-0"
               >
                 <div className="max-w-3xl">
                   {/* Quote */}
-                  <motion.h3 
+                  <motion.h3
                     className="text-xl md:text-2xl lg:text-[2.25rem] font-medium text-[#1a1a1a] leading-[1.3] mb-6 tracking-tight"
                     variants={fadeRight}
                     transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
@@ -827,7 +775,7 @@ const Testimonial = () => {
                   </motion.h3>
 
                   {/* Author Info */}
-                  <motion.div 
+                  <motion.div
                     className="mb-8"
                     variants={fadeUp}
                     transition={{ duration: 0.4 }}
@@ -837,12 +785,12 @@ const Testimonial = () => {
                   </motion.div>
 
                   {/* Navigation Controls */}
-                  <motion.div 
+                  <motion.div
                     className="flex items-center gap-4"
                     variants={fadeUp}
                     transition={{ duration: 0.4 }}
                   >
-                    <motion.button 
+                    <motion.button
                       className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-gray-900 hover:text-gray-900 transition-all"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.92 }}
@@ -850,7 +798,7 @@ const Testimonial = () => {
                       <ChevronLeft className="w-4 h-4" />
                     </motion.button>
                     <span className="text-xs font-medium text-gray-500 tracking-widest">1 / 5</span>
-                    <motion.button 
+                    <motion.button
                       className="w-9 h-9 rounded-full border border-gray-300 flex items-center justify-center text-gray-600 hover:border-gray-900 hover:text-gray-900 transition-all"
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.92 }}
@@ -879,26 +827,26 @@ const JobBoardPreview = () => {
   ];
 
   return (
-    <section className="py-24 bg-[#FDFCF9]">
+    <section className="py-24 bg-[#fbf0cf]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Left: Text */}
           <AnimatedSection stagger={staggerContainer}>
-            <motion.h2 
+            <motion.h2
               className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
               variants={fadeLeft}
               transition={{ duration: 0.6 }}
             >
               Smart Job Board
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
               variants={fadeLeft}
               transition={{ duration: 0.5 }}
             >
               Students explore only relevant opportunities — fully filtered and ready to apply. No more scrolling through irrelevant posts.
             </motion.p>
-            <motion.button 
+            <motion.button
               className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20"
               variants={fadeUp}
               whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
@@ -915,15 +863,15 @@ const JobBoardPreview = () => {
                 key={i}
                 variants={fadeRight}
                 transition={{ duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
-                whileHover={{ 
-                  x: 10, 
+                whileHover={{
+                  x: 10,
                   boxShadow: "0 10px 40px rgba(22,38,65,0.08)",
                   transition: { duration: 0.25, ease: EASE_SMOOTH as unknown as number[] }
                 }}
                 className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-between group cursor-pointer"
               >
                 <div className="flex items-center gap-4">
-                  <motion.div 
+                  <motion.div
                     className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors duration-300"
                   >
                     <Briefcase className="text-gray-400 group-hover:text-brand-gold transition-colors duration-300" />
@@ -933,7 +881,7 @@ const JobBoardPreview = () => {
                     <p className="text-xs text-gray-500">{j.type} • {j.location}</p>
                   </div>
                 </div>
-                <motion.button 
+                <motion.button
                   className="p-2 rounded-full bg-gray-50 text-gray-400 group-hover:bg-brand-navy group-hover:text-white transition-all duration-300"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
@@ -956,27 +904,27 @@ const FinalCTA = () => {
     <section className="py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection variants={scaleIn}>
-          <motion.div 
+          <motion.div
             className="relative p-16 lg:p-24 rounded-[4rem] text-center overflow-hidden gold-gradient"
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
           >
             <AnimatedSection stagger={staggerContainer} className="relative z-10">
-              <motion.h2 
+              <motion.h2
                 className="text-4xl lg:text-6xl font-bold text-brand-navy mb-6"
                 variants={fadeUp}
                 transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
               >
                 Ready to simplify campus hiring?
               </motion.h2>
-              <motion.p 
+              <motion.p
                 className="text-xl text-brand-navy/70 mb-12 max-w-2xl mx-auto"
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
               >
                 We automate, match, and manage — you just hire. Join 500+ institutions already using hiyrED.
               </motion.p>
-              <motion.button 
+              <motion.button
                 className="px-10 py-5 bg-brand-navy text-white font-bold rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/30"
                 variants={fadeUp}
                 whileHover={{ scale: 1.06, boxShadow: "0 20px 60px rgba(22,38,65,0.4)" }}
@@ -985,14 +933,14 @@ const FinalCTA = () => {
                 Get Started Now
               </motion.button>
             </AnimatedSection>
-            
+
             {/* Decorative circles */}
-            <motion.div 
+            <motion.div
               className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"
               animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
-            <motion.div 
+            <motion.div
               className="absolute bottom-0 right-0 w-96 h-96 bg-brand-navy/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"
               animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.1, 0.05] }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
@@ -1023,9 +971,9 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               {/* Social Icons */}
-              {[1,2,3,4].map(i => (
-                <motion.div 
-                  key={i} 
+              {[1, 2, 3, 4].map(i => (
+                <motion.div
+                  key={i}
                   className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all cursor-pointer"
                   whileHover={{ scale: 1.15, y: -3 }}
                   whileTap={{ scale: 0.95 }}
@@ -1041,8 +989,8 @@ const Footer = () => {
             <ul className="space-y-4 text-gray-400 text-sm">
               {["About Us", "How It Works", "Client Results", "Press & Mentions"].map(item => (
                 <li key={item}>
-                  <motion.a 
-                    href="#" 
+                  <motion.a
+                    href="#"
                     className="hover:text-brand-gold transition-colors inline-block"
                     whileHover={{ x: 4 }}
                     transition={{ duration: 0.2 }}
@@ -1059,8 +1007,8 @@ const Footer = () => {
             <ul className="space-y-4 text-gray-400 text-sm">
               {["For Colleges", "For Students", "For Recruiters", "Pricing Plans"].map(item => (
                 <li key={item}>
-                  <motion.a 
-                    href="#" 
+                  <motion.a
+                    href="#"
                     className="hover:text-brand-gold transition-colors inline-block"
                     whileHover={{ x: 4 }}
                     transition={{ duration: 0.2 }}
@@ -1077,8 +1025,8 @@ const Footer = () => {
             <ul className="space-y-4 text-gray-400 text-sm">
               {["Contact Us", "FAQs", "Privacy Policy", "Terms of Service"].map(item => (
                 <li key={item}>
-                  <motion.a 
-                    href="#" 
+                  <motion.a
+                    href="#"
                     className="hover:text-brand-gold transition-colors inline-block"
                     whileHover={{ x: 4 }}
                     transition={{ duration: 0.2 }}
@@ -1092,16 +1040,16 @@ const Footer = () => {
         </AnimatedSection>
 
         <AnimatedSection>
-          <motion.div 
+          <motion.div
             className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
             variants={fadeUp}
           >
             <p className="text-gray-500 text-xs">© 2026 hiyrED Inc. All Rights Reserved.</p>
             <div className="flex gap-8 text-gray-500 text-xs">
               {["Privacy", "Terms", "Cookies"].map(item => (
-                <motion.a 
-                  key={item} 
-                  href="#" 
+                <motion.a
+                  key={item}
+                  href="#"
                   className="hover:text-white transition-colors"
                   whileHover={{ y: -2 }}
                   transition={{ duration: 0.2 }}

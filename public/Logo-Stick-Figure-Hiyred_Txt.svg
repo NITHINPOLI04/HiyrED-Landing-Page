@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_7" data-name="Layer 7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4000 2000">
+  <defs>
+    <style>
+      .cls-1 {
+        font-family: Gotham-Bold, Gotham;
+        font-size: 401.35px;
+        font-weight: 700;
+        letter-spacing: -.02em;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #c7ae6a;
+      }
+
+      .cls-3 {
+        letter-spacing: -.03em;
+      }
+
+      .cls-4 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-5 {
+        fill: #b99944;
+        font-family: Gotham-Light, Gotham;
+        font-size: 96px;
+        font-weight: 300;
+      }
+
+      .cls-6 {
+        letter-spacing: -.05em;
+      }
+    </style>
+  </defs>
+  <g id="Logo">
+    <circle class="cls-2" cx="1303.09" cy="680.39" r="55.01"/>
+    <path class="cls-2" d="M879.4,634.29s149.48,238.79,327.01,186.28c68.8-91.66-27.5-518.84-37.51-565.09,0,0,43.76,357.56-11.9,491.58-140.62,62.26-277.6-112.77-277.6-112.77Z"/>
+    <path class="cls-2" d="M685.07,1193.14c52.93-12.5,366.31-67.51,581.35-416.32-18.34,165.44-108.77,488.83-611.35,691.37,123.45-66.71,302.97-185.86,446.88-407.01,0,0-196.42,179.47-416.87,131.97Z"/>
+  </g>
+  <text class="cls-1" transform="translate(1504.73 1044.26)"><tspan x="0" y="0">hiyrED</tspan></text>
+  <g id="tagline">
+    <text class="cls-5" transform="translate(1634.09 1211.33)"><tspan class="cls-3" x="0" y="0">Futu</tspan><tspan class="cls-6" x="209.47" y="0">r</tspan><tspan class="cls-3" x="243.07" y="0">es Emp</tspan><tspan class="cls-6" x="580.22" y="0">ow</tspan><tspan class="cls-4" x="714.71" y="0">e</tspan><tspan class="cls-6" x="768.38" y="0">r</tspan><tspan class="cls-3" x="801.98" y="0">ed</tspan></text>
+  </g>
+</svg>
