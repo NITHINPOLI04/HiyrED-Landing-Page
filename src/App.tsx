@@ -192,7 +192,7 @@ const Navbar = () => {
             <div className="w-10 h-10 bg-brand-navy rounded-xl flex items-center justify-center">
               <span className="text-brand-gold font-bold text-xl">H</span>
             </div>
-            <span className="text-2xl font-bold text-brand-navy tracking-tight">Hiyred</span>
+            <span className="text-2xl font-bold text-brand-navy tracking-tight">hiyrED</span>
           </motion.div>
           
           <div className="hidden md:flex items-center space-x-8">
@@ -306,7 +306,7 @@ const Hero = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
             >
-              Hiyred brings students, recruiters, and placement teams onto one intelligent platform — eliminating chaos and enabling faster, smarter hiring.
+              hiyrED brings students, recruiters, and placement teams onto one intelligent platform — eliminating chaos and enabling faster, smarter hiring.
             </motion.p>
             <motion.div 
               className="flex flex-wrap gap-4"
@@ -537,7 +537,7 @@ const WhyChoose = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Why choose Hiyred?
+              Why choose hiyrED?
             </motion.h2>
             <div className="space-y-8">
               {points.map((p, i) => (
@@ -602,8 +602,8 @@ const WhyChoose = () => {
                   transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
                   viewport={{ once: true }}
                 >
-                  <span className="text-white">Hiy</span>
-                  <span className="text-[#bd9d51]">red</span>
+                  <span className="text-white">hiyr</span>
+                  <span className="text-[#bd9d51]">ED</span>
                 </motion.h3>
                 <motion.p 
                   className="text-[#cbd5e1] text-lg font-medium tracking-wide"
@@ -644,7 +644,7 @@ const HowItWorks = () => {
             variants={fadeUp}
             transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
           >
-            How Hiyred Works
+            How hiyrED Works
           </motion.h2>
           <motion.p 
             className="text-gray-500 max-w-2xl mx-auto"
@@ -823,7 +823,7 @@ const Testimonial = () => {
                     variants={fadeRight}
                     transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
                   >
-                    "We've hired faster and smarter since switching to Hiyred — it&apos;s like having a recruiter built into our hiring process"
+                    "We've hired faster and smarter since switching to hiyrED — it&apos;s like having a recruiter built into our hiring process"
                   </motion.h3>
 
                   {/* Author Info */}
@@ -974,7 +974,7 @@ const FinalCTA = () => {
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
               >
-                We automate, match, and manage — you just hire. Join 500+ institutions already using Hiyred.
+                We automate, match, and manage — you just hire. Join 500+ institutions already using hiyrED.
               </motion.p>
               <motion.button 
                 className="px-10 py-5 bg-brand-navy text-white font-bold rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/30"
@@ -1016,7 +1016,7 @@ const Footer = () => {
               <div className="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center">
                 <span className="text-brand-navy font-bold text-xl">H</span>
               </div>
-              <span className="text-2xl font-bold tracking-tight">Hiyred</span>
+              <span className="text-2xl font-bold tracking-tight">hiyrED</span>
             </div>
             <p className="text-gray-400 max-w-xs mb-8">
               Transforming campus hiring from manual chaos into an intelligent, automated system.
@@ -1096,7 +1096,7 @@ const Footer = () => {
             className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
             variants={fadeUp}
           >
-            <p className="text-gray-500 text-xs">© 2026 Hiyred Inc. All Rights Reserved.</p>
+            <p className="text-gray-500 text-xs">© 2026 hiyrED Inc. All Rights Reserved.</p>
             <div className="flex gap-8 text-gray-500 text-xs">
               {["Privacy", "Terms", "Cookies"].map(item => (
                 <motion.a 
