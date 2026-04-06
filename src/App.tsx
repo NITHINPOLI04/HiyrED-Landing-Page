@@ -537,7 +537,7 @@ const WhyChoose = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Why choose hiyrED?
+              Why choose <span className="text-[#c7ae6a]">hiyrED</span>?
             </motion.h2>
             <div className="space-y-8">
               {points.map((p, i) => (
@@ -644,7 +644,7 @@ const HowItWorks = () => {
             variants={fadeUp}
             transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
           >
-            How hiyrED Works
+            How <span className="text-[#c7ae6a]">hiyrED</span> Works
           </motion.h2>
           <motion.p 
             className="text-gray-500 max-w-2xl mx-auto"
