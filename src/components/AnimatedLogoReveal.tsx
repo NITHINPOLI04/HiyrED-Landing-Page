@@ -92,13 +92,13 @@ export const AnimatedLogoReveal = () => {
 
   return (
     <div ref={containerRef} className="w-full max-w-[500px] mx-auto">
-      <div className="w-full aspect-[4/3] relative rounded-[32px] overflow-hidden bg-[#fbf0cf] p-[6px]">
+      <div className="w-full aspect-[4/3] relative rounded-[4rem] overflow-hidden bg-[#fbf0cf] p-[6px]">
         {isInView ? (
           <motion.div
             key={animKey}
-            className="w-full h-full rounded-[28px] bg-gradient-to-br from-[#162641] to-[#1c2f4d] relative overflow-hidden flex flex-col items-center justify-center"
-            initial={{ scale: 0.88, opacity: 0, borderRadius: "40px" }}
-            animate={{ scale: 1, opacity: 1, borderRadius: "28px" }}
+            className="w-full h-full rounded-[3.5rem] bg-gradient-to-br from-[#162641] to-[#1c2f4d] relative overflow-hidden flex flex-col items-center justify-center"
+            initial={{ scale: 0.88, opacity: 0, borderRadius: "64px" }}
+            animate={{ scale: 1, opacity: 1, borderRadius: "56px" }}
             transition={{
               duration: 1.1,
               ease: EASE_REVEAL as unknown as number[],
@@ -139,7 +139,7 @@ export const AnimatedLogoReveal = () => {
           </motion.div>
         ) : (
           /* Empty beige canvas when out of view */
-          <div className="w-full h-full rounded-[28px] bg-[#fbf0cf]" />
+          <div className="w-full h-full rounded-[3.5rem] bg-[#fbf0cf]" />
         )}
       </div>
     </div>

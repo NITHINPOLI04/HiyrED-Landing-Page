@@ -340,7 +340,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 40, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                className="glass-card p-6 rounded-2xl"
+                className="glass-card p-6 rounded-[2.5rem]"
               >
                 <motion.div
                   animate={{ y: [0, -8, 0] }}
@@ -373,7 +373,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 50, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.65, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                className="glass-card p-6 rounded-2xl mt-8"
+                className="glass-card p-6 rounded-[2.5rem] mt-8"
               >
                 <motion.div
                   animate={{ y: [0, 8, 0] }}
@@ -403,7 +403,7 @@ const Hero = () => {
                 initial={{ opacity: 0, y: 30, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{ delay: 0.8, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                className="glass-card p-6 rounded-2xl col-span-2 mx-auto w-3/4"
+                className="glass-card p-6 rounded-[2.5rem] col-span-2 mx-auto w-3/4"
               >
                 <motion.div
                   animate={{ x: [0, -6, 0] }}
@@ -453,7 +453,7 @@ const MetricCard = ({ value, label, index }: { key?: number; value: string; labe
         delay: index * 0.12
       }}
       whileHover={{ y: -8, boxShadow: "0 20px 50px rgba(22,38,65,0.08)" }}
-      className="p-8 rounded-3xl bg-[#fbf0cf] border border-gray-100 text-center transition-shadow duration-300"
+      className="p-8 rounded-[3rem] bg-[#fbf0cf] border border-gray-100 text-center transition-shadow duration-300"
     >
       <h3 className="text-4xl font-bold text-[#c7ae6a] mb-2">{count}</h3>
       <p className="text-gray-500 text-sm leading-relaxed">{label}</p>
@@ -643,7 +643,7 @@ const HowItWorks = () => {
                     boxShadow: "0 20px 60px rgba(22,38,65,0.08)",
                     transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
                   }}
-                  className="p-10 rounded-[2.5rem] bg-[#fbf0cf] border border-gray-100 relative group cursor-default"
+                  className="p-10 rounded-[4rem] bg-[#fbf0cf] border border-gray-100 relative group cursor-default"
                 >
                   <motion.span
                     className="text-6xl font-black text-brand-navy/5 absolute top-8 right-8 group-hover:text-brand-gold/10 transition-colors duration-500"
@@ -711,7 +711,7 @@ const Features = () => {
                 boxShadow: "0 20px 50px rgba(22,38,65,0.08)",
                 transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
               }}
-              className="p-8 rounded-3xl bg-white border border-gray-100 hover:shadow-xl hover:shadow-brand-navy/5 transition-all group cursor-default"
+              className="p-8 rounded-[3rem] bg-white border border-gray-100 hover:shadow-xl hover:shadow-brand-navy/5 transition-all group cursor-default"
             >
               <motion.div
                 className="w-14 h-14 bg-brand-gold/10 rounded-2xl flex items-center justify-center text-brand-gold mb-6"
@@ -739,15 +739,15 @@ const Testimonial = () => {
         <AnimatedSection variants={scaleIn} className="w-full max-w-[1150px]">
           {/* Outer Wrapper for the soft layered border effect */}
           <motion.div
-            className="w-full p-[2px] bg-[#c4b5fd]/40 rounded-[32px]"
+            className="w-full p-[2px] bg-[#c4b5fd]/40 rounded-[4rem]"
             whileHover={{ boxShadow: "0 20px 60px rgba(196,181,253,0.2)" }}
             transition={{ duration: 0.4 }}
           >
             {/* Inner Card */}
-            <div className="w-full lg:h-[340px] rounded-[28px] bg-[#fafafa] p-8 lg:py-[40px] lg:px-[48px] flex flex-col lg:flex-row items-center lg:gap-[48px] transition-all">
+            <div className="w-full lg:h-[340px] rounded-[3.5rem] bg-[#fafafa] p-8 lg:py-[40px] lg:px-[48px] flex flex-col lg:flex-row items-center lg:gap-[48px] transition-all">
               {/* Left Side: Image */}
               <motion.div
-                className="w-full lg:w-[280px] h-[220px] lg:h-full rounded-[20px] overflow-hidden shrink-0"
+                className="w-full lg:w-[280px] h-[220px] lg:h-full rounded-[2rem] overflow-hidden shrink-0"
                 whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
               >
@@ -868,11 +868,11 @@ const JobBoardPreview = () => {
                   boxShadow: "0 10px 40px rgba(22,38,65,0.08)",
                   transition: { duration: 0.25, ease: EASE_SMOOTH as unknown as number[] }
                 }}
-                className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm flex items-center justify-between group cursor-pointer"
+                className="p-6 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm flex items-center justify-between group cursor-pointer"
               >
                 <div className="flex items-center gap-4">
                   <motion.div
-                    className="w-12 h-12 rounded-xl bg-gray-50 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors duration-300"
+                    className="w-12 h-12 rounded-[1.25rem] bg-gray-50 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors duration-300"
                   >
                     <Briefcase className="text-gray-400 group-hover:text-brand-gold transition-colors duration-300" />
                   </motion.div>
@@ -961,7 +961,7 @@ const Footer = () => {
         <AnimatedSection stagger={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
           <motion.div className="col-span-2 lg:col-span-2" variants={fadeUp}>
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-brand-gold rounded-xl flex items-center justify-center">
+              <div className="w-10 h-10 bg-brand-gold rounded-[1.25rem] flex items-center justify-center">
                 <span className="text-brand-navy font-bold text-xl">H</span>
               </div>
               <span className="text-2xl font-bold tracking-tight">hiyrED</span>
