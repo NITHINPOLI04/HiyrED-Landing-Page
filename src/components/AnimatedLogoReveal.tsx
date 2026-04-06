@@ -131,7 +131,7 @@ export const AnimatedLogoReveal = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 2.3, duration: 0.3 }}
             >
-              <TypewriterText text="Empowering Futures" delay={2.4} />
+              <TypewriterText text="Futures Empowered" delay={2.4} />
             </motion.div>
 
             {/* Subtle bottom vignette */}
