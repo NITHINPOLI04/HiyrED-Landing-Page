@@ -178,8 +178,8 @@ const Navbar = () => {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm"
-          : "bg-white/80 backdrop-blur-md border-b border-gray-100"
+        ? "bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm"
+        : "bg-white/80 backdrop-blur-md border-b border-gray-100"
         }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -453,7 +453,7 @@ const MetricCard = ({ value, label, index }: { key?: number; value: string; labe
         delay: index * 0.12
       }}
       whileHover={{ y: -8, boxShadow: "0 20px 50px rgba(22,38,65,0.08)" }}
-      className="p-8 rounded-[3rem] bg-[#fbf0cf] border border-gray-100 text-center transition-shadow duration-300"
+      className="p-8 rounded-2xl bg-[#fbf0cf] border border-gray-100 text-center transition-shadow duration-300"
     >
       <h3 className="text-4xl font-bold text-[#c7ae6a] mb-2">{count}</h3>
       <p className="text-gray-500 text-sm leading-relaxed">{label}</p>
@@ -1150,10 +1150,7 @@ const Footer = () => {
         <AnimatedSection stagger={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
           <motion.div className="col-span-2 lg:col-span-2" variants={fadeUp}>
             <div className="flex items-center gap-2 mb-6">
-              <div className="w-10 h-10 bg-brand-gold rounded-[1.25rem] flex items-center justify-center">
-                <span className="text-brand-navy font-bold text-xl">H</span>
-              </div>
-              <span className="text-2xl font-bold tracking-tight">hiyrED</span>
+              <img src="/Logo-Stick-Figure-Hiyred_Txt.svg" alt="hiyrED" className="h-22" />
             </div>
             <p className="text-gray-400 max-w-xs mb-8">
               Transforming campus hiring from manual chaos into an intelligent, automated system.

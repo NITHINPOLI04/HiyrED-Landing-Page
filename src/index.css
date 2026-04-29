@@ -18,14 +18,17 @@
   }
 
   body {
-    @apply text-brand-dark bg-[#fbf0cf];
+    @apply text-brand-dark bg-white;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   /* Respect reduced motion preference */
   @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after {
+
+    *,
+    *::before,
+    *::after {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
@@ -47,7 +50,8 @@
 }
 
 /* Performance: GPU acceleration for animated elements */
-[data-motion], .glass-card {
+[data-motion],
+.glass-card {
   will-change: transform, opacity;
   transform: translateZ(0);
 }
