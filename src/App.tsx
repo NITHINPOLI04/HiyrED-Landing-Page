@@ -669,6 +669,195 @@ const HowItWorks = () => {
   );
 };
 
+// ─── Where Hiyred Stands Apart (USP / Differentiators) ──────────────────────────
+
+const HiyredEdge = () => {
+  const differentiators = [
+    {
+      index: "01",
+      engine: "SECTOR POOL",
+      title: "Structured Hiring Ecosystem",
+      headline: "Every industry, every domain — precisely segmented.",
+      desc: "Hiyred maps companies across Product and Service verticals, down to sub-domains like CTO Networks and PM Channels — so matching happens at the right depth, not just the right keywords.",
+      accent: "#C7AE6A",
+    },
+    {
+      index: "02",
+      engine: "TALENT POOL",
+      title: "Capability-First Talent Mapping",
+      headline: "Not who you are on paper — what you can actually do.",
+      desc: "Hiyred builds each student's profile around demonstrated strengths, not just grades. Students are guided toward roles that match their abilities — before they start applying.",
+      accent: "#7dd3fc",
+    },
+    {
+      index: "03",
+      engine: "CORTEX",
+      title: "Predictive Intelligence Layer",
+      headline: "Decisions backed by data, not instinct.",
+      desc: "The Cortex engine analyses patterns across drives, candidates, and outcomes — surfacing insights that help admins and recruiters predict fit, reduce drop-offs, and improve every hire.",
+      accent: "#a78bfa",
+    },
+    {
+      index: "04",
+      engine: "FORGE",
+      title: "Guided Placement Readiness",
+      headline: "Students don't just apply — they arrive prepared.",
+      desc: "Forge builds structured skill progression paths tailored to each student's target domain. From gap analysis to practice — readiness is engineered, not assumed.",
+      accent: "#6ee7b7",
+    },
+  ];
+
+  return (
+    <section
+      className="relative py-32 overflow-hidden"
+      style={{ background: "linear-gradient(160deg, #0e1a2e 0%, #162641 60%, #1a2d4a 100%)" }}
+    >
+      {/* Background texture dots */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(199,174,106,0.07) 1px, transparent 1px)",
+          backgroundSize: "36px 36px",
+        }}
+      />
+      {/* Top fade */}
+      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/0 to-transparent pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
+          <motion.p
+            className="text-xs font-bold uppercase tracking-[0.3em] mb-4"
+            style={{ color: "#C7AE6A" }}
+            variants={fadeUp}
+          >
+            Intelligence · Structure · Depth
+          </motion.p>
+          <motion.h2
+            className="text-4xl lg:text-6xl font-bold text-white mb-5 leading-tight"
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+          >
+            Where{" "}
+            <span
+              style={{
+                background: "linear-gradient(90deg, #C7AE6A 0%, #e3d6b4 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
+              hiyrED
+            </span>{" "}
+            Stands Apart
+          </motion.h2>
+          <motion.p
+            className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed"
+            variants={fadeUp}
+            transition={{ duration: 0.5 }}
+          >
+            Four foundational systems that separate Hiyred from every other placement platform — built into the product, not bolted on.
+          </motion.p>
+        </AnimatedSection>
+
+        {/* Cards Grid */}
+        <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {differentiators.map((d, i) => (
+            <motion.div
+              key={i}
+              variants={i % 2 === 0 ? fadeLeft : fadeRight}
+              transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+              whileHover={{
+                y: -6,
+                transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
+              }}
+              className="group relative rounded-[2.5rem] p-8 lg:p-10 cursor-default overflow-hidden"
+              style={{
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.08)",
+                backdropFilter: "blur(12px)",
+              }}
+            >
+              {/* Hover glow border */}
+              <motion.div
+                className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  boxShadow: `inset 0 0 0 1.5px ${d.accent}55, 0 0 40px ${d.accent}18`,
+                }}
+              />
+
+              {/* Corner index */}
+              <span
+                className="absolute top-8 right-8 text-7xl font-black leading-none select-none pointer-events-none"
+                style={{ color: `${d.accent}10`, fontVariantNumeric: "tabular-nums" }}
+              >
+                {d.index}
+              </span>
+
+              {/* Engine badge */}
+              <div className="flex items-center gap-3 mb-6">
+                <motion.span
+                  className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em]"
+                  style={{
+                    background: `${d.accent}18`,
+                    color: d.accent,
+                    border: `1px solid ${d.accent}35`,
+                  }}
+                  whileHover={{ scale: 1.06 }}
+                  transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                >
+                  {d.engine}
+                </motion.span>
+                {/* Divider line */}
+                <motion.div
+                  className="h-px flex-1 max-w-[48px]"
+                  style={{ background: `${d.accent}30` }}
+                  initial={{ scaleX: 0, originX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                  viewport={{ once: true }}
+                />
+              </div>
+
+              {/* Title */}
+              <h3
+                className="text-2xl font-bold text-white mb-3 group-hover:transition-colors duration-300"
+                style={{ lineHeight: 1.25 }}
+              >
+                {d.title}
+              </h3>
+
+              {/* Headline */}
+              <p
+                className="text-sm font-semibold mb-4 leading-snug"
+                style={{ color: d.accent }}
+              >
+                {d.headline}
+              </p>
+
+              {/* Description */}
+              <p className="text-white/55 text-sm leading-relaxed">{d.desc}</p>
+
+              {/* Bottom accent bar */}
+              <motion.div
+                className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{ background: `linear-gradient(90deg, transparent, ${d.accent}, transparent)` }}
+              />
+            </motion.div>
+          ))}
+        </AnimatedSection>
+
+        {/* Footer note */}
+        <AnimatedSection className="text-center mt-16" delay={0.3}>
+          <motion.p className="text-white/30 text-xs tracking-widest uppercase" variants={fadeUp}>
+            Every differentiator is a live system — not a roadmap promise.
+          </motion.p>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
+
 // ─── Features ──────────────────────────────────────────────────────────────────
 
 const Features = () => {
@@ -1076,6 +1265,7 @@ export default function App() {
         <Metrics />
         <WhyChoose />
         <HowItWorks />
+        <HiyredEdge />
         <Features />
         <Testimonial />
         <JobBoardPreview />
