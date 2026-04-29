@@ -1261,8 +1261,8 @@ export default function App() {
         <Hero />
         <Metrics />
         <WhyChoose />
-        <HowItWorks />
         <HiyredEdge />
+        <HowItWorks />
         <Features />
         <Testimonial />
         <JobBoardPreview />
