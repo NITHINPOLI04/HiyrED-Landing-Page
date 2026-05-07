@@ -296,14 +296,14 @@ const Hero = () => {
               variants={fadeLeft}
               transition={{ duration: 0.7, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Build capabilities. <span className="text-brand-gold">Prove</span> your worth.
+              Forge your potential into <span className="text-brand-gold">proven</span> capability.
             </motion.h1>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl"
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
             >
-              Join the intelligent student community. Upskill through hiyrED Forge, map your capabilities, and connect directly with top companies based on verified skills.
+              The definitive ecosystem for ambitious students. Map your strengths, build real-world capabilities, and let your verified proof-of-work attract industry leaders.
             </motion.p>
             <motion.div
               className="flex flex-wrap gap-4"
@@ -411,10 +411,10 @@ const Hero = () => {
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                        <BarChart3 className="text-blue-600 w-4 h-4" />
+                      <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
+                        <Code2 className="text-purple-600 w-4 h-4" />
                       </div>
-                      <p className="text-sm font-medium text-brand-navy">92% Industry Match</p>
+                      <p className="text-sm font-medium text-brand-navy">Fullstack Project Deployed</p>
                     </div>
                     <motion.p
                       className="text-xs text-gray-400"
@@ -482,7 +482,7 @@ const Metrics = () => {
             variants={fadeUp}
             className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-10"
           >
-            Hiring directly from the hiyrED Community
+            Scouting talent directly from the hiyrED Forge
           </motion.p>
 
           {/* Marquee Logo Strip */}
@@ -575,10 +575,10 @@ const WhyChoose = () => {
 
 const TheJourney = () => {
   const steps = [
-    { number: "01", title: "Discover & Align", desc: "Map your strengths and align with the perfect industry role based on real capability." },
-    { number: "02", title: "Prepare with Forge", desc: "Follow structured learning paths. Master coding, core subjects, and mini-projects." },
-    { number: "03", title: "Apply & Match", desc: "One-click apply to top companies with your verified Skill Match %." },
-    { number: "04", title: "Interview & Grow", desc: "Use Cortex intelligence to prep for interviews, get hired, and join the alumni pool." },
+    { number: "01", title: "Discover", desc: "Map your raw potential and align with the optimal industry domain." },
+    { number: "02", title: "Build", desc: "Follow structured Forge paths. Master coding, core subjects, and daily practice." },
+    { number: "03", title: "Prove", desc: "Deploy mini-projects, crush assessments, and earn immutable, verified Skill Badges." },
+    { number: "04", title: "Showcase", desc: "Enter the Talent Pool where industry leaders actively scout your proven capabilities." },
   ];
 
   return (
@@ -833,9 +833,9 @@ const HiyredEdge = () => {
 
 const EcosystemHub = () => {
   const ecosystem = [
-    { icon: <Users />, title: "Students", desc: "Join the community, upskill through structured paths, and get hired based on verified merit." },
-    { icon: <Briefcase />, title: "Companies", desc: "Discover and hire pre-assessed, placement-ready talent from a pan-India pool." },
-    { icon: <ShieldCheck />, title: "Institutions", desc: "Monitor student readiness, manage drives intelligently, and boost placement outcomes." },
+    { icon: <Users />, title: "Students", desc: "Join the community, upskill through structured paths, and build an undeniable proof-of-work portfolio." },
+    { icon: <Briefcase />, title: "Companies", desc: "Bypass resumes. Scout and handpick pre-assessed talent directly from a pan-India verified pool." },
+    { icon: <ShieldCheck />, title: "Institutions", desc: "Track cohort capability, identify skill gaps, and visualize real-time placement readiness." },
     { icon: <Code2 />, title: "Educators & Mentors", desc: "Design capability paths, mentor students, and earn by creating measurable impact." },
   ];
 
@@ -976,14 +976,12 @@ const Testimonial = () => {
   );
 };
 
-// ─── Job Board Preview ─────────────────────────────────────────────────────────
-
-const OpportunityHubPreview = () => {
-  const jobs = [
-    { title: "Product Designer", type: "Full-time", match: "98% Match", verified: true },
-    { title: "Frontend Engineer", type: "Internship", match: "92% Match", verified: true },
-    { title: "Data Analyst", type: "Full-time", match: "85% Match", verified: false },
-    { title: "Backend Developer", type: "Full-time", match: "95% Match", verified: true },
+const TalentShowcasePreview = () => {
+  const students = [
+    { name: "Alex Rivera", role: "Frontend Developer", capability: "98% Forge Readiness", verified: true },
+    { name: "Sarah Chen", role: "Data Analyst", capability: "92% Forge Readiness", verified: true },
+    { name: "Rahul Sharma", role: "Backend Engineer", capability: "95% Forge Readiness", verified: true },
+    { name: "Priya Patel", role: "Product Manager", capability: "88% Forge Readiness", verified: false },
   ];
 
   return (
@@ -997,14 +995,14 @@ const OpportunityHubPreview = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6 }}
             >
-              Opportunity Hub
+              The Talent Radar
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
               variants={fadeLeft}
               transition={{ duration: 0.5 }}
             >
-              Stop scrolling through irrelevant posts. The Opportunity Hub matches you directly with top companies based on your verified Forge capabilities and true Skill Match %.
+              No resumes. No college bias. Just pure, verified proof-of-work. Industry leaders use the Talent Radar to scout students based entirely on their real-world Forge capabilities.
             </motion.p>
             <motion.button
               className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20"
@@ -1012,13 +1010,13 @@ const OpportunityHubPreview = () => {
               whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
               whileTap={{ scale: 0.97 }}
             >
-              Explore Opportunities
+              View Talent Pool
             </motion.button>
           </AnimatedSection>
 
-          {/* Right: Job Cards */}
+          {/* Right: Student Cards */}
           <AnimatedSection stagger={staggerContainerFast} className="grid gap-4">
-            {jobs.map((j, i) => (
+            {students.map((s, i) => (
               <motion.div
                 key={i}
                 variants={fadeRight}
@@ -1034,13 +1032,14 @@ const OpportunityHubPreview = () => {
                   <motion.div
                     className="w-12 h-12 rounded-[1.25rem] bg-gray-50 flex items-center justify-center group-hover:bg-brand-gold/10 transition-colors duration-300"
                   >
-                    <Briefcase className="text-gray-400 group-hover:text-brand-gold transition-colors duration-300" />
+                    <Users className="text-gray-400 group-hover:text-brand-gold transition-colors duration-300" />
                   </motion.div>
                   <div>
-                    <h4 className="font-bold text-brand-navy">{j.title}</h4>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-md">{j.match}</span>
-                      {j.verified && <span className="text-[10px] text-gray-500 flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-brand-gold"/> Verified Skills</span>}
+                    <h4 className="font-bold text-brand-navy">{s.name}</h4>
+                    <p className="text-xs text-gray-500 mb-1">{s.role}</p>
+                    <div className="flex items-center gap-2">
+                      <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">{s.capability}</span>
+                      {s.verified && <span className="text-[10px] text-gray-500 flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-brand-gold"/> Verified Projects</span>}
                     </div>
                   </div>
                 </div>
@@ -1085,7 +1084,7 @@ const FinalCTA = () => {
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
               >
-                Join the ecosystem where talent meets opportunity. Upskill, prove your worth, and get hired by top companies.
+                Join the ecosystem where ambition meets structure. Upskill, prove your worth, and let the industry come to you.
               </motion.p>
               <motion.button
                 className="px-10 py-5 bg-brand-navy text-white font-bold rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/30"
@@ -1239,7 +1238,7 @@ export default function App() {
         <TheJourney />
         <EcosystemHub />
         <Testimonial />
-        <OpportunityHubPreview />
+        <TalentShowcasePreview />
         <FinalCTA />
       </main>
       <Footer />
