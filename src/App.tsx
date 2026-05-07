@@ -193,7 +193,7 @@ const Navbar = () => {
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
-            {["For Colleges", "For Students", "For Recruiters", "How It Works", "Contact"].map((item, i) => (
+            {["Community", "Forge", "For Companies", "Institutions", "Contact"].map((item, i) => (
               <motion.a
                 key={item}
                 href="#"
@@ -217,7 +217,7 @@ const Navbar = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5, duration: 0.4 }}
             >
-              Login
+              Sign In
             </motion.button>
             <motion.button
               className="px-6 py-2.5 bg-brand-navy text-white text-sm font-semibold rounded-full hover:bg-brand-navy/90 transition-all shadow-lg shadow-brand-navy/20"
@@ -227,7 +227,7 @@ const Navbar = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.55, duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Start Hiring
+              Join hiyrED
             </motion.button>
           </div>
 
@@ -252,7 +252,7 @@ const Navbar = () => {
           transition={{ duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }}
           className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-4 overflow-hidden"
         >
-          {["For Colleges", "For Students", "For Recruiters", "How It Works"].map((item, i) => (
+          {["Community", "Forge", "For Companies", "Institutions"].map((item, i) => (
             <motion.a
               key={item}
               href="#"
@@ -270,7 +270,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.3 }}
           >
-            Start Hiring
+            Join hiyrED
           </motion.button>
         </motion.div>
       )}
@@ -296,14 +296,14 @@ const Hero = () => {
               variants={fadeLeft}
               transition={{ duration: 0.7, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Fastest way to <span className="text-brand-gold">streamline</span> campus hiring
+              Build capabilities. <span className="text-brand-gold">Prove</span> your worth.
             </motion.h1>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed max-w-xl"
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
             >
-              hiyrED brings students, recruiters, and placement teams onto one intelligent platform — eliminating chaos and enabling faster, smarter hiring.
+              Join the intelligent student community. Upskill through hiyrED Forge, map your capabilities, and connect directly with top companies based on verified skills.
             </motion.p>
             <motion.div
               className="flex flex-wrap gap-4"
@@ -315,7 +315,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
                 whileTap={{ scale: 0.97 }}
               >
-                Start Hiring
+                Join the Community
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               <motion.button
@@ -323,7 +323,7 @@ const Hero = () => {
                 whileHover={{ scale: 1.04, borderColor: "rgba(22,38,65,0.25)" }}
                 whileTap={{ scale: 0.97 }}
               >
-                Explore Platform
+                Hire Verified Talent
               </motion.button>
             </motion.div>
           </motion.div>
@@ -360,11 +360,11 @@ const Hero = () => {
                       <motion.div
                         className="h-full bg-brand-gold rounded-full"
                         initial={{ width: 0 }}
-                        animate={{ width: "75%" }}
+                        animate={{ width: "85%" }}
                         transition={{ delay: 1, duration: 1.2, ease: EASE_SMOOTH as unknown as number[] }}
                       />
                     </div>
-                    <p className="text-[10px] text-gray-400">Eligibility: 98% Match</p>
+                    <p className="text-[10px] text-gray-400">Capability Path: Frontend Eng.</p>
                   </div>
                 </motion.div>
               </motion.div>
@@ -381,11 +381,11 @@ const Hero = () => {
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-10 h-10 rounded-full bg-brand-navy/10 flex items-center justify-center">
-                      <Briefcase className="text-brand-navy w-5 h-5" />
+                      <Code2 className="text-brand-navy w-5 h-5" />
                     </div>
                     <div>
-                      <p className="text-xs text-gray-500">New Job Post</p>
-                      <p className="font-bold text-brand-navy">Software Engineer</p>
+                      <p className="text-xs text-gray-500">Forge Assessment</p>
+                      <p className="font-bold text-brand-navy">DSA Mastery</p>
                     </div>
                   </div>
                   <motion.span
@@ -394,7 +394,7 @@ const Hero = () => {
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 1.2, duration: 0.4, type: "spring", stiffness: 300 }}
                   >
-                    Active Drive
+                    Skill Verified
                   </motion.span>
                 </motion.div>
               </motion.div>
@@ -412,9 +412,9 @@ const Hero = () => {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <div className="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                        <Bell className="text-blue-600 w-4 h-4" />
+                        <BarChart3 className="text-blue-600 w-4 h-4" />
                       </div>
-                      <p className="text-sm font-medium text-brand-navy">Interview Scheduled</p>
+                      <p className="text-sm font-medium text-brand-navy">92% Industry Match</p>
                     </div>
                     <motion.p
                       className="text-xs text-gray-400"
@@ -463,9 +463,9 @@ const MetricCard = ({ value, label, index }: { key?: number; value: string; labe
 
 const Metrics = () => {
   const metrics = [
-    { value: "< 2 mins", label: "Avg time from job post to student notification" },
-    { value: "50%+", label: "Reduction in admin workload" },
-    { value: "90%", label: "Less manual coordination (emails/WhatsApp)" },
+    { value: "500k+", label: "Active Students in Talent Pool" },
+    { value: "85%", label: "Placement Readiness via Forge" },
+    { value: "120+", label: "Domain-specific Capability Paths" },
   ];
 
   return (
@@ -482,7 +482,7 @@ const Metrics = () => {
             variants={fadeUp}
             className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-10"
           >
-            Trusted by 100+ Companies & Colleges
+            Hiring directly from the hiyrED Community
           </motion.p>
 
           {/* Marquee Logo Strip */}
@@ -573,18 +573,16 @@ const WhyChoose = () => {
 
 // ─── How It Works ──────────────────────────────────────────────────────────────
 
-const HowItWorks = () => {
+const TheJourney = () => {
   const steps = [
-    { number: "01", title: "Define Your Hiring Rules", desc: "Admins set eligibility, policies, and job requirements" },
-    { number: "02", title: "We Auto-Shortlist Students", desc: "Only eligible candidates are filtered instantly" },
-    { number: "03", title: "Track, Interview & Hire", desc: "Manage rounds, feedback, and offers in one place" },
+    { number: "01", title: "Discover & Align", desc: "Map your strengths and align with the perfect industry role based on real capability." },
+    { number: "02", title: "Prepare with Forge", desc: "Follow structured learning paths. Master coding, core subjects, and mini-projects." },
+    { number: "03", title: "Apply & Match", desc: "One-click apply to top companies with your verified Skill Match %." },
+    { number: "04", title: "Interview & Grow", desc: "Use Cortex intelligence to prep for interviews, get hired, and join the alumni pool." },
   ];
 
-  const sectionRef = useRef(null);
-  const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
-
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
           <motion.h2
@@ -592,47 +590,20 @@ const HowItWorks = () => {
             variants={fadeUp}
             transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
           >
-            How <span className="text-[#c7ae6a]">hiyrED</span> Works
+            The <span className="text-[#c7ae6a]">Student Journey</span>
           </motion.h2>
           <motion.p
             className="text-gray-500 max-w-2xl mx-auto"
             variants={fadeUp}
             transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
           >
-            From curated intros to faster hiring — here's how we match standout talent with forward-thinking companies.
+            From discovering your path to landing the offer — a structured, capability-driven ecosystem built for your success.
           </motion.p>
         </AnimatedSection>
 
-        <div className="relative" ref={sectionRef}>
-          {/* ── Dashed connector arcs BEHIND cards using CSS borders ── */}
-          {/* Entry trail */}
-          <motion.div
-            className="hidden md:block absolute pointer-events-none"
-            style={{ left: "-10px", top: "45%", width: "60px", height: "40px", borderBottom: "2px dashed #c5c0b6", borderRadius: "0 0 50% 0", zIndex: 0 }}
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={isInView ? { opacity: 0.5, scaleX: 1 } : {}}
-            transition={{ duration: 0.5, delay: 0.3, ease: EASE_PREMIUM as unknown as number[] }}
-          />
-          {/* Arc 1→2 */}
-          <motion.div
-            className="hidden md:block absolute pointer-events-none"
-            style={{ left: "30%", top: "55%", width: "12%", height: "60px", borderBottom: "2px dashed #c5c0b6", borderLeft: "2px dashed #c5c0b6", borderRight: "2px dashed #c5c0b6", borderRadius: "0 0 50% 50%", zIndex: 0, transformOrigin: "top" }}
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={isInView ? { opacity: 0.5, scaleY: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
-          />
-          {/* Arc 2→3 */}
-          <motion.div
-            className="hidden md:block absolute pointer-events-none"
-            style={{ left: "63.5%", top: "55%", width: "12%", height: "60px", borderBottom: "2px dashed #c5c0b6", borderLeft: "2px dashed #c5c0b6", borderRight: "2px dashed #c5c0b6", borderRadius: "0 0 50% 50%", zIndex: 0, transformOrigin: "top" }}
-            initial={{ opacity: 0, scaleY: 0 }}
-            animate={isInView ? { opacity: 0.5, scaleY: 1 } : {}}
-            transition={{ duration: 0.8, delay: 0.9, ease: EASE_PREMIUM as unknown as number[] }}
-          />
-
-          {/* ── Step Cards (above connectors) ── */}
+        <div className="relative">
           <div style={{ position: "relative", zIndex: 1 }}>
-            <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-3 gap-8 relative">
+            <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
               {steps.map((s, i) => (
                 <motion.div
                   key={i}
@@ -643,10 +614,10 @@ const HowItWorks = () => {
                     boxShadow: "0 20px 60px rgba(22,38,65,0.08)",
                     transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
                   }}
-                  className="p-10 rounded-[4rem] bg-[#fbf0cf] border border-gray-100 relative group cursor-default"
+                  className="p-8 lg:p-10 rounded-[3rem] bg-[#fbf0cf] border border-gray-100 relative group cursor-default"
                 >
                   <motion.span
-                    className="text-6xl font-black text-brand-navy/5 absolute top-8 right-8 group-hover:text-brand-gold/10 transition-colors duration-500"
+                    className="text-5xl font-black text-brand-navy/5 absolute top-8 right-8 group-hover:text-brand-gold/10 transition-colors duration-500"
                   >
                     {s.number}
                   </motion.span>
@@ -657,8 +628,8 @@ const HowItWorks = () => {
                   >
                     {i + 1}
                   </motion.div>
-                  <h4 className="text-2xl font-bold text-brand-navy mb-4">{s.title}</h4>
-                  <p className="text-gray-600 leading-relaxed">{s.desc}</p>
+                  <h4 className="text-xl font-bold text-brand-navy mb-4">{s.title}</h4>
+                  <p className="text-gray-600 leading-relaxed text-sm">{s.desc}</p>
                 </motion.div>
               ))}
             </AnimatedSection>
@@ -694,7 +665,7 @@ const HiyredEdge = () => {
       engine: "CORTEX",
       title: "Predictive Intelligence Layer",
       headline: "Decisions backed by data, not instinct.",
-      desc: "The Cortex engine analyses patterns across drives, candidates, and outcomes — surfacing insights that help admins and recruiters predict fit, reduce drop-offs, and improve every hire.",
+      desc: "The Cortex engine analyses patterns across the ecosystem — surfacing insights that help students prepare smarter, and recruiters predict fit to improve every hire.",
       accent: "#a78bfa",
     },
     {
@@ -860,14 +831,12 @@ const HiyredEdge = () => {
 
 // ─── Features ──────────────────────────────────────────────────────────────────
 
-const Features = () => {
-  const features = [
-    { icon: <ShieldCheck />, title: "Eligibility Engine", desc: "Automated rule enforcement for every job drive." },
-    { icon: <BarChart3 />, title: "DriveIntel Analytics", desc: "Real-time data on placement performance." },
-    { icon: <Code2 />, title: "CodeLAB Practice", desc: "Integrated coding assessments and practice." },
-    { icon: <Bell />, title: "Smart Notifications", desc: "Instant updates via WhatsApp, Email, and Push." },
-    { icon: <FileText />, title: "Resume Vault", desc: "Centralized, verified student resume database." },
-    { icon: <Users />, title: "Application Tracking", desc: "End-to-end candidate lifecycle management." },
+const EcosystemHub = () => {
+  const ecosystem = [
+    { icon: <Users />, title: "Students", desc: "Join the community, upskill through structured paths, and get hired based on verified merit." },
+    { icon: <Briefcase />, title: "Companies", desc: "Discover and hire pre-assessed, placement-ready talent from a pan-India pool." },
+    { icon: <ShieldCheck />, title: "Institutions", desc: "Monitor student readiness, manage drives intelligently, and boost placement outcomes." },
+    { icon: <Code2 />, title: "Educators & Mentors", desc: "Design capability paths, mentor students, and earn by creating measurable impact." },
   ];
 
   return (
@@ -878,19 +847,19 @@ const Features = () => {
             className="text-sm font-medium text-[#bd9d51] uppercase tracking-[0.2em] mb-2"
             variants={fadeUp}
           >
-            CORE MODULES
+            THE ECOSYSTEM
           </motion.p>
           <motion.h2
             className="text-4xl lg:text-5xl font-bold text-[#162641]"
             variants={fadeUp}
             transition={{ duration: 0.6 }}
           >
-            Everything you need, built in
+            Built for everyone to win
           </motion.h2>
         </AnimatedSection>
 
-        <AnimatedSection stagger={staggerContainerFast} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((f, i) => (
+        <AnimatedSection stagger={staggerContainerFast} className="grid md:grid-cols-2 gap-6 lg:gap-8">
+          {ecosystem.map((f, i) => (
             <motion.div
               key={i}
               variants={fadeUp}
@@ -900,17 +869,19 @@ const Features = () => {
                 boxShadow: "0 20px 50px rgba(22,38,65,0.08)",
                 transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
               }}
-              className="p-8 rounded-[3rem] bg-white border border-gray-100 hover:shadow-xl hover:shadow-brand-navy/5 transition-all group cursor-default"
+              className="p-8 lg:p-10 rounded-[3rem] bg-white border border-gray-100 hover:shadow-xl hover:shadow-brand-navy/5 transition-all group cursor-default flex items-start gap-6"
             >
               <motion.div
-                className="w-14 h-14 bg-brand-gold/10 rounded-2xl flex items-center justify-center text-brand-gold mb-6"
+                className="w-14 h-14 bg-brand-gold/10 rounded-2xl flex items-center justify-center text-brand-gold shrink-0"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
                 {f.icon}
               </motion.div>
-              <h4 className="text-xl font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition-colors duration-300">{f.title}</h4>
-              <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+              <div>
+                <h4 className="text-xl font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition-colors duration-300">{f.title}</h4>
+                <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
+              </div>
             </motion.div>
           ))}
         </AnimatedSection>
@@ -1007,12 +978,12 @@ const Testimonial = () => {
 
 // ─── Job Board Preview ─────────────────────────────────────────────────────────
 
-const JobBoardPreview = () => {
+const OpportunityHubPreview = () => {
   const jobs = [
-    { title: "Product Designer", type: "Full-time", location: "Remote" },
-    { title: "Frontend Engineer", type: "Internship", location: "Bangalore" },
-    { title: "Data Analyst", type: "Full-time", location: "Hyderabad" },
-    { title: "Backend Developer", type: "Full-time", location: "Pune" },
+    { title: "Product Designer", type: "Full-time", match: "98% Match", verified: true },
+    { title: "Frontend Engineer", type: "Internship", match: "92% Match", verified: true },
+    { title: "Data Analyst", type: "Full-time", match: "85% Match", verified: false },
+    { title: "Backend Developer", type: "Full-time", match: "95% Match", verified: true },
   ];
 
   return (
@@ -1026,14 +997,14 @@ const JobBoardPreview = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6 }}
             >
-              Smart Job Board
+              Opportunity Hub
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
               variants={fadeLeft}
               transition={{ duration: 0.5 }}
             >
-              Students explore only relevant opportunities — fully filtered and ready to apply. No more scrolling through irrelevant posts.
+              Stop scrolling through irrelevant posts. The Opportunity Hub matches you directly with top companies based on your verified Forge capabilities and true Skill Match %.
             </motion.p>
             <motion.button
               className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20"
@@ -1041,7 +1012,7 @@ const JobBoardPreview = () => {
               whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
               whileTap={{ scale: 0.97 }}
             >
-              Browse Opportunities
+              Explore Opportunities
             </motion.button>
           </AnimatedSection>
 
@@ -1067,7 +1038,10 @@ const JobBoardPreview = () => {
                   </motion.div>
                   <div>
                     <h4 className="font-bold text-brand-navy">{j.title}</h4>
-                    <p className="text-xs text-gray-500">{j.type} • {j.location}</p>
+                    <div className="flex items-center gap-2 mt-1">
+                      <span className="text-xs font-bold text-green-600 bg-green-50 px-2 py-0.5 rounded-md">{j.match}</span>
+                      {j.verified && <span className="text-[10px] text-gray-500 flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-brand-gold"/> Verified Skills</span>}
+                    </div>
                   </div>
                 </div>
                 <motion.button
@@ -1104,14 +1078,14 @@ const FinalCTA = () => {
                 variants={fadeUp}
                 transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
               >
-                Ready to simplify campus hiring?
+                Ready to build your capability?
               </motion.h2>
               <motion.p
                 className="text-xl text-brand-navy/70 mb-12 max-w-2xl mx-auto"
                 variants={fadeUp}
                 transition={{ duration: 0.5 }}
               >
-                We automate, match, and manage — you just hire. Join 500+ institutions already using hiyrED.
+                Join the ecosystem where talent meets opportunity. Upskill, prove your worth, and get hired by top companies.
               </motion.p>
               <motion.button
                 className="px-10 py-5 bg-brand-navy text-white font-bold rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/30"
@@ -1119,7 +1093,7 @@ const FinalCTA = () => {
                 whileHover={{ scale: 1.06, boxShadow: "0 20px 60px rgba(22,38,65,0.4)" }}
                 whileTap={{ scale: 0.97 }}
               >
-                Get Started Now
+                Join the Community
               </motion.button>
             </AnimatedSection>
 
@@ -1262,10 +1236,10 @@ export default function App() {
         <Metrics />
         <WhyChoose />
         <HiyredEdge />
-        <HowItWorks />
-        <Features />
+        <TheJourney />
+        <EcosystemHub />
         <Testimonial />
-        <JobBoardPreview />
+        <OpportunityHubPreview />
         <FinalCTA />
       </main>
       <Footer />
