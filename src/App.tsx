@@ -193,7 +193,7 @@ const Navbar = () => {
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
-            {["Community", "Forge", "For Companies", "Institutions", "Contact"].map((item, i) => (
+            {["Community", "Forge", "For Recruiters", "Institutions", "Contact"].map((item, i) => (
               <motion.a
                 key={item}
                 href="#"
@@ -252,7 +252,7 @@ const Navbar = () => {
           transition={{ duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }}
           className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-4 overflow-hidden"
         >
-          {["Community", "Forge", "For Companies", "Institutions"].map((item, i) => (
+          {["Community", "Forge", "For Recruiters", "Institutions"].map((item, i) => (
             <motion.a
               key={item}
               href="#"
@@ -834,7 +834,7 @@ const HiyredEdge = () => {
 const EcosystemHub = () => {
   const ecosystem = [
     { icon: <Users />, title: "Students", desc: "Join the community, upskill through structured paths, and build an undeniable proof-of-work portfolio." },
-    { icon: <Briefcase />, title: "Companies", desc: "Bypass resumes. Scout and handpick pre-assessed talent directly from a pan-India verified pool." },
+    { icon: <Briefcase />, title: "Recruiters", desc: "Bypass resumes. Scout and handpick pre-assessed talent directly from a pan-India verified pool." },
     { icon: <ShieldCheck />, title: "Institutions", desc: "Track cohort capability, identify skill gaps, and visualize real-time placement readiness." },
     { icon: <Code2 />, title: "Educators & Mentors", desc: "Design capability paths, mentor students, and earn by creating measurable impact." },
   ];
@@ -1126,7 +1126,7 @@ const Footer = () => {
               <img src="/Logo-Stick-Figure-Hiyred_Txt.svg" alt="hiyrED" className="h-22" />
             </div>
             <p className="text-gray-400 max-w-xs mb-8">
-              Transforming campus hiring from manual chaos into an intelligent, automated system.
+              The definitive ecosystem for ambitious students to build verified capabilities and showcase their proof-of-work.
             </p>
             <div className="flex gap-4">
               {/* Social Icons */}
