@@ -517,10 +517,10 @@ const Metrics = () => {
 
 const SystemShift = () => {
   const shifts = [
-    { old: "Random, ad-hoc preparation", new: "Structured, role-based capability paths", icon: <Code2 className="text-brand-gold w-5 h-5" /> },
-    { old: "Generic guidance & zero visibility", new: "Clear direction & measurable progress", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
-    { old: "Resume-based filtering", new: "Verified proof-of-work & skill badges", icon: <ShieldCheck className="text-brand-gold w-5 h-5" /> },
-    { old: "Rejection without feedback", new: "Continuous improvement loop via Cortex", icon: <CheckCircle2 className="text-brand-gold w-5 h-5" /> },
+    { old: "Fragmented, ad-hoc learning", new: "Structured capability development", icon: <Code2 className="text-brand-gold w-5 h-5" /> },
+    { old: "Blind preparation & guesswork", new: "Predictive readiness insights via Cortex", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
+    { old: "Resume-based filtering", new: "Direct Industry scouting via verified skills", icon: <ShieldCheck className="text-brand-gold w-5 h-5" /> },
+    { old: "Rejection without clarity", new: "Continuous feedback & improvement loops", icon: <CheckCircle2 className="text-brand-gold w-5 h-5" /> },
   ];
 
   return (
@@ -546,7 +546,7 @@ const SystemShift = () => {
               className="text-lg text-gray-600 mb-10 leading-relaxed"
               variants={fadeLeft}
             >
-              You're putting in the work—coding, courses, projects. But without direction, feedback, and visibility, effort rarely translates into reliable outcomes. We fixed the system.
+              Effort without direction is just noise. You are already writing code, building projects, and taking courses—but without structured feedback and visibility, that effort rarely translates into a career. It's time to fix the disconnect.
             </motion.p>
           </AnimatedSection>
 
@@ -738,7 +738,7 @@ const HiyredEdge = () => {
             variants={fadeUp}
             transition={{ duration: 0.5 }}
           >
-            Four foundational systems that separate Hiyred from every other placement platform — built into the product, not bolted on.
+            Four interconnected systems that form the core of the hiyrED ecosystem — engineered to build capability and drive real outcomes.
           </motion.p>
         </AnimatedSection>
 
@@ -1006,14 +1006,14 @@ const TalentShowcasePreview = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6 }}
             >
-              The Talent Radar
+              The Verified Talent Pool
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
               variants={fadeLeft}
               transition={{ duration: 0.5 }}
             >
-              No resumes. No college bias. Just pure, verified proof-of-work. Industry leaders use the Talent Radar to scout students based entirely on their real-world Forge capabilities.
+              No resumes. No college bias. Just pure, verified proof-of-work. Industry leaders use the Talent Pool to scout students based entirely on their real-world Forge capabilities.
             </motion.p>
             <motion.button
               className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20"
