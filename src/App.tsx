@@ -513,57 +513,68 @@ const Metrics = () => {
   );
 };
 
-// ─── Why Choose ────────────────────────────────────────────────────────────────
+// ─── The System Shift ────────────────────────────────────────────────────────
 
-const WhyChoose = () => {
-  const points = [
-    { title: "Automated Eligibility Engine", desc: "No manual filtering — rules enforce themselves" },
-    { title: "Human-Centered Matching", desc: "Students see only what they qualify for" },
-    { title: "Smart Notifications", desc: "Never miss deadlines, interviews, or updates" },
-    { title: "Speed Without Chaos", desc: "Everything happens in one platform — no emails, no confusion" },
+const SystemShift = () => {
+  const shifts = [
+    { old: "Random, ad-hoc preparation", new: "Structured, role-based capability paths", icon: <Code2 className="text-brand-gold w-5 h-5" /> },
+    { old: "Generic guidance & zero visibility", new: "Clear direction & measurable progress", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
+    { old: "Resume-based filtering", new: "Verified proof-of-work & skill badges", icon: <ShieldCheck className="text-brand-gold w-5 h-5" /> },
+    { old: "Rejection without feedback", new: "Continuous improvement loop via Cortex", icon: <CheckCircle2 className="text-brand-gold w-5 h-5" /> },
   ];
 
   return (
     <section className="py-24 bg-[#fbf0cf]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Left: Points */}
+          {/* Left: Text */}
           <AnimatedSection stagger={staggerContainerSlow}>
+            <motion.p
+              className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-4"
+              variants={fadeLeft}
+            >
+              The Problem isn't your effort
+            </motion.p>
             <motion.h2
-              className="text-4xl lg:text-5xl font-bold text-brand-navy mb-12"
+              className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6 leading-tight"
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Why choose <span className="text-[#c7ae6a]">hiyrED</span>?
+              You are failing because the <span className="text-[#c7ae6a]">system lacks structure.</span>
             </motion.h2>
-            <div className="space-y-8">
-              {points.map((p, i) => (
-                <motion.div
-                  key={i}
-                  className="flex gap-4 group cursor-default"
-                  variants={fadeLeft}
-                  transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
-                  whileHover={{ x: 6 }}
-                >
-                  <motion.div
-                    className="mt-1"
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    <CheckCircle2 className="text-brand-gold w-6 h-6" />
-                  </motion.div>
-                  <div>
-                    <h4 className="text-xl font-bold text-brand-navy mb-1 group-hover:text-brand-gold transition-colors duration-300">{p.title}</h4>
-                    <p className="text-gray-600">{p.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+            <motion.p
+              className="text-lg text-gray-600 mb-10 leading-relaxed"
+              variants={fadeLeft}
+            >
+              You're putting in the work—coding, courses, projects. But without direction, feedback, and visibility, effort rarely translates into reliable outcomes. We fixed the system.
+            </motion.p>
           </AnimatedSection>
 
-          {/* Right: Animated Brand Card */}
-          <AnimatedSection variants={scaleIn} className="relative flex justify-center lg:justify-end">
-            <AnimatedLogoReveal />
+          {/* Right: The Shift */}
+          <AnimatedSection variants={scaleIn} className="space-y-4">
+            {shifts.map((s, i) => (
+              <motion.div
+                key={i}
+                className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 group"
+                whileHover={{ x: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.05)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex-1">
+                  <p className="text-xs font-bold text-red-400 uppercase tracking-wider mb-1 line-through decoration-red-300">The Old Way</p>
+                  <p className="text-gray-500 font-medium">{s.old}</p>
+                </div>
+                <div className="hidden sm:block text-gray-300">
+                  <ArrowRight className="w-5 h-5" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-2 mb-1">
+                    {s.icon}
+                    <p className="text-xs font-bold text-brand-gold uppercase tracking-wider">The hiyrED Way</p>
+                  </div>
+                  <p className="text-brand-navy font-bold">{s.new}</p>
+                </div>
+              </motion.div>
+            ))}
           </AnimatedSection>
         </div>
       </div>
@@ -836,7 +847,7 @@ const EcosystemHub = () => {
     { icon: <Users />, title: "Students", desc: "Join the community, upskill through structured paths, and build an undeniable proof-of-work portfolio." },
     { icon: <Briefcase />, title: "Recruiters", desc: "Bypass resumes. Scout and handpick pre-assessed talent directly from a pan-India verified pool." },
     { icon: <ShieldCheck />, title: "Institutions", desc: "Track cohort capability, identify skill gaps, and visualize real-time placement readiness." },
-    { icon: <Code2 />, title: "Educators & Mentors", desc: "Design capability paths, mentor students, and earn by creating measurable impact." },
+    { icon: <Code2 />, title: "Educators & Mentors", desc: "Design capability paths, mentor students, and earn by creating trackable, scalable impact." },
   ];
 
   return (
@@ -1059,6 +1070,47 @@ const TalentShowcasePreview = () => {
   );
 };
 
+// ─── Pricing / ISA Banner ──────────────────────────────────────────────────────
+
+const PaymentModel = () => {
+  return (
+    <section className="py-24 bg-white relative overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+        <AnimatedSection stagger={staggerContainer}>
+          <motion.div
+            className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6"
+            variants={fadeUp}
+          >
+            <ShieldCheck className="w-8 h-8" />
+          </motion.div>
+          <motion.h2
+            className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
+            variants={fadeUp}
+          >
+            No upfront costs. <br/><span className="text-green-600">Success aligned with outcomes.</span>
+          </motion.h2>
+          <motion.p
+            className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto"
+            variants={fadeUp}
+          >
+            We believe in your capability so much that we invest in it. You only pay after you get placed, based on a percentage of your CTC. If you don't win, neither do we.
+          </motion.p>
+          <motion.div
+            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-600"
+            variants={fadeUp}
+          >
+            <CheckCircle2 className="w-4 h-4 text-green-500" />
+            Income Share Agreement (ISA)
+          </motion.div>
+        </AnimatedSection>
+      </div>
+      
+      {/* Decorative */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-green-50 rounded-full blur-3xl -z-10 opacity-50 pointer-events-none"></div>
+    </section>
+  );
+};
+
 // ─── Final CTA ─────────────────────────────────────────────────────────────────
 
 const FinalCTA = () => {
@@ -1233,12 +1285,13 @@ export default function App() {
       <main>
         <Hero />
         <Metrics />
-        <WhyChoose />
+        <SystemShift />
         <HiyredEdge />
         <TheJourney />
         <EcosystemHub />
         <Testimonial />
         <TalentShowcasePreview />
+        <PaymentModel />
         <FinalCTA />
       </main>
       <Footer />
