@@ -1077,12 +1077,6 @@ const PaymentModel = () => {
     <section className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
         <AnimatedSection stagger={staggerContainer}>
-          <motion.div
-            className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6"
-            variants={fadeUp}
-          >
-            <ShieldCheck className="w-8 h-8" />
-          </motion.div>
           <motion.h2
             className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
             variants={fadeUp}
