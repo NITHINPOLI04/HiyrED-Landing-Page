@@ -586,10 +586,10 @@ const SystemShift = () => {
 
 const TheJourney = () => {
   const steps = [
-    { number: "01", title: "Discover", desc: "Map your raw potential and align with the optimal industry domain." },
-    { number: "02", title: "Build", desc: "Follow structured Forge paths. Master coding, core subjects, and daily practice." },
-    { number: "03", title: "Prove", desc: "Deploy mini-projects, crush assessments, and earn immutable, verified Skill Badges." },
-    { number: "04", title: "Showcase", desc: "Enter the Talent Pool where industry leaders actively scout your proven capabilities." },
+    { number: "01", title: "Discover", desc: "Map your raw potential and generate your dynamic Capability Transformation Cortex Path (CTC Path)." },
+    { number: "02", title: "Build", desc: "Follow your CTC Path via Forge. Master coding, core subjects, and tackle real Industry Projects." },
+    { number: "03", title: "Prove", desc: "Earn immutable Skill Badges and compete in the pan-India hiyrED Premier League." },
+    { number: "04", title: "Showcase", desc: "Enter the Verified Talent Pool where recruiters actively scout your proven capabilities." },
   ];
 
   return (
@@ -657,7 +657,7 @@ const HiyredEdge = () => {
   const differentiators = [
     {
       index: "01",
-      engine: "SECTOR POOL",
+      engine: "INDUSTRY POOL",
       title: "Structured Hiring Ecosystem",
       headline: "Every industry, every domain — precisely segmented.",
       desc: "Hiyred maps companies across Product and Service verticals, down to sub-domains like CTO Networks and PM Channels — so matching happens at the right depth, not just the right keywords.",
@@ -840,6 +840,59 @@ const HiyredEdge = () => {
   );
 };
 
+// ─── Brand Stack ──────────────────────────────────────────────────────────────
+
+const BrandStack = () => {
+  const stack = [
+    { label: "Think", name: "Cortex", desc: "Intelligence Engine processing capability signals and ecosystem-wide data.", color: "text-brand-navy", bg: "bg-brand-navy/5" },
+    { label: "Build", name: "Forge", desc: "Structured capability paths sharpening raw talent into role-ready professionals.", color: "text-blue-600", bg: "bg-blue-50" },
+    { label: "Feel", name: "Pulse", desc: "Mental well-being intelligence tracking resilience and burnout signals.", color: "text-rose-500", bg: "bg-rose-50" },
+    { label: "Guide", name: "Compass", desc: "Cortex-informed mentorship and ICF-certified career counselling.", color: "text-brand-gold", bg: "bg-brand-gold/10" },
+  ];
+
+  return (
+    <section className="py-24 bg-white overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="text-center mb-16" stagger={staggerContainer}>
+          <motion.p
+            className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-4"
+            variants={fadeUp}
+          >
+            The Operational Layer
+          </motion.p>
+          <motion.h2
+            className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
+            variants={fadeUp}
+          >
+            Built for the Community. <br/><span className="text-brand-gold">Owned by the Talent.</span>
+          </motion.h2>
+        </AnimatedSection>
+
+        <AnimatedSection stagger={staggerContainerFast} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {stack.map((s, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.06)" }}
+              className="p-8 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm relative group cursor-default"
+            >
+              <div className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full ${s.bg} ${s.color} text-xs font-bold uppercase tracking-wider mb-6`}>
+                {s.label}
+              </div>
+              <h3 className="text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-gold transition-colors">
+                hiyrED <br/>{s.name}
+              </h3>
+              <p className="text-gray-500 text-sm leading-relaxed">
+                {s.desc}
+              </p>
+            </motion.div>
+          ))}
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
+
 // ─── Features ──────────────────────────────────────────────────────────────────
 
 const EcosystemHub = () => {
@@ -847,7 +900,7 @@ const EcosystemHub = () => {
     { icon: <Users />, title: "Students", desc: "Join the community, upskill through structured paths, and build an undeniable proof-of-work portfolio." },
     { icon: <Briefcase />, title: "Recruiters", desc: "Bypass resumes. Scout and handpick pre-assessed talent directly from a pan-India verified pool." },
     { icon: <ShieldCheck />, title: "Institutions", desc: "Track cohort capability, identify skill gaps, and visualize real-time placement readiness." },
-    { icon: <Code2 />, title: "Educators & Mentors", desc: "Design capability paths, mentor students, and earn by creating trackable, scalable impact." },
+    { icon: <Code2 />, title: "Educators & Mentors", desc: "Mentor via hiyrED Compass, design capability paths, and earn by creating trackable impact." },
   ];
 
   return (
@@ -1281,6 +1334,7 @@ export default function App() {
         <Metrics />
         <SystemShift />
         <HiyredEdge />
+        <BrandStack />
         <TheJourney />
         <EcosystemHub />
         <Testimonial />
