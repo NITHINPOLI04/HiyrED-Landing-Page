@@ -13,7 +13,8 @@ import {
   ChevronLeft,
   ChevronRight,
   Menu,
-  X
+  X,
+  Award
 } from "lucide-react";
 import { useState, useRef, useEffect, type ReactNode, type RefObject } from "react";
 
@@ -517,10 +518,10 @@ const Metrics = () => {
 
 const SystemShift = () => {
   const shifts = [
-    { old: "Fragmented, ad-hoc learning", new: "Structured capability development", icon: <Code2 className="text-brand-gold w-5 h-5" /> },
-    { old: "Blind preparation & guesswork", new: "Predictive readiness insights via Cortex", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
-    { old: "Resume-based filtering", new: "Direct Industry scouting via verified skills", icon: <ShieldCheck className="text-brand-gold w-5 h-5" /> },
-    { old: "Rejection without clarity", new: "Continuous feedback & improvement loops", icon: <CheckCircle2 className="text-brand-gold w-5 h-5" /> },
+    { role: "Students", old: "Unclear prep & zero feedback", new: "CTC Paths & Forge-built readiness", icon: <Users className="text-brand-gold w-5 h-5" /> },
+    { role: "Institutions", old: "Seasonal amnesia & gut decisions", new: "Cortex foresight & cohort analytics", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
+    { role: "Recruiters", old: "Resume stacks & unready hires", new: "Verified capability profiles via Industry Pool", icon: <Briefcase className="text-brand-gold w-5 h-5" /> },
+    { role: "Educators", old: "Eclipsed effort & no platform", new: "Compass mentorship & outcome recognition", icon: <Award className="text-brand-gold w-5 h-5" /> },
   ];
 
   return (
@@ -529,18 +530,12 @@ const SystemShift = () => {
         <div className="grid lg:grid-cols-2 gap-20 items-center">
           {/* Left: Text */}
           <AnimatedSection stagger={staggerContainerSlow}>
-            <motion.p
-              className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-4"
-              variants={fadeLeft}
-            >
-              The Problem isn't your effort
-            </motion.p>
             <motion.h2
               className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6 leading-tight"
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              You are failing because the <span className="text-[#c7ae6a]">system lacks structure.</span>
+              Your ability was never the question.<span className="text-[#c7ae6a]"> Structure, visibility, and alignment </span> is what the ecosystem was missing.
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
@@ -551,26 +546,32 @@ const SystemShift = () => {
           </AnimatedSection>
 
           {/* Right: The Shift */}
-          <AnimatedSection variants={scaleIn} className="space-y-4">
+          <AnimatedSection variants={scaleIn} className="space-y-3">
+            {/* Column Headers — shown once */}
+            <div className="flex items-center gap-6 px-6 pb-1">
+              <p className="flex-1 text-xs font-bold text-red-400 uppercase tracking-wider line-through decoration-red-300">The Old Way</p>
+              <div className="hidden sm:block w-5" />
+              <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider">THE hiyrED WAY</p>
+            </div>
+
             {shifts.map((s, i) => (
               <motion.div
                 key={i}
-                className="bg-white p-6 rounded-3xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 group"
+                className="bg-white px-6 py-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 group"
                 whileHover={{ x: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.05)" }}
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex-1">
-                  <p className="text-xs font-bold text-red-400 uppercase tracking-wider mb-1 line-through decoration-red-300">The Old Way</p>
-                  <p className="text-gray-500 font-medium">{s.old}</p>
+                  <span className="inline-block px-2 py-0.5 rounded-full text-[9px] font-extrabold tracking-wider uppercase bg-[#162641]/5 text-[#162641]/60 border border-[#162641]/10 mb-2">
+                    {s.role}
+                  </span>
+                  <p className="text-gray-400 font-medium line-through decoration-gray-300">{s.old}</p>
                 </div>
                 <div className="hidden sm:block text-gray-300">
                   <ArrowRight className="w-5 h-5" />
                 </div>
-                <div className="flex-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    {s.icon}
-                    <p className="text-xs font-bold text-brand-gold uppercase tracking-wider">The hiyrED Way</p>
-                  </div>
+                <div className="flex-1 flex items-center gap-2">
+                  {s.icon}
                   <p className="text-brand-navy font-bold">{s.new}</p>
                 </div>
               </motion.div>
@@ -731,7 +732,7 @@ const HiyredEdge = () => {
             >
               hiyrED
             </span>{" "}
-            Stands Apart
+            Makes Difference
           </motion.h2>
           <motion.p
             className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed"
@@ -844,49 +845,168 @@ const HiyredEdge = () => {
 
 const BrandStack = () => {
   const stack = [
-    { label: "Think", name: "Cortex", desc: "Intelligence Engine processing capability signals and ecosystem-wide data.", color: "text-brand-navy", bg: "bg-brand-navy/5" },
-    { label: "Build", name: "Forge", desc: "Structured capability paths sharpening raw talent into role-ready professionals.", color: "text-blue-600", bg: "bg-blue-50" },
-    { label: "Feel", name: "Pulse", desc: "Mental well-being intelligence tracking resilience and burnout signals.", color: "text-rose-500", bg: "bg-rose-50" },
-    { label: "Guide", name: "Compass", desc: "Cortex-informed mentorship and ICF-certified career counselling.", color: "text-brand-gold", bg: "bg-brand-gold/10" },
+    { label: "Think", name: "Cortex", desc: "Intelligence Engine processing capability signals and ecosystem-wide data.", accent: "#C7AE6A", icon: <BarChart3 className="w-6 h-6" /> },
+    { label: "Build", name: "Forge", desc: "Structured capability paths sharpening raw talent into role-ready professionals.", accent: "#7dd3fc", icon: <Code2 className="w-6 h-6" /> },
+    { label: "Feel", name: "Pulse", desc: "Mental well-being intelligence tracking resilience and burnout signals.", accent: "#fb7185", icon: <Bell className="w-6 h-6" /> },
+    { label: "Guide", name: "Compass", desc: "Cortex-informed mentorship and ICF-certified career counselling.", accent: "#6ee7b7", icon: <Users className="w-6 h-6" /> },
+    { label: "Give Back", name: "Legacy", desc: "Contribute to the community, mentor rising talent, earn badges, and unlock role enhancements.", accent: "#c4b5fd", icon: <Award className="w-6 h-6" /> },
+  ];
+
+  const phrases = [
+    { preposition: "For", rest: "the community" },
+    { preposition: "Of", rest: "the community" },
+    { preposition: "By", rest: "the community" },
   ];
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-16" stagger={staggerContainer}>
+    <section
+      className="relative py-32 overflow-hidden"
+      style={{ background: "linear-gradient(170deg, #faf7f0 0%, #f5f0e4 50%, #faf7f0 100%)" }}
+    >
+      {/* Subtle dot grid texture */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(circle, rgba(22,38,65,0.03) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+      {/* Subtle radial glow behind heading */}
+      <div
+        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(199,174,106,0.08) 0%, transparent 70%)",
+        }}
+      />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Label */}
+        <AnimatedSection className="text-center mb-6" stagger={staggerContainer}>
           <motion.p
-            className="text-xs font-bold text-gray-500 uppercase tracking-[0.2em] mb-4"
+            className="text-xs font-bold uppercase tracking-[0.3em] mb-2 text-brand-gold"
             variants={fadeUp}
           >
             The Operational Layer
           </motion.p>
-          <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
-            variants={fadeUp}
-          >
-            Built for the Community. <br/><span className="text-brand-gold">Owned by the Talent.</span>
-          </motion.h2>
         </AnimatedSection>
 
-        <AnimatedSection stagger={staggerContainerFast} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Typographic Hero: Large BUILT + Horizontal Phrases */}
+        <AnimatedSection className="mb-8 text-center" stagger={staggerContainerSlow}>
+          {/* Large BUILT */}
+          <motion.h2
+            className="text-7xl sm:text-8xl lg:text-8xl font-black uppercase leading-none tracking-tight mb-6"
+            style={{
+              background: "linear-gradient(135deg, #162641 0%, #C7AE6A 50%, #162641 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+            }}
+            variants={fadeUp}
+            transition={{ duration: 0.8, ease: EASE_PREMIUM as unknown as number[] }}
+          >
+            Built
+          </motion.h2>
+
+          {/* Horizontal phrase row */}
+          <motion.div
+            className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-5 lg:gap-8"
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.15 }}
+          >
+            {phrases.map((p, i) => (
+              <div key={i} className="flex items-center gap-2 sm:gap-5 lg:gap-8">
+                <span className="flex items-baseline gap-1.5 sm:gap-2">
+                  <span
+                    className="text-lg sm:text-xl lg:text-2xl font-black italic"
+                    style={{ color: "#C7AE6A" }}
+                  >
+                    {p.preposition}
+                  </span>
+                  <span className="text-lg sm:text-xl lg:text-2xl font-semibold text-brand-navy/60">
+                    {p.rest}
+                  </span>
+                </span>
+                {i < phrases.length - 1 && (
+                  <span className="hidden sm:inline text-brand-gold/40 text-sm">·</span>
+                )}
+              </div>
+            ))}
+          </motion.div>
+        </AnimatedSection>
+
+        {/* Tagline */}
+        <AnimatedSection className="text-center mb-20" delay={0.4}>
+          <motion.div variants={fadeUp} className="inline-flex flex-col items-center">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-brand-gold to-transparent mb-6" />
+            <p className="text-lg sm:text-xl lg:text-2xl font-bold text-brand-navy/80 tracking-wide">
+              Owned by the <span className="text-brand-gold">Talent</span>.
+            </p>
+          </motion.div>
+        </AnimatedSection>
+
+        {/* Product Cards — wider container for 5-col layout */}
+      </div>
+      <div className="max-w-[95rem] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
+        <AnimatedSection stagger={staggerContainerFast} className="grid md:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-5">
           {stack.map((s, i) => (
             <motion.div
               key={i}
               variants={fadeUp}
-              whileHover={{ y: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.06)" }}
-              className="p-8 rounded-[2.5rem] bg-white border border-gray-100 shadow-sm relative group cursor-default"
+              transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
+              whileHover={{
+                y: -10,
+                boxShadow: "0 20px 50px rgba(22,38,65,0.08)",
+                transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
+              }}
+              className="relative group cursor-default rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm"
             >
-              <div className={`inline-flex items-center justify-center px-4 py-1.5 rounded-full ${s.bg} ${s.color} text-xs font-bold uppercase tracking-wider mb-6`}>
-                {s.label}
+              {/* Left accent bar */}
+              <div
+                className="absolute top-0 left-0 bottom-0 w-[3px]"
+                style={{ background: `linear-gradient(180deg, transparent, ${s.accent}, transparent)` }}
+              />
+
+              <div className="p-7 lg:p-8">
+                {/* Icon + Label */}
+                <div className="flex items-center gap-3 mb-6">
+                  <div
+                    className="w-11 h-11 rounded-xl flex items-center justify-center"
+                    style={{ background: `${s.accent}18`, color: s.accent }}
+                  >
+                    {s.icon}
+                  </div>
+                  <span
+                    className="text-[10px] font-black uppercase tracking-[0.2em]"
+                    style={{ color: s.accent }}
+                  >
+                    {s.label}
+                  </span>
+                </div>
+
+                {/* Name */}
+                <h3 className="text-2xl font-bold text-brand-navy mb-1">
+                  hiyrED
+                </h3>
+                <h3
+                  className="text-2xl font-bold mb-4 transition-colors duration-300"
+                  style={{ color: s.accent }}
+                >
+                  {s.name}
+                </h3>
+
+                {/* Description */}
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
-              <h3 className="text-2xl font-bold text-brand-navy mb-4 group-hover:text-brand-gold transition-colors">
-                hiyrED <br/>{s.name}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {s.desc}
-              </p>
             </motion.div>
           ))}
+        </AnimatedSection>
+
+        {/* Footer whisper */}
+        <AnimatedSection className="text-center mt-14" delay={0.5}>
+          <motion.p className="text-brand-navy/50 text-xs tracking-[0.15em] uppercase" variants={fadeUp}>
+            Five engines. One unified ecosystem.
+          </motion.p>
         </AnimatedSection>
       </div>
     </section>
@@ -908,7 +1028,7 @@ const EcosystemHub = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12" stagger={staggerContainer}>
           <motion.p
-            className="text-sm font-medium text-[#bd9d51] uppercase tracking-[0.2em] mb-2"
+            className="text-sm font-semibold text-brand-navy/60 uppercase tracking-[0.2em] mb-2"
             variants={fadeUp}
           >
             THE ECOSYSTEM
@@ -936,14 +1056,14 @@ const EcosystemHub = () => {
               className="p-8 lg:p-10 rounded-[3rem] bg-white border border-gray-100 hover:shadow-xl hover:shadow-brand-navy/5 transition-all group cursor-default flex items-start gap-6"
             >
               <motion.div
-                className="w-14 h-14 bg-brand-gold/10 rounded-2xl flex items-center justify-center text-brand-gold shrink-0"
+                className="w-14 h-14 bg-brand-navy/5 text-brand-navy rounded-2xl flex items-center justify-center shrink-0 group-hover:bg-brand-navy group-hover:text-white transition-colors duration-300"
                 whileHover={{ scale: 1.1, rotate: -5 }}
                 transition={{ type: "spring", stiffness: 400, damping: 15 }}
               >
                 {f.icon}
               </motion.div>
               <div>
-                <h4 className="text-xl font-bold text-brand-navy mb-3 group-hover:text-brand-gold transition-colors duration-300">{f.title}</h4>
+                <h4 className="text-xl font-bold text-brand-navy mb-3 transition-colors duration-300">{f.title}</h4>
                 <p className="text-gray-500 text-sm leading-relaxed">{f.desc}</p>
               </div>
             </motion.div>
@@ -1103,7 +1223,7 @@ const TalentShowcasePreview = () => {
                     <p className="text-xs text-gray-500 mb-1">{s.role}</p>
                     <div className="flex items-center gap-2">
                       <span className="text-xs font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-md">{s.capability}</span>
-                      {s.verified && <span className="text-[10px] text-gray-500 flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-brand-gold"/> Verified Projects</span>}
+                      {s.verified && <span className="text-[10px] text-gray-500 flex items-center gap-1"><CheckCircle2 className="w-3 h-3 text-brand-gold" /> Verified Projects</span>}
                     </div>
                   </div>
                 </div>
@@ -1134,7 +1254,7 @@ const PaymentModel = () => {
             className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
             variants={fadeUp}
           >
-            No upfront costs. <br/><span className="text-green-600">Success aligned with outcomes.</span>
+            No upfront costs. <br /><span className="text-green-600">Success aligned with outcomes.</span>
           </motion.h2>
           <motion.p
             className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto"
@@ -1151,7 +1271,7 @@ const PaymentModel = () => {
           </motion.div>
         </AnimatedSection>
       </div>
-      
+
       {/* Decorative */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-green-50 rounded-full blur-3xl -z-10 opacity-50 pointer-events-none"></div>
     </section>
