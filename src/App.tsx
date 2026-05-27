@@ -314,7 +314,7 @@ const Hero = () => {
               <div className="relative inline-block mt-4">
                 {/* Floating Highlighted Free Tag */}
                 <motion.span
-                  className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
+                  className="absolute -top-4 left-6 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
                   animate={{
                     y: [0, -5, 0],
                   }}
@@ -325,7 +325,7 @@ const Hero = () => {
                   }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                  Join Free
+                  Free
                 </motion.span>
                 <motion.button
                   className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20 flex items-center gap-2 group"
@@ -552,7 +552,7 @@ const SystemShift = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Your ability was never the question.<span className="text-[#c7ae6a]"> Structure, visibility, and alignment </span> is the key.
+              <span className="text-[#c7ae6a]"> Structure, visibility, and alignment </span>
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
@@ -831,142 +831,18 @@ const HiyredEdge = () => {
       <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/0 to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header */}
-        <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
-          <motion.p
-            className="text-xs font-bold uppercase tracking-[0.3em] mb-4"
-            style={{ color: "#C7AE6A" }}
-            variants={fadeUp}
-          >
-            Intelligence · Structure · Depth
-          </motion.p>
-          <motion.h2
-            className="text-4xl lg:text-6xl font-bold text-white mb-5 leading-tight"
-            variants={fadeUp}
-            transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-          >
-            What sets{" "}
-            <span
-              style={{
-                background: "linear-gradient(90deg, #C7AE6A 0%, #e3d6b4 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-              }}
-            >
-              us
-            </span>{" "}
-            apart
-          </motion.h2>
-          <motion.p
-            className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed"
-            variants={fadeUp}
-            transition={{ duration: 0.5 }}
-          >
-            Four interconnected systems that form the core of the hiyrED® ecosystem — engineered to build capability and drive real outcomes.
-          </motion.p>
-        </AnimatedSection>
-
-        {/* Cards Grid */}
-        <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-2 gap-6 lg:gap-8">
-          {differentiators.map((d, i) => (
-            <motion.div
-              key={i}
-              variants={i % 2 === 0 ? fadeLeft : fadeRight}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-              whileHover={{
-                y: -6,
-                transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
-              }}
-              className="group relative rounded-[2.5rem] p-8 lg:p-10 cursor-default overflow-hidden"
-              style={{
-                background: "rgba(255,255,255,0.04)",
-                border: "1px solid rgba(255,255,255,0.08)",
-                backdropFilter: "blur(12px)",
-              }}
-            >
-              {/* Hover glow border */}
-              <motion.div
-                className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                style={{
-                  boxShadow: `inset 0 0 0 1.5px ${d.accent}55, 0 0 40px ${d.accent}18`,
-                }}
-              />
-
-              {/* Corner index */}
-              <span
-                className="absolute top-8 right-8 text-7xl font-black leading-none select-none pointer-events-none"
-                style={{ color: `${d.accent}10`, fontVariantNumeric: "tabular-nums" }}
-              >
-                {d.index}
-              </span>
-
-              {/* Engine badge */}
-              <div className="flex items-center gap-3 mb-6">
-                <motion.span
-                  className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em]"
-                  style={{
-                    background: `${d.accent}18`,
-                    color: d.accent,
-                    border: `1px solid ${d.accent}35`,
-                  }}
-                  whileHover={{ scale: 1.06 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 18 }}
-                >
-                  {d.engine}
-                </motion.span>
-                {/* Divider line */}
-                <motion.div
-                  className="h-px flex-1 max-w-[48px]"
-                  initial={{ scaleX: 0, originX: 0 }}
-                  whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                  viewport={{ once: true }}
-                />
-              </div>
-
-              {/* Title */}
-              <h3
-                className="text-2xl font-bold text-white mb-3 group-hover:transition-colors duration-300"
-                style={{ lineHeight: 1.25 }}
-              >
-                {d.title}
-              </h3>
-
-              {/* Headline */}
-              <p
-                className="text-sm font-semibold mb-4 leading-snug"
-                style={{ color: d.accent }}
-              >
-                {d.headline}
-              </p>
-
-              {/* Description */}
-              <p className="text-white/55 text-sm leading-relaxed">{d.desc}</p>
-
-              {/* Bottom accent bar */}
-              <motion.div
-                className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                style={{ background: `linear-gradient(90deg, transparent, ${d.accent}, transparent)` }}
-              />
-            </motion.div>
-          ))}
-        </AnimatedSection>
-
         {/* Five Engines Section */}
-        <div className="mt-32 grid lg:grid-cols-12 gap-8 items-center pt-24 border-t border-white/10">
+        <div className="grid lg:grid-cols-12 gap-8 items-center">
           {/* Left: Heading and description */}
           <div className="lg:col-span-6 text-left flex flex-col justify-center">
-            <motion.p
-              className="text-sm font-bold uppercase tracking-[0.3em] mb-3 text-[#C7AE6A]"
-              variants={fadeUp}
-            >
-              The Unified Powerhouse
-            </motion.p>
             <motion.h3
-              className="text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-tight"
+              className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-white mb-3 leading-tight lg:whitespace-nowrap"
               variants={fadeUp}
             >
-              Our 5 Engines
+              5 Engine{" "}
+              <span className="text-[#C7AE6A] uppercase ml-1">
+                POWERHOUSE
+              </span>
             </motion.h3>
             <motion.p
               className="text-xs font-semibold text-white/40 mb-8 border-b border-white/5 pb-6 flex items-center gap-1.5"
@@ -1316,6 +1192,130 @@ const HiyredEdge = () => {
             </div>
           </div>
         </div>
+
+        {/* What sets us apart */}
+        <div className="mt-32 pt-24 border-t border-white/10">
+          {/* Section Header */}
+          <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
+            <motion.p
+              className="text-xs font-bold uppercase tracking-[0.3em] mb-4"
+              style={{ color: "#C7AE6A" }}
+              variants={fadeUp}
+            >
+              Intelligence · Structure · Depth
+            </motion.p>
+            <motion.h2
+              className="text-4xl lg:text-6xl font-bold text-white mb-5 leading-tight"
+              variants={fadeUp}
+              transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+            >
+              What sets{" "}
+              <span
+                style={{
+                  background: "linear-gradient(90deg, #C7AE6A 0%, #e3d6b4 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+              >
+                us
+              </span>{" "}
+              apart
+            </motion.h2>
+            <motion.p
+              className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed"
+              variants={fadeUp}
+              transition={{ duration: 0.5 }}
+            >
+              Four interconnected systems that form the core of the hiyrED® ecosystem — engineered to build capability and drive real outcomes.
+            </motion.p>
+          </AnimatedSection>
+
+          {/* Cards Grid */}
+          <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-2 gap-6 lg:gap-8">
+            {differentiators.map((d, i) => (
+              <motion.div
+                key={i}
+                variants={i % 2 === 0 ? fadeLeft : fadeRight}
+                transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+                whileHover={{
+                  y: -6,
+                  transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
+                }}
+                className="group relative rounded-[2.5rem] p-8 lg:p-10 cursor-default overflow-hidden"
+                style={{
+                  background: "rgba(255,255,255,0.04)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  backdropFilter: "blur(12px)",
+                }}
+              >
+                {/* Hover glow border */}
+                <motion.div
+                  className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  style={{
+                    boxShadow: `inset 0 0 0 1.5px ${d.accent}55, 0 0 40px ${d.accent}18`,
+                  }}
+                />
+
+                {/* Corner index */}
+                <span
+                  className="absolute top-8 right-8 text-7xl font-black leading-none select-none pointer-events-none"
+                  style={{ color: `${d.accent}10`, fontVariantNumeric: "tabular-nums" }}
+                >
+                  {d.index}
+                </span>
+
+                {/* Engine badge */}
+                <div className="flex items-center gap-3 mb-6">
+                  <motion.span
+                    className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em]"
+                    style={{
+                      background: `${d.accent}18`,
+                      color: d.accent,
+                      border: `1px solid ${d.accent}35`,
+                    }}
+                    whileHover={{ scale: 1.06 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                  >
+                    {d.engine}
+                  </motion.span>
+                  {/* Divider line */}
+                  <motion.div
+                    className="h-px flex-1 max-w-[48px]"
+                    initial={{ scaleX: 0, originX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                    viewport={{ once: true }}
+                  />
+                </div>
+
+                {/* Title */}
+                <h3
+                  className="text-2xl font-bold text-white mb-3 group-hover:transition-colors duration-300"
+                  style={{ lineHeight: 1.25 }}
+                >
+                  {d.title}
+                </h3>
+
+                {/* Headline */}
+                <p
+                  className="text-sm font-semibold mb-4 leading-snug"
+                  style={{ color: d.accent }}
+                >
+                  {d.headline}
+                </p>
+
+                {/* Description */}
+                <p className="text-white/55 text-sm leading-relaxed">{d.desc}</p>
+
+                {/* Bottom accent bar */}
+                <motion.div
+                  className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{ background: `linear-gradient(90deg, transparent, ${d.accent}, transparent)` }}
+                />
+              </motion.div>
+            ))}
+          </AnimatedSection>
+        </div>
       </div>
     </section>
   );
@@ -1579,7 +1579,7 @@ const FinalCTA = () => {
                 <div className="relative inline-block mt-4">
                   {/* Floating Highlighted Free Tag */}
                   <motion.span
-                    className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
+                    className="absolute -top-4 left-6 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
                     animate={{
                       y: [0, -5, 0],
                     }}
@@ -1590,7 +1590,7 @@ const FinalCTA = () => {
                     }}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
-                    Register Free
+                    Free
                   </motion.span>
                   <motion.button
                     className="px-10 py-5 bg-white text-brand-navy font-black rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/10 border border-brand-navy/5"
@@ -1764,8 +1764,8 @@ export default function App() {
       <main>
         <Hero />
         <Metrics />
-        <SystemShift />
         <HiyredEdge />
+        <SystemShift />
         <TheJourney />
         <EcosystemHub />
         <Testimonial />
