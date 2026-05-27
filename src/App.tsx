@@ -1464,7 +1464,7 @@ const TalentShowcasePreview = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6 }}
             >
-              The Verified Talent Pool
+              The Capability Verified Talent Pool
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
