@@ -1226,7 +1226,7 @@ const HiyredEdge = () => {
               variants={fadeUp}
               transition={{ duration: 0.5 }}
             >
-              Four interconnected systems that form the core of the hiyrED® ecosystem — engineered to build capability and drive real outcomes.
+              Five interconnected systems that form the core of the hiyrED® ecosystem — engineered to build capability and drive real outcomes.
             </motion.p>
           </AnimatedSection>
 
