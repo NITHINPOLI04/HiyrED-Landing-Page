@@ -194,7 +194,7 @@ const Navbar = () => {
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
-            {["Community", "For Recruiters", "For Institutions", "Contact"].map((item, i) => (
+            {["Community", "For Recruiters", "For Institutions", "For Educators", "Contact"].map((item, i) => (
               <motion.a
                 key={item}
                 href="#"
@@ -253,7 +253,7 @@ const Navbar = () => {
           transition={{ duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }}
           className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-4 overflow-hidden"
         >
-          {["Community", "For Recruiters", "Institutions"].map((item, i) => (
+          {["Community", "For Recruiters", "For Institutions", "For Educators"].map((item, i) => (
             <motion.a
               key={item}
               href="#"
