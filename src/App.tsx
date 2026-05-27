@@ -568,7 +568,7 @@ const SystemShift = () => {
             <div className="flex items-center gap-6 px-6 pb-1">
               <p className="flex-1 text-xs font-bold text-gray-400 uppercase tracking-wider">what the stakeholders say</p>
               <div className="hidden sm:block w-5" />
-              <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider">what hiyrED® delivers</p>
+              <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider">WHAT hiyrED® DELIVERS</p>
             </div>
 
             {shifts.map((s, i) => (
