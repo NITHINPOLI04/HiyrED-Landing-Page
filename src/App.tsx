@@ -578,7 +578,7 @@ const TheJourney = () => {
                     boxShadow: "0 20px 60px rgba(22,38,65,0.08)",
                     transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
                   }}
-                  className="p-8 lg:p-10 rounded-[3rem] bg-[#fbf0cf] border border-gray-100 relative group cursor-default"
+                  className="p-8 lg:p-10 rounded-[3rem] bg-[#fbf0cf]/20 backdrop-blur-xl border border-[#c7ae6a]/30 shadow-sm hover:bg-[#fbf0cf]/35 hover:border-[#c7ae6a]/50 transition-all duration-300 relative group cursor-default"
                 >
                   <motion.span
                     className="text-5xl font-black text-brand-navy/5 absolute top-8 right-8 group-hover:text-brand-gold/10 transition-colors duration-500"
@@ -726,431 +726,427 @@ const HiyredEdge = () => {
     }
   ];
 
-  return (
-    <section
-      className="relative py-32 overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #0e1a2e 0%, #162641 60%, #1a2d4a 100%)" }}
-    >
-      {/* Inline styles for Keyframes slow-spin & counter-spin */}
-      <style dangerouslySetInnerHTML={{
-        __html: `
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes counter-spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(-360deg); }
-        }
-        @keyframes glowWorm {
-          0%, 100% {
-            box-shadow: 0 0 10px rgba(0, 240, 255, 0.35), inset 0 0 8px rgba(0, 240, 255, 0.15);
-            filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.35));
+    return (
+    <>
+      <section
+        className="relative py-32 overflow-hidden"
+        style={{ background: "linear-gradient(160deg, #0e1a2e 0%, #162641 60%, #1a2d4a 100%)" }}
+      >
+        {/* Inline styles for Keyframes slow-spin & counter-spin */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+          @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
           }
-          50% {
-            box-shadow: 0 0 25px rgba(0, 240, 255, 0.95), 0 0 45px rgba(0, 72, 255, 0.65), inset 0 0 12px rgba(0, 240, 255, 0.25);
-            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.95));
+          @keyframes counter-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(-360deg); }
           }
-        }
-        .slow-spin {
-          animation: spin 50s linear infinite;
-        }
-        .counter-spin {
-          animation: counter-spin 50s linear infinite;
-        }
-        .spin-paused {
-          animation-play-state: paused !important;
-        }
-      `}} />
+          @keyframes glowWorm {
+            0%, 100% {
+              box-shadow: 0 0 10px rgba(0, 240, 255, 0.35), inset 0 0 8px rgba(0, 240, 255, 0.15);
+              filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.35));
+            }
+            50% {
+              box-shadow: 0 0 25px rgba(0, 240, 255, 0.95), 0 0 45px rgba(0, 72, 255, 0.65), inset 0 0 12px rgba(0, 240, 255, 0.25);
+              filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.95));
+            }
+          }
+          .slow-spin {
+            animation: spin 50s linear infinite;
+          }
+          .counter-spin {
+            animation: counter-spin 50s linear infinite;
+          }
+          .spin-paused {
+            animation-play-state: paused !important;
+          }
+        `}} />
 
-      {/* Background texture dots */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle, rgba(199,174,106,0.07) 1px, transparent 1px)",
-          backgroundSize: "36px 36px",
-        }}
-      />
-      {/* Top fade */}
-      <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-white/0 to-transparent pointer-events-none" />
+        {/* Background texture dots */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(199,174,106,0.07) 1px, transparent 1px)",
+            backgroundSize: "36px 36px",
+          }}
+        />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Five Engines Section */}
-        <div className="grid lg:grid-cols-12 gap-8 items-center">
-          {/* Left: Heading and description */}
-          <div className="lg:col-span-6 text-left flex flex-col justify-center">
-            <motion.h3
-              className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-white mb-3 leading-tight lg:whitespace-nowrap"
-              variants={fadeUp}
-            >
-              5 Engine{" "}
-              <span className="text-[#C7AE6A] uppercase ml-1">
-                POWERHOUSE
-              </span>
-            </motion.h3>
-            <motion.p
-              className="text-xs font-semibold text-white/40 mb-8 border-b border-white/5 pb-6 flex items-center gap-1.5"
-              variants={fadeUp}
-            >
-              <span>click on the engines to know more</span>
-            </motion.p>
-
-            <AnimatedSection className="flex flex-col gap-6 text-left" stagger={staggerContainerSlow}>
-              {/* Giant BUILT */}
-              <motion.h2
-                className="text-5xl sm:text-6xl font-black uppercase leading-none tracking-tight"
-                style={{
-                  background: "linear-gradient(135deg, #ffffff 0%, #C7AE6A 50%, #e3d6b4 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                }}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Five Engines Section */}
+          <div className="grid lg:grid-cols-12 gap-8 items-center">
+            {/* Left: Heading and description */}
+            <div className="lg:col-span-6 text-left flex flex-col justify-center">
+              <motion.h3
+                className="text-2xl sm:text-3xl lg:text-[2.25rem] font-extrabold text-white mb-3 leading-tight lg:whitespace-nowrap"
                 variants={fadeUp}
               >
-                Built
-              </motion.h2>
-
-              {/* Horizontal community phrases */}
-              <motion.div
-                className="flex items-center gap-x-3 text-xs md:text-sm font-semibold whitespace-nowrap overflow-visible"
-                variants={fadeUp}
-              >
-                <span className="flex items-baseline gap-1">
-                  <span className="font-black italic text-[#C7AE6A]">For</span>
-                  <span className="text-white/70">the community</span>
+                5 Engine{" "}
+                <span className="text-[#C7AE6A] uppercase ml-1">
+                  POWERHOUSE
                 </span>
-                <span className="text-[#C7AE6A]/40 text-xs">·</span>
-                <span className="flex items-baseline gap-1">
-                  <span className="font-black italic text-[#C7AE6A]">Of</span>
-                  <span className="text-white/70">the community</span>
-                </span>
-                <span className="text-[#C7AE6A]/40 text-xs">·</span>
-                <span className="flex items-baseline gap-1">
-                  <span className="font-black italic text-[#C7AE6A]">By</span>
-                  <span className="text-white/70">the community</span>
-                </span>
-              </motion.div>
-
-              {/* Divider line */}
-              <div className="w-16 h-px bg-gradient-to-r from-[#C7AE6A] to-transparent my-1" />
-
-              {/* Tagline */}
+              </motion.h3>
               <motion.p
-                className="text-lg lg:text-xl font-bold text-white/80 tracking-wide"
+                className="text-xs font-semibold text-white/40 mb-8 border-b border-white/5 pb-6 flex items-center gap-1.5"
                 variants={fadeUp}
               >
-                Driven by the <span className="text-[#C7AE6A]">Talent</span>.
+                <span>click on the engines to know more</span>
               </motion.p>
-            </AnimatedSection>
-          </div>
 
-          {/* Right: Rotational Wheel */}
-          <div className="lg:col-span-6 flex justify-center lg:justify-end items-center relative overflow-visible h-[540px] w-full">
-            {/* Desktop: Rotational Wheel */}
-            <div className="hidden lg:flex justify-center items-center relative w-[520px] h-[520px] lg:translate-x-16 overflow-visible">
-
-              {/* Electrifying Blue Glowing Wheel Outline */}
-              <div className="absolute w-[440px] h-[440px] rounded-full pointer-events-none z-0">
-                {/* 1. Clockwise spinning glow */}
-                <div className="absolute inset-0 animate-[spin_12s_linear_infinite]">
-                  <svg className="w-full h-full overflow-visible">
-                    <defs>
-                      <linearGradient id="electricGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" stopColor="#00f0ff" stopOpacity="1" />
-                        <stop offset="30%" stopColor="#0072ff" stopOpacity="0.85" />
-                        <stop offset="70%" stopColor="#7c3aed" stopOpacity="0.5" />
-                        <stop offset="100%" stopColor="#00f0ff" stopOpacity="1" />
-                      </linearGradient>
-                      <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
-                        <feGaussianBlur stdDeviation="8" result="blur" />
-                        <feMerge>
-                          <feMergeNode in="blur" />
-                          <feMergeNode in="SourceGraphic" />
-                        </feMerge>
-                      </filter>
-                    </defs>
-                    {/* Outer Blurry Glow */}
-                    <circle
-                      cx="220"
-                      cy="220"
-                      r="218"
-                      fill="none"
-                      stroke="url(#electricGlow)"
-                      strokeWidth="5"
-                      filter="url(#neonBlur)"
-                      className="opacity-70"
-                    />
-                    {/* Crisp Inner Neon Line */}
-                    <circle
-                      cx="220"
-                      cy="220"
-                      r="218"
-                      fill="none"
-                      stroke="url(#electricGlow)"
-                      strokeWidth="1.5"
-                      className="opacity-95"
-                    />
-                  </svg>
-                </div>
-
-                {/* 2. Counter-clockwise spinning dashed tech ring */}
-                <div className="absolute inset-0 animate-[counter-spin_20s_linear_infinite]">
-                  <svg className="w-full h-full overflow-visible">
-                    <circle
-                      cx="220"
-                      cy="220"
-                      r="210"
-                      fill="none"
-                      stroke="#00f0ff"
-                      strokeWidth="1"
-                      strokeDasharray="4 8"
-                      className="opacity-40"
-                    />
-                  </svg>
-                </div>
-              </div>
-
-              {/* Central Hub Glow Backdrop (Star Glow / Halo) */}
-              <div className="absolute w-32 h-32 rounded-full bg-gradient-to-r from-[#00f0ff]/30 to-[#0072ff]/30 blur-xl animate-[pulse_2.5s_ease-in-out_infinite] z-0 pointer-events-none" />
-
-              {/* Central Hub anchor */}
-              <div className="absolute w-24 h-24 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shadow-lg z-10">
-                <div className="w-18 h-18 rounded-full bg-white flex items-center justify-center shadow-md animate-[glowWorm_3s_ease-in-out_infinite]">
-                  <img src="/Logo-Stick-Figure.svg" alt="hiyrED® Hub" className="w-11 h-11 object-contain" />
-                </div>
-              </div>
-
-              {/* Dashed Line Arrow SVG Overlay */}
-              {selectedEngine !== null && (
-                <svg className="absolute inset-0 w-full h-full pointer-events-none z-15">
-                  <motion.path
-                    d={(() => {
-                      const baseAngle = (selectedEngine * 360) / 5;
-                      const rotatedAngle = (baseAngle + currentAngle) % 360;
-                      const radius = 175;
-                      const x = Math.cos((rotatedAngle * Math.PI) / 180) * radius + 260;
-                      const y = Math.sin((rotatedAngle * Math.PI) / 180) * radius + 260;
-
-                      // Node left edge (always relative to the visual layout)
-                      const startX = x - 105;
-                      const startY = y;
-
-                      // Popup right anchor at X: 80, Y: 260
-                      const endX = 80;
-                      const endY = 260;
-
-                      const cp1x = startX - 80;
-                      const cp1y = startY;
-                      const cp2x = endX + 80;
-                      const cp2y = endY;
-
-                      return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
-                    })()}
-                    stroke={engineDetails[selectedEngine].accent}
-                    strokeWidth="2.5"
-                    strokeDasharray="6 6"
-                    fill="none"
-                    initial={{ pathLength: 0, opacity: 0 }}
-                    animate={{ pathLength: 1, opacity: 0.8 }}
-                    transition={{ duration: 0.6, ease: "easeOut" }}
-                  />
-
-                  {/* Pulsing Arrowhead Dot */}
-                  <motion.circle
-                    cx="80"
-                    cy="260"
-                    r="4"
-                    fill={engineDetails[selectedEngine].accent}
-                    initial={{ scale: 0 }}
-                    animate={{ scale: [1, 1.8, 1] }}
-                    transition={{ repeat: Infinity, duration: 1.5 }}
-                  />
-                </svg>
-              )}
-
-              {/* Detailed Pop-up Overlay Card */}
-              {selectedEngine !== null && (
-                <motion.div
-                  initial={{ opacity: 0, x: -40, scale: 0.95 }}
-                  animate={{ opacity: 1, x: 0, scale: 1 }}
-                  exit={{ opacity: 0, x: -40, scale: 0.95 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                  className="absolute left-[-220px] top-[75px] w-[290px] h-[370px] bg-white rounded-[2.5rem] p-6 shadow-2xl z-30 border-l-[6px] text-left flex flex-col justify-between"
+              <AnimatedSection className="flex flex-col gap-6 text-left" stagger={staggerContainerSlow}>
+                <motion.h2
+                  className="text-5xl sm:text-6xl font-black uppercase leading-none tracking-tight"
                   style={{
-                    borderColor: engineDetails[selectedEngine].accent,
-                    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.8)"
+                    background: "linear-gradient(135deg, #ffffff 0%, #C7AE6A 50%, #e3d6b4 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
                   }}
+                  variants={fadeUp}
                 >
-                  {/* Close button */}
-                  <button
-                    onClick={() => setSelectedEngine(null)}
-                    className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-brand-navy transition-colors cursor-pointer z-40"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
+                  Built
+                </motion.h2>
 
-                  <div className="overflow-visible">
-                    {/* Header: Icon + Name */}
-                    <div className="flex items-center gap-3 mb-4">
-                      <div
-                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
-                        style={{ background: `${engineDetails[selectedEngine].accent}15`, color: engineDetails[selectedEngine].accent }}
-                      >
-                        {engineDetails[selectedEngine].icon}
+                {/* Horizontal community phrases */}
+                <motion.div
+                  className="flex items-center gap-x-3 text-xs md:text-sm font-semibold whitespace-nowrap overflow-visible"
+                  variants={fadeUp}
+                >
+                  <span className="flex items-baseline gap-1">
+                    <span className="font-black italic text-[#C7AE6A]">For</span>
+                    <span className="text-white/70">the community</span>
+                  </span>
+                  <span className="text-[#C7AE6A]/40 text-xs">·</span>
+                  <span className="flex items-baseline gap-1">
+                    <span className="font-black italic text-[#C7AE6A]">Of</span>
+                    <span className="text-white/70">the community</span>
+                  </span>
+                  <span className="text-[#C7AE6A]/40 text-xs">·</span>
+                  <span className="flex items-baseline gap-1">
+                    <span className="font-black italic text-[#C7AE6A]">By</span>
+                    <span className="text-white/70">the community</span>
+                  </span>
+                </motion.div>
+
+                {/* Divider line */}
+                <div className="w-16 h-px bg-gradient-to-r from-[#C7AE6A] to-transparent my-1" />
+
+                {/* Tagline */}
+                <motion.p
+                  className="text-lg lg:text-xl font-bold text-white/80 tracking-wide"
+                  variants={fadeUp}
+                >
+                  Driven by the <span className="text-[#C7AE6A]">Talent</span>.
+                </motion.p>
+              </AnimatedSection>
+            </div>
+
+            {/* Right: Rotational Wheel */}
+            <div className="lg:col-span-6 flex justify-center lg:justify-end items-center relative overflow-visible h-[540px] w-full">
+              {/* Desktop: Rotational Wheel */}
+              <div className="hidden lg:flex justify-center items-center relative w-[520px] h-[520px] lg:translate-x-16 overflow-visible">
+
+                {/* Electrifying Blue Glowing Wheel Outline */}
+                <div className="absolute w-[440px] h-[440px] rounded-full pointer-events-none z-0">
+                  {/* 1. Clockwise spinning glow */}
+                  <div className="absolute inset-0 animate-[spin_12s_linear_infinite]">
+                    <svg className="w-full h-full overflow-visible">
+                      <defs>
+                        <linearGradient id="electricGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#00f0ff" stopOpacity="1" />
+                          <stop offset="30%" stopColor="#0072ff" stopOpacity="0.85" />
+                          <stop offset="70%" stopColor="#7c3aed" stopOpacity="0.5" />
+                          <stop offset="100%" stopColor="#00f0ff" stopOpacity="1" />
+                        </linearGradient>
+                        <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+                          <feGaussianBlur stdDeviation="8" result="blur" />
+                          <feMerge>
+                            <feMergeNode in="blur" />
+                            <feMergeNode in="SourceGraphic" />
+                          </feMerge>
+                        </filter>
+                      </defs>
+                      <circle
+                        cx="220"
+                        cy="220"
+                        r="218"
+                        fill="none"
+                        stroke="url(#electricGlow)"
+                        strokeWidth="5"
+                        filter="url(#neonBlur)"
+                        className="opacity-70"
+                      />
+                      <circle
+                        cx="220"
+                        cy="220"
+                        r="218"
+                        fill="none"
+                        stroke="url(#electricGlow)"
+                        strokeWidth="1.5"
+                        className="opacity-95"
+                      />
+                    </svg>
+                  </div>
+
+                  {/* 2. Counter-clockwise spinning dashed tech ring */}
+                  <div className="absolute inset-0 animate-[counter-spin_20s_linear_infinite]">
+                    <svg className="w-full h-full overflow-visible">
+                      <circle
+                        cx="220"
+                        cy="220"
+                        r="210"
+                        fill="none"
+                        stroke="#00f0ff"
+                        strokeWidth="1"
+                        strokeDasharray="4 8"
+                        className="opacity-40"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Central Hub Glow Backdrop */}
+                <div className="absolute w-32 h-32 rounded-full bg-gradient-to-r from-[#00f0ff]/30 to-[#0072ff]/30 blur-xl animate-[pulse_2.5s_ease-in-out_infinite] z-0 pointer-events-none" />
+
+                {/* Central Hub anchor */}
+                <div className="absolute w-24 h-24 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shadow-lg z-10">
+                  <div className="w-18 h-18 rounded-full bg-white flex items-center justify-center shadow-md animate-[glowWorm_3s_ease-in-out_infinite]">
+                    <img src="/Logo-Stick-Figure.svg" alt="hiyrED® Hub" className="w-11 h-11 object-contain" />
+                  </div>
+                </div>
+
+                {/* Dashed Line Arrow SVG Overlay */}
+                {selectedEngine !== null && (
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none z-15">
+                    <motion.path
+                      d={(() => {
+                        const baseAngle = (selectedEngine * 360) / 5;
+                        const rotatedAngle = (baseAngle + currentAngle) % 360;
+                        const radius = 175;
+                        const x = Math.cos((rotatedAngle * Math.PI) / 180) * radius + 260;
+                        const y = Math.sin((rotatedAngle * Math.PI) / 180) * radius + 260;
+
+                        const startX = x - 105;
+                        const startY = y;
+
+                        const endX = 80;
+                        const endY = 260;
+
+                        const cp1x = startX - 80;
+                        const cp1y = startY;
+                        const cp2x = endX + 80;
+                        const cp2y = endY;
+
+                        return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                      })()}
+                      stroke={engineDetails[selectedEngine].accent}
+                      strokeWidth="2.5"
+                      strokeDasharray="6 6"
+                      fill="none"
+                      initial={{ pathLength: 0, opacity: 0 }}
+                      animate={{ pathLength: 1, opacity: 0.8 }}
+                      transition={{ duration: 0.6, ease: "easeOut" }}
+                    />
+
+                    <motion.circle
+                      cx="80"
+                      cy="260"
+                      r="4"
+                      fill={engineDetails[selectedEngine].accent}
+                      initial={{ scale: 0 }}
+                      animate={{ scale: [1, 1.8, 1] }}
+                      transition={{ repeat: Infinity, duration: 1.5 }}
+                    />
+                  </svg>
+                )}
+
+                {/* Detailed Pop-up Overlay Card */}
+                {selectedEngine !== null && (
+                  <motion.div
+                    initial={{ opacity: 0, x: -40, scale: 0.95 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: -40, scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                    className="absolute left-[-220px] top-[75px] w-[290px] h-[370px] bg-white rounded-[2.5rem] p-6 shadow-2xl z-30 border-l-[6px] text-left flex flex-col justify-between"
+                    style={{
+                      borderColor: engineDetails[selectedEngine].accent,
+                      boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.8)"
+                    }}
+                  >
+                    <button
+                      onClick={() => setSelectedEngine(null)}
+                      className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-brand-navy transition-colors cursor-pointer z-40"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+
+                    <div className="overflow-visible">
+                      <div className="flex items-center gap-3 mb-4">
+                        <div
+                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
+                          style={{ background: `${engineDetails[selectedEngine].accent}15`, color: engineDetails[selectedEngine].accent }}
+                        >
+                          {engineDetails[selectedEngine].icon}
+                        </div>
+                        <div>
+                          <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block" style={{ color: engineDetails[selectedEngine].accent }}>
+                            {engineDetails[selectedEngine].label}
+                          </span>
+                          <h3 className="text-base font-black text-brand-navy leading-none">
+                            {engineDetails[selectedEngine].name}
+                          </h3>
+                        </div>
                       </div>
-                      <div>
-                        <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block" style={{ color: engineDetails[selectedEngine].accent }}>
-                          {engineDetails[selectedEngine].label}
-                        </span>
-                        <h3 className="text-base font-black text-brand-navy leading-none">
-                          {engineDetails[selectedEngine].name}
-                        </h3>
-                      </div>
+
+                      <p className="text-[10px] font-extrabold text-[#C7AE6A] uppercase tracking-wider mb-2.5 leading-none">
+                        {engineDetails[selectedEngine].title}
+                      </p>
+
+                      <p className="text-xs text-gray-500 leading-relaxed mb-4">
+                        {engineDetails[selectedEngine].desc}
+                      </p>
+
+                      <ul className="space-y-1.5">
+                        {engineDetails[selectedEngine].bullets.map((bullet, idx) => (
+                          <li key={idx} className="flex items-start gap-1.5 text-[10px] text-gray-600 leading-tight">
+                            <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: engineDetails[selectedEngine].accent }} />
+                            <span>{bullet}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
 
-                    {/* Subtitle */}
-                    <p className="text-[10px] font-extrabold text-[#C7AE6A] uppercase tracking-wider mb-2.5 leading-none">
-                      {engineDetails[selectedEngine].title}
-                    </p>
+                    <span className="text-[9px] font-bold text-gray-400 italic mt-2 leading-none border-t border-gray-50 pt-2 block w-full">
+                      {engineDetails[selectedEngine].tagline}
+                    </span>
+                  </motion.div>
+                )}
 
-                    {/* Description */}
-                    <p className="text-xs text-gray-500 leading-relaxed mb-4">
-                      {engineDetails[selectedEngine].desc}
-                    </p>
+                {/* Rotational Container */}
+                <div
+                  className="relative w-[440px] h-[440px] flex items-center justify-center rounded-full bg-white/[0.01]"
+                  style={{ transform: `rotate(${currentAngle}deg)`, transformOrigin: 'center' }}
+                >
+                  {engineDetails.map((eng, i) => {
+                    const angle = (i * 360) / 5;
+                    const radius = 175;
+                    const x = Math.cos((angle * Math.PI) / 180) * radius;
+                    const y = Math.sin((angle * Math.PI) / 180) * radius;
 
-                    {/* Bullets */}
+                    return (
+                      <div
+                        key={i}
+                        className="absolute"
+                        style={{
+                          left: `calc(50% + ${x}px - 105px)`,
+                          top: `calc(50% + ${y}px - 55px)`,
+                          width: "210px",
+                          height: "110px",
+                          transform: `rotate(${-currentAngle}deg)`,
+                          transformOrigin: 'center'
+                        }}
+                      >
+                        <div
+                          onClick={() => setSelectedEngine(selectedEngine === i ? null : i)}
+                          className={`w-full h-full bg-white rounded-2xl p-4 shadow-xl border-l-[4px] flex flex-col justify-between text-left select-none group cursor-pointer ${selectedEngine === i ? 'ring-2 ring-offset-2 ring-white/50 scale-[1.03]' : ''}`}
+                          style={{
+                            borderColor: eng.accent,
+                            boxShadow: selectedEngine === i
+                              ? `0 15px 40px ${eng.accent}30`
+                              : `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8)`,
+                          }}
+                        >
+                          <div className="flex items-center gap-2">
+                            <div
+                              className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
+                              style={{ background: `${eng.accent}15`, color: eng.accent }}
+                            >
+                              {eng.icon}
+                            </div>
+                            <div className="flex flex-col">
+                              <span className="text-[8px] font-black uppercase tracking-widest leading-none mb-1" style={{ color: eng.accent }}>
+                                {eng.label}
+                              </span>
+                              <h4 className="text-xs font-extrabold text-brand-navy leading-none">
+                                {eng.name}
+                              </h4>
+                            </div>
+                          </div>
+                          <p className="text-[9px] leading-normal text-gray-500 font-medium line-clamp-2">
+                            {eng.desc}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Mobile/Tablet: Flat Grid fallback */}
+              <div className="lg:hidden w-full grid sm:grid-cols-2 gap-4 mt-8">
+                {engineDetails.map((eng, i) => (
+                  <div
+                    key={i}
+                    className="bg-white rounded-3xl p-6 shadow-md border-l-[5px] text-left"
+                    style={{ borderColor: eng.accent }}
+                  >
+                    <div className="flex items-center gap-3 mb-3">
+                      <div
+                        className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
+                        style={{ background: `${eng.accent}15`, color: eng.accent }}
+                      >
+                        {eng.icon}
+                      </div>
+                      <div>
+                        <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block" style={{ color: eng.accent }}>
+                          {eng.label}
+                        </span>
+                        <h4 className="text-sm font-extrabold text-brand-navy leading-none">{eng.name}</h4>
+                      </div>
+                    </div>
+                    <p className="text-xs text-gray-500 leading-relaxed mb-4">{eng.desc}</p>
+
                     <ul className="space-y-1.5">
-                      {engineDetails[selectedEngine].bullets.map((bullet, idx) => (
+                      {eng.bullets.map((bullet, idx) => (
                         <li key={idx} className="flex items-start gap-1.5 text-[10px] text-gray-600 leading-tight">
-                          <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: engineDetails[selectedEngine].accent }} />
+                          <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: eng.accent }} />
                           <span>{bullet}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-
-                  {/* Footer whisper */}
-                  <span className="text-[9px] font-bold text-gray-400 italic mt-2 leading-none border-t border-gray-50 pt-2 block w-full">
-                    {engineDetails[selectedEngine].tagline}
-                  </span>
-                </motion.div>
-              )}
-
-              {/* Rotational Container */}
-              <div
-                className="relative w-[440px] h-[440px] flex items-center justify-center rounded-full bg-white/[0.01]"
-                style={{ transform: `rotate(${currentAngle}deg)`, transformOrigin: 'center' }}
-              >
-                {engineDetails.map((eng, i) => {
-                  const angle = (i * 360) / 5;
-                  const radius = 175; // radius in px
-                  const x = Math.cos((angle * Math.PI) / 180) * radius;
-                  const y = Math.sin((angle * Math.PI) / 180) * radius;
-
-                  return (
-                    <div
-                      key={i}
-                      className="absolute"
-                      style={{
-                        left: `calc(50% + ${x}px - 105px)`,
-                        top: `calc(50% + ${y}px - 55px)`,
-                        width: "210px",
-                        height: "110px",
-                        transform: `rotate(${-currentAngle}deg)`,
-                        transformOrigin: 'center'
-                      }}
-                    >
-                      {/* Counter-rotating card */}
-                      <div
-                        onClick={() => setSelectedEngine(selectedEngine === i ? null : i)}
-                        className={`w-full h-full bg-white rounded-2xl p-4 shadow-xl border-l-[4px] flex flex-col justify-between text-left select-none group cursor-pointer ${selectedEngine === i ? 'ring-2 ring-offset-2 ring-white/50 scale-[1.03]' : ''}`}
-                        style={{
-                          borderColor: eng.accent,
-                          boxShadow: selectedEngine === i
-                            ? `0 15px 40px ${eng.accent}30`
-                            : `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8)`,
-                        }}
-                      >
-                        {/* Top row: Icon + Label */}
-                        <div className="flex items-center gap-2">
-                          <div
-                            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
-                            style={{ background: `${eng.accent}15`, color: eng.accent }}
-                          >
-                            {eng.icon}
-                          </div>
-                          <div className="flex flex-col">
-                            <span className="text-[8px] font-black uppercase tracking-widest leading-none mb-1" style={{ color: eng.accent }}>
-                              {eng.label}
-                            </span>
-                            <h4 className="text-xs font-extrabold text-brand-navy leading-none">
-                              {eng.name}
-                            </h4>
-                          </div>
-                        </div>
-                        {/* Description */}
-                        <p className="text-[9px] leading-normal text-gray-500 font-medium line-clamp-2">
-                          {eng.desc}
-                        </p>
-                      </div>
-                    </div>
-                  );
-                })}
+                ))}
               </div>
-            </div>
-
-            {/* Mobile/Tablet: Flat Grid fallback */}
-            <div className="lg:hidden w-full grid sm:grid-cols-2 gap-4 mt-8">
-              {engineDetails.map((eng, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-3xl p-6 shadow-md border-l-[5px] text-left"
-                  style={{ borderColor: eng.accent }}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div
-                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
-                      style={{ background: `${eng.accent}15`, color: eng.accent }}
-                    >
-                      {eng.icon}
-                    </div>
-                    <div>
-                      <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block" style={{ color: eng.accent }}>
-                        {eng.label}
-                      </span>
-                      <h4 className="text-sm font-extrabold text-brand-navy leading-none">{eng.name}</h4>
-                    </div>
-                  </div>
-                  <p className="text-xs text-gray-500 leading-relaxed mb-4">{eng.desc}</p>
-
-                  {/* Bullets on mobile */}
-                  <ul className="space-y-1.5">
-                    {eng.bullets.map((bullet, idx) => (
-                      <li key={idx} className="flex items-start gap-1.5 text-[10px] text-gray-600 leading-tight">
-                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: eng.accent }} />
-                        <span>{bullet}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
             </div>
           </div>
         </div>
+      </section>
 
-        {/* What sets us apart */}
-        <div className="mt-32 pt-24 border-t border-white/10">
+      {/* What sets us apart */}
+      <section className="relative py-24 overflow-hidden bg-[#fbf0cf]">
+        {/* Background texture dots */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle, rgba(22,38,65,0.06) 1px, transparent 1px)",
+            backgroundSize: "36px 36px",
+          }}
+        />
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Section Header */}
           <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
             <motion.h2
-              className="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight"
+              className="text-4xl lg:text-6xl font-bold text-brand-navy mb-4 leading-tight"
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
               What sets{" "}
               <span
                 style={{
-                  background: "linear-gradient(90deg, #C7AE6A 0%, #e3d6b4 100%)",
+                  background: "linear-gradient(90deg, #b59a53 0%, #8c7333 100%)",
                   WebkitBackgroundClip: "text",
                   WebkitTextFillColor: "transparent",
                 }}
@@ -1160,14 +1156,13 @@ const HiyredEdge = () => {
               apart
             </motion.h2>
             <motion.p
-              className="text-sm sm:text-base font-bold uppercase tracking-[0.3em] mb-6"
-              style={{ color: "#C7AE6A" }}
+              className="text-sm sm:text-base font-bold uppercase tracking-[0.3em] mb-6 text-[#b59a53]"
               variants={fadeUp}
             >
               Structure · Visibility · Alignment
             </motion.p>
             <motion.p
-              className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed"
+              className="text-gray-600 max-w-2xl mx-auto text-lg leading-relaxed font-medium"
               variants={fadeUp}
               transition={{ duration: 0.5 }}
             >
@@ -1179,97 +1174,101 @@ const HiyredEdge = () => {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-8">
             {/* Left side: Differentiators (Industry Pool, Talent Pool) */}
             <div className="lg:col-span-6 flex flex-col gap-6 w-full">
-              {differentiators.map((d, i) => (
-                <motion.div
-                  key={i}
-                  variants={i % 2 === 0 ? fadeLeft : fadeRight}
-                  transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                  whileHover={{
-                    y: -6,
-                    transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
-                  }}
-                  className="group relative rounded-[2.5rem] p-8 lg:p-10 cursor-default overflow-hidden text-left"
-                  style={{
-                    background: "rgba(255,255,255,0.04)",
-                    border: "1px solid rgba(255,255,255,0.08)",
-                    backdropFilter: "blur(12px)",
-                  }}
-                >
-                  {/* Hover glow border */}
+              {differentiators.map((d, i) => {
+                const textAccent = i === 0 ? "#b59a53" : "#0284c7";
+                const bgAccent = i === 0 ? "#C7AE6A" : "#7dd3fc";
+                return (
                   <motion.div
-                    className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                    style={{
-                      boxShadow: `inset 0 0 0 1.5px ${d.accent}55, 0 0 40px ${d.accent}18`,
+                    key={i}
+                    variants={i % 2 === 0 ? fadeLeft : fadeRight}
+                    transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+                    whileHover={{
+                      y: -6,
+                      transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
                     }}
-                  />
-
-                  {/* Corner index */}
-                  <span
-                    className="absolute top-8 right-8 text-7xl font-black leading-none select-none pointer-events-none"
-                    style={{ color: `${d.accent}10`, fontVariantNumeric: "tabular-nums" }}
+                    className="group relative rounded-[2.5rem] p-8 lg:p-10 cursor-default overflow-hidden text-left"
+                    style={{
+                      background: "rgba(255, 255, 255, 0.45)",
+                      border: "1px solid rgba(255, 255, 255, 0.6)",
+                      backdropFilter: "blur(16px)",
+                    }}
                   >
-                    {d.index}
-                  </span>
-
-                  {/* Engine badge */}
-                  <div className="flex items-center gap-3 mb-6">
-                    <motion.span
-                      className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em]"
-                      style={{
-                        background: `${d.accent}18`,
-                        color: d.accent,
-                        border: `1px solid ${d.accent}35`,
-                      }}
-                      whileHover={{ scale: 1.06 }}
-                      transition={{ type: "spring", stiffness: 400, damping: 18 }}
-                    >
-                      {d.engine}
-                    </motion.span>
-                    {/* Divider line */}
+                    {/* Hover glow border */}
                     <motion.div
-                      className="h-px flex-1 max-w-[48px]"
-                      initial={{ scaleX: 0, originX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                      viewport={{ once: true }}
+                      className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                      style={{
+                        boxShadow: `inset 0 0 0 1.5px ${textAccent}35, 0 10px 40px ${textAccent}12`,
+                      }}
                     />
-                  </div>
 
-                  {/* Title */}
-                  <h3
-                    className="text-2xl font-bold text-white mb-3 group-hover:transition-colors duration-300"
-                    style={{ lineHeight: 1.25 }}
-                  >
-                    {d.title}
-                  </h3>
+                    {/* Corner index */}
+                    <span
+                      className="absolute top-8 right-8 text-7xl font-black leading-none select-none pointer-events-none"
+                      style={{ color: `${bgAccent}20`, fontVariantNumeric: "tabular-nums" }}
+                    >
+                      {d.index}
+                    </span>
 
-                  {/* Headline */}
-                  <p
-                    className="text-sm font-semibold mb-4 leading-snug"
-                    style={{ color: d.accent }}
-                  >
-                    {d.headline}
-                  </p>
+                    {/* Engine badge */}
+                    <div className="flex items-center gap-3 mb-6">
+                      <motion.span
+                        className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em]"
+                        style={{
+                          background: `${bgAccent}15`,
+                          color: textAccent,
+                          border: `1px solid ${textAccent}30`,
+                        }}
+                        whileHover={{ scale: 1.06 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                      >
+                        {d.engine}
+                      </motion.span>
+                      {/* Divider line */}
+                      <motion.div
+                        className="h-px flex-1 max-w-[48px] bg-brand-navy/15"
+                        initial={{ scaleX: 0, originX: 0 }}
+                        whileInView={{ scaleX: 1 }}
+                        transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                        viewport={{ once: true }}
+                      />
+                    </div>
 
-                  {/* Description */}
-                  <p className="text-white/55 text-sm leading-relaxed">{d.desc}</p>
+                    {/* Title */}
+                    <h3
+                      className="text-2xl font-bold text-brand-navy mb-3"
+                      style={{ lineHeight: 1.25 }}
+                    >
+                      {d.title}
+                    </h3>
 
-                  {/* Bottom accent bar */}
-                  <motion.div
-                    className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{ background: `linear-gradient(90deg, transparent, ${d.accent}, transparent)` }}
-                  />
-                </motion.div>
-              ))}
+                    {/* Headline */}
+                    <p
+                      className="text-sm font-semibold mb-4 leading-snug"
+                      style={{ color: textAccent }}
+                    >
+                      {d.headline}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-gray-600 text-sm leading-relaxed">{d.desc}</p>
+
+                    {/* Bottom accent bar */}
+                    <motion.div
+                      className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                      style={{ background: `linear-gradient(90deg, transparent, ${textAccent}, transparent)` }}
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
 
-            {/* Right side: Shifts comparisons (yellow background box container) */}
-            <div className="lg:col-span-6 bg-[#fbf0cf] p-8 lg:p-10 rounded-[2.5rem] flex flex-col gap-4 shadow-xl text-left border border-white/20">
+            {/* Right side: Shifts comparisons (transparent glass background box container) */}
+            <div className="lg:col-span-6 bg-white/45 backdrop-blur-xl p-8 lg:p-10 rounded-[2.5rem] flex flex-col gap-4 shadow-xl text-left border border-white/60">
               {/* Headers */}
               <div className="flex items-center gap-6 px-4 pb-1">
                 <p className="flex-1 text-xs font-bold text-gray-500 uppercase tracking-wider">what the stakeholders say</p>
                 <div className="hidden sm:block w-5" />
-                <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider uppercase">WHAT hiyrED® DELIVERS</p>
+                <p className="flex-1 text-xs font-bold text-[#b59a53] tracking-wider uppercase">WHAT hiyrED® DELIVERS</p>
               </div>
 
               {/* Cards */}
@@ -1277,14 +1276,14 @@ const HiyredEdge = () => {
                 {shifts.map((s, i) => (
                   <motion.div
                     key={i}
-                    className="bg-white px-6 py-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 group"
-                    whileHover={{ x: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.05)" }}
+                    className="bg-white/95 px-6 py-5 rounded-2xl border border-white/90 shadow-md flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 group"
+                    whileHover={{ x: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.06)" }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="flex-1">
-                      <p className="text-gray-400 font-medium text-sm leading-snug">{s.old}</p>
+                      <p className="text-gray-500 font-medium text-sm leading-snug">{s.old}</p>
                     </div>
-                    <div className="hidden sm:block text-gray-300">
+                    <div className="hidden sm:block text-gray-400">
                       <ArrowRight className="w-5 h-5" />
                     </div>
                     <div className="flex-1 flex items-center gap-2">
@@ -1297,8 +1296,8 @@ const HiyredEdge = () => {
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
