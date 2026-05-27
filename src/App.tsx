@@ -797,6 +797,16 @@ const HiyredEdge = () => {
           from { transform: rotate(0deg); }
           to { transform: rotate(-360deg); }
         }
+        @keyframes glowWorm {
+          0%, 100% {
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.35), inset 0 0 8px rgba(0, 240, 255, 0.15);
+            filter: drop-shadow(0 0 2px rgba(0, 240, 255, 0.35));
+          }
+          50% {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.95), 0 0 45px rgba(0, 72, 255, 0.65), inset 0 0 12px rgba(0, 240, 255, 0.25);
+            filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.95));
+          }
+        }
         .slow-spin {
           animation: spin 50s linear infinite;
         }
@@ -1018,10 +1028,74 @@ const HiyredEdge = () => {
             {/* Desktop: Rotational Wheel */}
             <div className="hidden lg:flex justify-center items-center relative w-[520px] h-[520px] lg:translate-x-16 overflow-visible">
 
+              {/* Electrifying Blue Glowing Wheel Outline */}
+              <div className="absolute w-[440px] h-[440px] rounded-full pointer-events-none z-0">
+                {/* 1. Clockwise spinning glow */}
+                <div className="absolute inset-0 animate-[spin_12s_linear_infinite]">
+                  <svg className="w-full h-full overflow-visible">
+                    <defs>
+                      <linearGradient id="electricGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stopColor="#00f0ff" stopOpacity="1" />
+                        <stop offset="30%" stopColor="#0072ff" stopOpacity="0.85" />
+                        <stop offset="70%" stopColor="#7c3aed" stopOpacity="0.5" />
+                        <stop offset="100%" stopColor="#00f0ff" stopOpacity="1" />
+                      </linearGradient>
+                      <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="8" result="blur" />
+                        <feMerge>
+                          <feMergeNode in="blur" />
+                          <feMergeNode in="SourceGraphic" />
+                        </feMerge>
+                      </filter>
+                    </defs>
+                    {/* Outer Blurry Glow */}
+                    <circle
+                      cx="220"
+                      cy="220"
+                      r="218"
+                      fill="none"
+                      stroke="url(#electricGlow)"
+                      strokeWidth="5"
+                      filter="url(#neonBlur)"
+                      className="opacity-70"
+                    />
+                    {/* Crisp Inner Neon Line */}
+                    <circle
+                      cx="220"
+                      cy="220"
+                      r="218"
+                      fill="none"
+                      stroke="url(#electricGlow)"
+                      strokeWidth="1.5"
+                      className="opacity-95"
+                    />
+                  </svg>
+                </div>
+
+                {/* 2. Counter-clockwise spinning dashed tech ring */}
+                <div className="absolute inset-0 animate-[counter-spin_20s_linear_infinite]">
+                  <svg className="w-full h-full overflow-visible">
+                    <circle
+                      cx="220"
+                      cy="220"
+                      r="210"
+                      fill="none"
+                      stroke="#00f0ff"
+                      strokeWidth="1"
+                      strokeDasharray="4 8"
+                      className="opacity-40"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              {/* Central Hub Glow Backdrop (Star Glow / Halo) */}
+              <div className="absolute w-32 h-32 rounded-full bg-gradient-to-r from-[#00f0ff]/30 to-[#0072ff]/30 blur-xl animate-[pulse_2.5s_ease-in-out_infinite] z-0 pointer-events-none" />
+
               {/* Central Hub anchor */}
-              <div className="absolute w-20 h-20 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shadow-lg z-10">
-                <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-md">
-                  <img src="/Logo-Stick-Figure.svg" alt="hiyrED® Hub" className="w-8 h-8 object-contain" />
+              <div className="absolute w-24 h-24 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shadow-lg z-10">
+                <div className="w-18 h-18 rounded-full bg-white flex items-center justify-center shadow-md animate-[glowWorm_3s_ease-in-out_infinite]">
+                  <img src="/Logo-Stick-Figure.svg" alt="hiyrED® Hub" className="w-11 h-11 object-contain" />
                 </div>
               </div>
 
@@ -1143,7 +1217,7 @@ const HiyredEdge = () => {
 
               {/* Rotational Container */}
               <div
-                className="relative w-[440px] h-[440px] flex items-center justify-center rounded-full border border-white/5 bg-white/[0.01]"
+                className="relative w-[440px] h-[440px] flex items-center justify-center rounded-full bg-white/[0.01]"
                 style={{ transform: `rotate(${currentAngle}deg)`, transformOrigin: 'center' }}
               >
                 {engineDetails.map((eng, i) => {
