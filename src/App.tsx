@@ -316,12 +316,14 @@ const Hero = () => {
                 <motion.span
                   className="absolute -top-4 left-6 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
                   animate={{
-                    y: [0, -5, 0],
+                    x: [0, 135, 148, 135, 0, -13, 0],
+                    y: [0, 0, 28, 56, 56, 28, 0],
                   }}
                   transition={{
-                    duration: 2.2,
+                    duration: 8,
                     repeat: Infinity,
-                    ease: "easeInOut",
+                    ease: "linear",
+                    times: [0, 0.3, 0.4, 0.5, 0.8, 0.9, 1],
                   }}
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
@@ -531,71 +533,7 @@ const Metrics = () => {
   );
 };
 
-// ─── The System Shift ────────────────────────────────────────────────────────
 
-const SystemShift = () => {
-  const shifts = [
-    { role: "Students", old: "Unclear prep & zero feedback", new: "CTC Paths & Forge-built readiness", icon: <Users className="text-brand-gold w-5 h-5" /> },
-    { role: "Institutions", old: "Seasonal amnesia & ad-hoc decisions", new: "Cortex foresight & cohort analytics", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
-    { role: "Recruiters", old: "Resume stacks & unready hires", new: "Verified capability profiles via Industry Pool", icon: <Briefcase className="text-brand-gold w-5 h-5" /> },
-    { role: "Educators", old: "Eclipsed effort & no platform", new: "Compass mentorship & outcome recognition", icon: <Award className="text-brand-gold w-5 h-5" /> },
-  ];
-
-  return (
-    <section className="py-24 bg-[#fbf0cf]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
-          {/* Left: Text */}
-          <AnimatedSection stagger={staggerContainerSlow}>
-            <motion.h2
-              className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6 leading-tight"
-              variants={fadeLeft}
-              transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-            >
-              <span className="text-[#c7ae6a]"> Structure, visibility, and alignment </span>
-            </motion.h2>
-            <motion.p
-              className="text-lg text-gray-600 mb-10 leading-relaxed"
-              variants={fadeLeft}
-            >
-              Effort without direction is just noise. You are already writing code, building projects, and taking courses—but without structured feedback and visibility, that effort rarely translates into a career. It's time to fix the disconnect.
-            </motion.p>
-          </AnimatedSection>
-
-          {/* Right: The Shift */}
-          <AnimatedSection variants={scaleIn} className="space-y-3">
-            {/* Column Headers — shown once */}
-            <div className="flex items-center gap-6 px-6 pb-1">
-              <p className="flex-1 text-xs font-bold text-gray-400 uppercase tracking-wider">what the stakeholders say</p>
-              <div className="hidden sm:block w-5" />
-              <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider">WHAT hiyrED® DELIVERS</p>
-            </div>
-
-            {shifts.map((s, i) => (
-              <motion.div
-                key={i}
-                className="bg-white px-6 py-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 group"
-                whileHover={{ x: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.05)" }}
-                transition={{ duration: 0.3 }}
-              >
-                <div className="flex-1">
-                  <p className="text-gray-400 font-medium">{s.old}</p>
-                </div>
-                <div className="hidden sm:block text-gray-300">
-                  <ArrowRight className="w-5 h-5" />
-                </div>
-                <div className="flex-1 flex items-center gap-2">
-                  {s.icon}
-                  <p className="text-brand-navy font-bold">{s.new}</p>
-                </div>
-              </motion.div>
-            ))}
-          </AnimatedSection>
-        </div>
-      </div>
-    </section>
-  );
-};
 
 // ─── How It Works ──────────────────────────────────────────────────────────────
 
@@ -683,6 +621,13 @@ const HiyredEdge = () => {
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
   }, [selectedEngine]);
+
+  const shifts = [
+    { role: "Students", old: "Unclear prep & zero feedback", new: "CTC Paths & Forge-built readiness", icon: <Users className="text-brand-gold w-5 h-5" /> },
+    { role: "Institutions", old: "Seasonal amnesia & ad-hoc decisions", new: "Cortex foresight & cohort analytics", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
+    { role: "Recruiters", old: "Resume stacks & unready hires", new: "Verified capability profiles via Industry Pool", icon: <Briefcase className="text-brand-gold w-5 h-5" /> },
+    { role: "Educators", old: "Eclipsed effort & no platform", new: "Compass mentorship & outcome recognition", icon: <Award className="text-brand-gold w-5 h-5" /> },
+  ];
 
   const differentiators = [
     {
@@ -1197,15 +1142,8 @@ const HiyredEdge = () => {
         <div className="mt-32 pt-24 border-t border-white/10">
           {/* Section Header */}
           <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
-            <motion.p
-              className="text-xs font-bold uppercase tracking-[0.3em] mb-4"
-              style={{ color: "#C7AE6A" }}
-              variants={fadeUp}
-            >
-              Intelligence · Structure · Depth
-            </motion.p>
             <motion.h2
-              className="text-4xl lg:text-6xl font-bold text-white mb-5 leading-tight"
+              className="text-4xl lg:text-6xl font-bold text-white mb-4 leading-tight"
               variants={fadeUp}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
@@ -1222,99 +1160,142 @@ const HiyredEdge = () => {
               apart
             </motion.h2>
             <motion.p
+              className="text-sm sm:text-base font-bold uppercase tracking-[0.3em] mb-6"
+              style={{ color: "#C7AE6A" }}
+              variants={fadeUp}
+            >
+              Structure · Visibility · Alignment
+            </motion.p>
+            <motion.p
               className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed"
               variants={fadeUp}
               transition={{ duration: 0.5 }}
             >
-              Five interconnected systems that form the core of the hiyrED® ecosystem — engineered to build capability and drive real outcomes.
+              Five interconnected engines that form the core of the hiyrED® ecosystem — engineered to build capability and drive real outcomes.
             </motion.p>
           </AnimatedSection>
 
-          {/* Cards Grid */}
-          <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-2 gap-6 lg:gap-8">
-            {differentiators.map((d, i) => (
-              <motion.div
-                key={i}
-                variants={i % 2 === 0 ? fadeLeft : fadeRight}
-                transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                whileHover={{
-                  y: -6,
-                  transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
-                }}
-                className="group relative rounded-[2.5rem] p-8 lg:p-10 cursor-default overflow-hidden"
-                style={{
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(255,255,255,0.08)",
-                  backdropFilter: "blur(12px)",
-                }}
-              >
-                {/* Hover glow border */}
+          {/* New 2-column structure: Differentiators stacked on the left, Shifts on the right */}
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-start mt-8">
+            {/* Left side: Differentiators (Industry Pool, Talent Pool) */}
+            <div className="lg:col-span-6 flex flex-col gap-6 w-full">
+              {differentiators.map((d, i) => (
                 <motion.div
-                  className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    boxShadow: `inset 0 0 0 1.5px ${d.accent}55, 0 0 40px ${d.accent}18`,
+                  key={i}
+                  variants={i % 2 === 0 ? fadeLeft : fadeRight}
+                  transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+                  whileHover={{
+                    y: -6,
+                    transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
                   }}
-                />
-
-                {/* Corner index */}
-                <span
-                  className="absolute top-8 right-8 text-7xl font-black leading-none select-none pointer-events-none"
-                  style={{ color: `${d.accent}10`, fontVariantNumeric: "tabular-nums" }}
+                  className="group relative rounded-[2.5rem] p-8 lg:p-10 cursor-default overflow-hidden text-left"
+                  style={{
+                    background: "rgba(255,255,255,0.04)",
+                    border: "1px solid rgba(255,255,255,0.08)",
+                    backdropFilter: "blur(12px)",
+                  }}
                 >
-                  {d.index}
-                </span>
-
-                {/* Engine badge */}
-                <div className="flex items-center gap-3 mb-6">
-                  <motion.span
-                    className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em]"
-                    style={{
-                      background: `${d.accent}18`,
-                      color: d.accent,
-                      border: `1px solid ${d.accent}35`,
-                    }}
-                    whileHover={{ scale: 1.06 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 18 }}
-                  >
-                    {d.engine}
-                  </motion.span>
-                  {/* Divider line */}
+                  {/* Hover glow border */}
                   <motion.div
-                    className="h-px flex-1 max-w-[48px]"
-                    initial={{ scaleX: 0, originX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                    viewport={{ once: true }}
+                    className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                    style={{
+                      boxShadow: `inset 0 0 0 1.5px ${d.accent}55, 0 0 40px ${d.accent}18`,
+                    }}
                   />
-                </div>
 
-                {/* Title */}
-                <h3
-                  className="text-2xl font-bold text-white mb-3 group-hover:transition-colors duration-300"
-                  style={{ lineHeight: 1.25 }}
-                >
-                  {d.title}
-                </h3>
+                  {/* Corner index */}
+                  <span
+                    className="absolute top-8 right-8 text-7xl font-black leading-none select-none pointer-events-none"
+                    style={{ color: `${d.accent}10`, fontVariantNumeric: "tabular-nums" }}
+                  >
+                    {d.index}
+                  </span>
 
-                {/* Headline */}
-                <p
-                  className="text-sm font-semibold mb-4 leading-snug"
-                  style={{ color: d.accent }}
-                >
-                  {d.headline}
-                </p>
+                  {/* Engine badge */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <motion.span
+                      className="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-black tracking-[0.2em]"
+                      style={{
+                        background: `${d.accent}18`,
+                        color: d.accent,
+                        border: `1px solid ${d.accent}35`,
+                      }}
+                      whileHover={{ scale: 1.06 }}
+                      transition={{ type: "spring", stiffness: 400, damping: 18 }}
+                    >
+                      {d.engine}
+                    </motion.span>
+                    {/* Divider line */}
+                    <motion.div
+                      className="h-px flex-1 max-w-[48px]"
+                      initial={{ scaleX: 0, originX: 0 }}
+                      whileInView={{ scaleX: 1 }}
+                      transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
+                      viewport={{ once: true }}
+                    />
+                  </div>
 
-                {/* Description */}
-                <p className="text-white/55 text-sm leading-relaxed">{d.desc}</p>
+                  {/* Title */}
+                  <h3
+                    className="text-2xl font-bold text-white mb-3 group-hover:transition-colors duration-300"
+                    style={{ lineHeight: 1.25 }}
+                  >
+                    {d.title}
+                  </h3>
 
-                {/* Bottom accent bar */}
-                <motion.div
-                  className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ background: `linear-gradient(90deg, transparent, ${d.accent}, transparent)` }}
-                />
-              </motion.div>
-            ))}
-          </AnimatedSection>
+                  {/* Headline */}
+                  <p
+                    className="text-sm font-semibold mb-4 leading-snug"
+                    style={{ color: d.accent }}
+                  >
+                    {d.headline}
+                  </p>
+
+                  {/* Description */}
+                  <p className="text-white/55 text-sm leading-relaxed">{d.desc}</p>
+
+                  {/* Bottom accent bar */}
+                  <motion.div
+                    className="absolute bottom-0 left-8 right-8 h-[2px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{ background: `linear-gradient(90deg, transparent, ${d.accent}, transparent)` }}
+                  />
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Right side: Shifts comparisons (yellow background box container) */}
+            <div className="lg:col-span-6 bg-[#fbf0cf] p-8 lg:p-10 rounded-[2.5rem] flex flex-col gap-4 shadow-xl text-left border border-white/20">
+              {/* Headers */}
+              <div className="flex items-center gap-6 px-4 pb-1">
+                <p className="flex-1 text-xs font-bold text-gray-500 uppercase tracking-wider">what the stakeholders say</p>
+                <div className="hidden sm:block w-5" />
+                <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider uppercase">WHAT hiyrED® DELIVERS</p>
+              </div>
+
+              {/* Cards */}
+              <div className="flex flex-col gap-3">
+                {shifts.map((s, i) => (
+                  <motion.div
+                    key={i}
+                    className="bg-white px-6 py-5 rounded-2xl border border-gray-100 shadow-sm flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 group"
+                    whileHover={{ x: -8, boxShadow: "0 20px 40px rgba(22,38,65,0.05)" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <div className="flex-1">
+                      <p className="text-gray-400 font-medium text-sm leading-snug">{s.old}</p>
+                    </div>
+                    <div className="hidden sm:block text-gray-300">
+                      <ArrowRight className="w-5 h-5" />
+                    </div>
+                    <div className="flex-1 flex items-center gap-2">
+                      {s.icon}
+                      <p className="text-brand-navy font-bold text-sm leading-snug">{s.new}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1581,21 +1562,23 @@ const FinalCTA = () => {
                   <motion.span
                     className="absolute -top-4 left-6 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
                     animate={{
-                      y: [0, -5, 0],
+                      x: [0, 140, 156, 140, 0, -16, 0],
+                      y: [0, 0, 32, 64, 64, 32, 0],
                     }}
                     transition={{
-                      duration: 2.2,
+                      duration: 8,
                       repeat: Infinity,
-                      ease: "easeInOut",
+                      ease: "linear",
+                      times: [0, 0.3, 0.4, 0.5, 0.8, 0.9, 1],
                     }}
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                     Free
                   </motion.span>
                   <motion.button
-                    className="px-10 py-5 bg-white text-brand-navy font-black rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/10 border border-brand-navy/5"
+                    className="px-10 py-5 bg-brand-navy text-white font-black rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/20 border border-brand-navy/5"
                     variants={fadeUp}
-                    whileHover={{ scale: 1.06, boxShadow: "0 20px 60px rgba(22,38,65,0.15)" }}
+                    whileHover={{ scale: 1.06, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
                     whileTap={{ scale: 0.97 }}
                   >
                     Join the Community
@@ -1765,7 +1748,6 @@ export default function App() {
         <Hero />
         <Metrics />
         <HiyredEdge />
-        <SystemShift />
         <TheJourney />
         <EcosystemHub />
         <Testimonial />
