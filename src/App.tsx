@@ -190,11 +190,11 @@ const Navbar = () => {
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.2 }}
           >
-            <img src="/logo_Txt.svg" alt="hiyrED" className="h-22" />
+            <img src="/logo_Txt.svg" alt="hiyrED®" className="h-22" />
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
-            {["Community", "Forge", "For Recruiters", "Institutions", "Contact"].map((item, i) => (
+            {["Community", "For Recruiters", "For Institutions", "Contact"].map((item, i) => (
               <motion.a
                 key={item}
                 href="#"
@@ -228,7 +228,7 @@ const Navbar = () => {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.55, duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Join hiyrED
+              Join hiyrED®
             </motion.button>
           </div>
 
@@ -253,7 +253,7 @@ const Navbar = () => {
           transition={{ duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }}
           className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-4 overflow-hidden"
         >
-          {["Community", "Forge", "For Recruiters", "Institutions"].map((item, i) => (
+          {["Community", "For Recruiters", "Institutions"].map((item, i) => (
             <motion.a
               key={item}
               href="#"
@@ -271,7 +271,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.25, duration: 0.3 }}
           >
-            Join hiyrED
+            Join hiyrED®
           </motion.button>
         </motion.div>
       )}
@@ -311,14 +311,31 @@ const Hero = () => {
               variants={fadeUp}
               transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[], delay: 0.2 }}
             >
-              <motion.button
-                className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20 flex items-center gap-2 group"
-                whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Join the Community
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </motion.button>
+              <div className="relative inline-block mt-4">
+                {/* Floating Highlighted Free Tag */}
+                <motion.span
+                  className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
+                  animate={{
+                    y: [0, -5, 0],
+                  }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                >
+                  <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                  Join Free
+                </motion.span>
+                <motion.button
+                  className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20 flex items-center gap-2 group"
+                  whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
+                  whileTap={{ scale: 0.97 }}
+                >
+                  Join the Community
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </motion.button>
+              </div>
               <motion.button
                 className="px-8 py-4 bg-white text-brand-navy font-bold rounded-full border-2 border-brand-navy/10 hover:border-brand-navy/20 transition-all"
                 whileHover={{ scale: 1.04, borderColor: "rgba(22,38,65,0.25)" }}
@@ -483,7 +500,7 @@ const Metrics = () => {
             variants={fadeUp}
             className="text-xs font-bold text-gray-400 uppercase tracking-[0.2em] mb-10"
           >
-            Scouting talent directly from the hiyrED Forge
+            Scouting talent directly from the hiyrED® Forge
           </motion.p>
 
           {/* Marquee Logo Strip */}
@@ -519,7 +536,7 @@ const Metrics = () => {
 const SystemShift = () => {
   const shifts = [
     { role: "Students", old: "Unclear prep & zero feedback", new: "CTC Paths & Forge-built readiness", icon: <Users className="text-brand-gold w-5 h-5" /> },
-    { role: "Institutions", old: "Seasonal amnesia & gut decisions", new: "Cortex foresight & cohort analytics", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
+    { role: "Institutions", old: "Seasonal amnesia & ad-hoc decisions", new: "Cortex foresight & cohort analytics", icon: <BarChart3 className="text-brand-gold w-5 h-5" /> },
     { role: "Recruiters", old: "Resume stacks & unready hires", new: "Verified capability profiles via Industry Pool", icon: <Briefcase className="text-brand-gold w-5 h-5" /> },
     { role: "Educators", old: "Eclipsed effort & no platform", new: "Compass mentorship & outcome recognition", icon: <Award className="text-brand-gold w-5 h-5" /> },
   ];
@@ -535,7 +552,7 @@ const SystemShift = () => {
               variants={fadeLeft}
               transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
             >
-              Your ability was never the question.<span className="text-[#c7ae6a]"> Structure, visibility, and alignment </span> is what the ecosystem was missing.
+              Your ability was never the question.<span className="text-[#c7ae6a]"> Structure, visibility, and alignment </span> is the key.
             </motion.h2>
             <motion.p
               className="text-lg text-gray-600 mb-10 leading-relaxed"
@@ -549,9 +566,9 @@ const SystemShift = () => {
           <AnimatedSection variants={scaleIn} className="space-y-3">
             {/* Column Headers — shown once */}
             <div className="flex items-center gap-6 px-6 pb-1">
-              <p className="flex-1 text-xs font-bold text-red-400 uppercase tracking-wider line-through decoration-red-300">The Old Way</p>
+              <p className="flex-1 text-xs font-bold text-gray-400 uppercase tracking-wider">what the stakeholders say</p>
               <div className="hidden sm:block w-5" />
-              <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider">THE hiyrED WAY</p>
+              <p className="flex-1 text-xs font-bold text-brand-gold tracking-wider">what hiyrED® delivers</p>
             </div>
 
             {shifts.map((s, i) => (
@@ -562,10 +579,7 @@ const SystemShift = () => {
                 transition={{ duration: 0.3 }}
               >
                 <div className="flex-1">
-                  <span className="inline-block px-2 py-0.5 rounded-full text-[9px] font-extrabold tracking-wider uppercase bg-[#162641]/5 text-[#162641]/60 border border-[#162641]/10 mb-2">
-                    {s.role}
-                  </span>
-                  <p className="text-gray-400 font-medium line-through decoration-gray-300">{s.old}</p>
+                  <p className="text-gray-400 font-medium">{s.old}</p>
                 </div>
                 <div className="hidden sm:block text-gray-300">
                   <ArrowRight className="w-5 h-5" />
@@ -589,7 +603,7 @@ const TheJourney = () => {
   const steps = [
     { number: "01", title: "Discover", desc: "Map your raw potential and generate your dynamic Capability Transformation Cortex Path (CTC Path)." },
     { number: "02", title: "Build", desc: "Follow your CTC Path via Forge. Master coding, core subjects, and tackle real Industry Projects." },
-    { number: "03", title: "Prove", desc: "Earn immutable Skill Badges and compete in the pan-India hiyrED Premier League." },
+    { number: "03", title: "Prove", desc: "Earn immutable Skill Badges and compete in the pan-India hiyrED® Premier League." },
     { number: "04", title: "Showcase", desc: "Enter the Verified Talent Pool where recruiters actively scout your proven capabilities." },
   ];
 
@@ -655,13 +669,28 @@ const TheJourney = () => {
 // ─── Where Hiyred Stands Apart (USP / Differentiators) ──────────────────────────
 
 const HiyredEdge = () => {
+  const [selectedEngine, setSelectedEngine] = useState<number | null>(null);
+  const [currentAngle, setCurrentAngle] = useState(0);
+
+  useEffect(() => {
+    if (selectedEngine !== null) return;
+
+    let animationFrameId: number;
+    const animate = () => {
+      setCurrentAngle((prev) => (prev + 0.12) % 360);
+      animationFrameId = requestAnimationFrame(animate);
+    };
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [selectedEngine]);
+
   const differentiators = [
     {
       index: "01",
       engine: "INDUSTRY POOL",
       title: "Structured Hiring Ecosystem",
       headline: "Every industry, every domain — precisely segmented.",
-      desc: "Hiyred maps companies across Product and Service verticals, down to sub-domains like CTO Networks and PM Channels — so matching happens at the right depth, not just the right keywords.",
+      desc: "hiyrED® maps companies across Product and Service verticals, down to sub-domains like CTO Networks and PM Channels — so matching happens at the right depth, not just the right keywords.",
       accent: "#C7AE6A",
     },
     {
@@ -669,25 +698,87 @@ const HiyredEdge = () => {
       engine: "TALENT POOL",
       title: "Capability-First Talent Mapping",
       headline: "Not who you are on paper — what you can actually do.",
-      desc: "Hiyred builds each student's profile around demonstrated strengths, not just grades. Students are guided toward roles that match their abilities — before they start applying.",
+      desc: "hiyrED® builds each student's profile around demonstrated strengths, not just grades. Students are guided toward roles that match their abilities — before they start applying.",
       accent: "#7dd3fc",
     },
+  ];
+
+  const engineDetails = [
     {
-      index: "03",
-      engine: "CORTEX",
-      title: "Predictive Intelligence Layer",
-      headline: "Decisions backed by data, not instinct.",
-      desc: "The Cortex engine analyses patterns across the ecosystem — surfacing insights that help students prepare smarter, and recruiters predict fit to improve every hire.",
-      accent: "#a78bfa",
+      name: "hiyrED® Cortex",
+      label: "Think",
+      title: "Predictive Intelligence Engine",
+      tagline: "Cortex thinks so the ecosystem acts.",
+      desc: "hiyrED® Cortex is the underlying intelligence layer that watches, learns, and intervenes across capability and well-being signals simultaneously, making resumes redundant.",
+      accent: "#C7AE6A",
+      icon: <BarChart3 className="w-5 h-5" />,
+      bullets: [
+        "Synthesizes signals from Forge, Premier League, Pulse, and Compass.",
+        "Generates the Capability Transformation Cortex Path (CTC Path).",
+        "Provides real-time skill gap heatmaps by domain and branch.",
+        "Visualizes candidate readiness scores for proactive hiring."
+      ]
     },
     {
-      index: "04",
-      engine: "FORGE",
+      name: "hiyrED® Forge",
+      label: "Build",
       title: "Guided Placement Readiness",
-      headline: "Students don't just apply — they arrive prepared.",
-      desc: "Forge builds structured skill progression paths tailored to each student's target domain. From gap analysis to practice — readiness is engineered, not assumed.",
-      accent: "#6ee7b7",
+      tagline: "Forge builds what recruiters need and students become.",
+      desc: "Structured competency enhancement system sharpening raw talent into role-ready professionals through assessed, applied, and role-aligned capability paths.",
+      accent: "#7dd3fc",
+      icon: <Code2 className="w-5 h-5" />,
+      bullets: [
+        "Tailored coding, aptitude, case-based, and core subject tests.",
+        "Includes hiyrED® Premier League time-bound industry challenges.",
+        "Integrated CodeLAB for problem-solving with dynamic XP tracking.",
+        "Provides real Industry Projects evaluated by hiring organizations."
+      ]
     },
+    {
+      name: "hiyrED® Pulse",
+      label: "Feel",
+      title: "Mental Well-being & Resilience",
+      tagline: "Pulse feels what performance metrics miss.",
+      desc: "Dedicated well-being intelligence monitoring resilience, motivation, stress, and burnout patterns to trigger timely human support before setbacks become crises.",
+      accent: "#fb7185",
+      icon: <Bell className="w-5 h-5" />,
+      bullets: [
+        "Tracks resilience velocity through re-engagement quality.",
+        "Flags sudden engagement drops or post-rejection disengagement.",
+        "Monitors burnout risk patterns and triggers pause recommendations.",
+        "Coordinates with hiyrED® Compass for friendly tutor interventions."
+      ]
+    },
+    {
+      name: "hiyrED® Compass",
+      label: "Guide",
+      title: "Expert Mentorship & Counselling",
+      tagline: "Mentors and guides students toward reality.",
+      desc: "Cortex-informed mentorship and career counselling platform that connects students with educators, career experts, and ICF-certified well-being coaches.",
+      accent: "#6ee7b7",
+      icon: <Users className="w-5 h-5" />,
+      bullets: [
+        "Mentors access full capability profiles instead of blank resumes.",
+        "Directs career counseling based on actual capability data.",
+        "Integrates ICF-certified coaches to anchor mental well-being.",
+        "Provides branch- and role-specific live counselling sessions."
+      ]
+    },
+    {
+      name: "hiyrED® Legacy",
+      label: "Reinforce",
+      title: "Community Contribution Pathway",
+      tagline: "Built for the Community. Owned by the Talent.",
+      desc: "A collaborative pathway empowering placed students to contribute back, guide their peers, design new paths, and co-create sustainable opportunities at scale.",
+      accent: "#c4b5fd",
+      icon: <Award className="w-5 h-5" />,
+      bullets: [
+        "Students share verified interview reviews to train future cohorts.",
+        "Mentor rising talent targeting similar industry roles.",
+        "Unlock exclusive capability badges and role enhancements.",
+        "Join organizing committees for hiyrED® Premier League events."
+      ]
+    }
   ];
 
   return (
@@ -695,6 +786,28 @@ const HiyredEdge = () => {
       className="relative py-32 overflow-hidden"
       style={{ background: "linear-gradient(160deg, #0e1a2e 0%, #162641 60%, #1a2d4a 100%)" }}
     >
+      {/* Inline styles for Keyframes slow-spin & counter-spin */}
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+        @keyframes counter-spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(-360deg); }
+        }
+        .slow-spin {
+          animation: spin 50s linear infinite;
+        }
+        .counter-spin {
+          animation: counter-spin 50s linear infinite;
+        }
+        .spin-paused {
+          animation-play-state: paused !important;
+        }
+      `}} />
+
       {/* Background texture dots */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -722,7 +835,7 @@ const HiyredEdge = () => {
             variants={fadeUp}
             transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
           >
-            Where{" "}
+            What sets{" "}
             <span
               style={{
                 background: "linear-gradient(90deg, #C7AE6A 0%, #e3d6b4 100%)",
@@ -730,16 +843,16 @@ const HiyredEdge = () => {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              hiyrED
+              us
             </span>{" "}
-            Makes Difference
+            apart
           </motion.h2>
           <motion.p
             className="text-white/50 max-w-2xl mx-auto text-lg leading-relaxed"
             variants={fadeUp}
             transition={{ duration: 0.5 }}
           >
-            Four interconnected systems that form the core of the hiyrED ecosystem — engineered to build capability and drive real outcomes.
+            Four interconnected systems that form the core of the hiyrED® ecosystem — engineered to build capability and drive real outcomes.
           </motion.p>
         </AnimatedSection>
 
@@ -794,7 +907,6 @@ const HiyredEdge = () => {
                 {/* Divider line */}
                 <motion.div
                   className="h-px flex-1 max-w-[48px]"
-                  style={{ background: `${d.accent}30` }}
                   initial={{ scaleX: 0, originX: 0 }}
                   whileInView={{ scaleX: 1 }}
                   transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
@@ -830,188 +942,312 @@ const HiyredEdge = () => {
           ))}
         </AnimatedSection>
 
-        {/* Footer note */}
-        <AnimatedSection className="text-center mt-16" delay={0.3}>
-          <motion.p className="text-white/30 text-xs tracking-widest uppercase" variants={fadeUp}>
-            Every differentiator is a live system — not a roadmap promise.
-          </motion.p>
-        </AnimatedSection>
-      </div>
-    </section>
-  );
-};
-
-// ─── Brand Stack ──────────────────────────────────────────────────────────────
-
-const BrandStack = () => {
-  const stack = [
-    { label: "Think", name: "Cortex", desc: "Intelligence Engine processing capability signals and ecosystem-wide data.", accent: "#C7AE6A", icon: <BarChart3 className="w-6 h-6" /> },
-    { label: "Build", name: "Forge", desc: "Structured capability paths sharpening raw talent into role-ready professionals.", accent: "#7dd3fc", icon: <Code2 className="w-6 h-6" /> },
-    { label: "Feel", name: "Pulse", desc: "Mental well-being intelligence tracking resilience and burnout signals.", accent: "#fb7185", icon: <Bell className="w-6 h-6" /> },
-    { label: "Guide", name: "Compass", desc: "Cortex-informed mentorship and ICF-certified career counselling.", accent: "#6ee7b7", icon: <Users className="w-6 h-6" /> },
-    { label: "Give Back", name: "Legacy", desc: "Contribute to the community, mentor rising talent, earn badges, and unlock role enhancements.", accent: "#c4b5fd", icon: <Award className="w-6 h-6" /> },
-  ];
-
-  const phrases = [
-    { preposition: "For", rest: "the community" },
-    { preposition: "Of", rest: "the community" },
-    { preposition: "By", rest: "the community" },
-  ];
-
-  return (
-    <section
-      className="relative py-32 overflow-hidden"
-      style={{ background: "linear-gradient(170deg, #faf7f0 0%, #f5f0e4 50%, #faf7f0 100%)" }}
-    >
-      {/* Subtle dot grid texture */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: "radial-gradient(circle, rgba(22,38,65,0.03) 1px, transparent 1px)",
-          backgroundSize: "32px 32px",
-        }}
-      />
-      {/* Subtle radial glow behind heading */}
-      <div
-        className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] pointer-events-none"
-        style={{
-          background: "radial-gradient(ellipse at center, rgba(199,174,106,0.08) 0%, transparent 70%)",
-        }}
-      />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Label */}
-        <AnimatedSection className="text-center mb-6" stagger={staggerContainer}>
-          <motion.p
-            className="text-xs font-bold uppercase tracking-[0.3em] mb-2 text-brand-gold"
-            variants={fadeUp}
-          >
-            The Operational Layer
-          </motion.p>
-        </AnimatedSection>
-
-        {/* Typographic Hero: Large BUILT + Horizontal Phrases */}
-        <AnimatedSection className="mb-8 text-center" stagger={staggerContainerSlow}>
-          {/* Large BUILT */}
-          <motion.h2
-            className="text-7xl sm:text-8xl lg:text-8xl font-black uppercase leading-none tracking-tight mb-6"
-            style={{
-              background: "linear-gradient(135deg, #162641 0%, #C7AE6A 50%, #162641 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-            variants={fadeUp}
-            transition={{ duration: 0.8, ease: EASE_PREMIUM as unknown as number[] }}
-          >
-            Built
-          </motion.h2>
-
-          {/* Horizontal phrase row */}
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-5 lg:gap-8"
-            variants={fadeUp}
-            transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.15 }}
-          >
-            {phrases.map((p, i) => (
-              <div key={i} className="flex items-center gap-2 sm:gap-5 lg:gap-8">
-                <span className="flex items-baseline gap-1.5 sm:gap-2">
-                  <span
-                    className="text-lg sm:text-xl lg:text-2xl font-black italic"
-                    style={{ color: "#C7AE6A" }}
-                  >
-                    {p.preposition}
-                  </span>
-                  <span className="text-lg sm:text-xl lg:text-2xl font-semibold text-brand-navy/60">
-                    {p.rest}
-                  </span>
-                </span>
-                {i < phrases.length - 1 && (
-                  <span className="hidden sm:inline text-brand-gold/40 text-sm">·</span>
-                )}
-              </div>
-            ))}
-          </motion.div>
-        </AnimatedSection>
-
-        {/* Tagline */}
-        <AnimatedSection className="text-center mb-20" delay={0.4}>
-          <motion.div variants={fadeUp} className="inline-flex flex-col items-center">
-            <div className="w-12 h-px bg-gradient-to-r from-transparent via-brand-gold to-transparent mb-6" />
-            <p className="text-lg sm:text-xl lg:text-2xl font-bold text-brand-navy/80 tracking-wide">
-              Owned by the <span className="text-brand-gold">Talent</span>.
-            </p>
-          </motion.div>
-        </AnimatedSection>
-
-        {/* Product Cards — wider container for 5-col layout */}
-      </div>
-      <div className="max-w-[95rem] mx-auto px-4 sm:px-6 lg:px-10 relative z-10">
-        <AnimatedSection stagger={staggerContainerFast} className="grid md:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-5">
-          {stack.map((s, i) => (
-            <motion.div
-              key={i}
+        {/* Five Engines Section */}
+        <div className="mt-32 grid lg:grid-cols-12 gap-8 items-center pt-24 border-t border-white/10">
+          {/* Left: Heading and description */}
+          <div className="lg:col-span-6 text-left flex flex-col justify-center">
+            <motion.p
+              className="text-xs font-bold uppercase tracking-[0.3em] mb-3 text-[#C7AE6A]"
               variants={fadeUp}
-              transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
-              whileHover={{
-                y: -10,
-                boxShadow: "0 20px 50px rgba(22,38,65,0.08)",
-                transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
-              }}
-              className="relative group cursor-default rounded-3xl overflow-hidden bg-white border border-gray-100 shadow-sm"
             >
-              {/* Left accent bar */}
-              <div
-                className="absolute top-0 left-0 bottom-0 w-[3px]"
-                style={{ background: `linear-gradient(180deg, transparent, ${s.accent}, transparent)` }}
-              />
+              The Unified Powerhouse
+            </motion.p>
+            <motion.h3
+              className="text-4xl lg:text-5xl font-extrabold text-white mb-3 leading-tight"
+              variants={fadeUp}
+            >
+              Our 5 Engines
+            </motion.h3>
+            <motion.p
+              className="text-xs font-semibold text-white/40 mb-8 border-b border-white/5 pb-6 flex items-center gap-1.5"
+              variants={fadeUp}
+            >
+              <span>click on the engines to know more</span>
+            </motion.p>
 
-              <div className="p-7 lg:p-8">
-                {/* Icon + Label */}
-                <div className="flex items-center gap-3 mb-6">
-                  <div
-                    className="w-11 h-11 rounded-xl flex items-center justify-center"
-                    style={{ background: `${s.accent}18`, color: s.accent }}
-                  >
-                    {s.icon}
-                  </div>
-                  <span
-                    className="text-[10px] font-black uppercase tracking-[0.2em]"
-                    style={{ color: s.accent }}
-                  >
-                    {s.label}
-                  </span>
+            <AnimatedSection className="flex flex-col gap-6 text-left" stagger={staggerContainerSlow}>
+              {/* Giant BUILT */}
+              <motion.h2
+                className="text-6xl sm:text-7xl font-black uppercase leading-none tracking-tight"
+                style={{
+                  background: "linear-gradient(135deg, #ffffff 0%, #C7AE6A 50%, #e3d6b4 100%)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                }}
+                variants={fadeUp}
+              >
+                Built
+              </motion.h2>
+
+              {/* Horizontal community phrases */}
+              <motion.div
+                className="flex items-center gap-x-3 text-xs md:text-sm font-semibold whitespace-nowrap overflow-visible"
+                variants={fadeUp}
+              >
+                <span className="flex items-baseline gap-1">
+                  <span className="font-black italic text-[#C7AE6A]">For</span>
+                  <span className="text-white/70">the community</span>
+                </span>
+                <span className="text-[#C7AE6A]/40 text-xs">·</span>
+                <span className="flex items-baseline gap-1">
+                  <span className="font-black italic text-[#C7AE6A]">Of</span>
+                  <span className="text-white/70">the community</span>
+                </span>
+                <span className="text-[#C7AE6A]/40 text-xs">·</span>
+                <span className="flex items-baseline gap-1">
+                  <span className="font-black italic text-[#C7AE6A]">By</span>
+                  <span className="text-white/70">the community</span>
+                </span>
+              </motion.div>
+
+              {/* Divider line */}
+              <div className="w-16 h-px bg-gradient-to-r from-[#C7AE6A] to-transparent my-1" />
+
+              {/* Tagline */}
+              <motion.p
+                className="text-lg lg:text-xl font-bold text-white/80 tracking-wide"
+                variants={fadeUp}
+              >
+                Owned by the <span className="text-[#C7AE6A]">Talent</span>.
+              </motion.p>
+            </AnimatedSection>
+          </div>
+
+          {/* Right: Rotational Wheel */}
+          <div className="lg:col-span-6 flex justify-center lg:justify-end items-center relative overflow-visible h-[540px] w-full">
+            {/* Desktop: Rotational Wheel */}
+            <div className="hidden lg:flex justify-center items-center relative w-[520px] h-[520px] lg:translate-x-16 overflow-visible">
+
+              {/* Central Hub anchor */}
+              <div className="absolute w-20 h-20 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shadow-lg z-10">
+                <div className="w-14 h-14 rounded-full bg-white flex items-center justify-center shadow-md">
+                  <img src="/Logo-Stick-Figure.svg" alt="hiyrED® Hub" className="w-8 h-8 object-contain" />
                 </div>
-
-                {/* Name */}
-                <h3 className="text-2xl font-bold text-brand-navy mb-1">
-                  hiyrED
-                </h3>
-                <h3
-                  className="text-2xl font-bold mb-4 transition-colors duration-300"
-                  style={{ color: s.accent }}
-                >
-                  {s.name}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {s.desc}
-                </p>
               </div>
-            </motion.div>
-          ))}
-        </AnimatedSection>
 
-        {/* Footer whisper */}
-        <AnimatedSection className="text-center mt-14" delay={0.5}>
-          <motion.p className="text-brand-navy/50 text-xs tracking-[0.15em] uppercase" variants={fadeUp}>
-            Five engines. One unified ecosystem.
-          </motion.p>
-        </AnimatedSection>
+              {/* Dashed Line Arrow SVG Overlay */}
+              {selectedEngine !== null && (
+                <svg className="absolute inset-0 w-full h-full pointer-events-none z-15">
+                  <motion.path
+                    d={(() => {
+                      const baseAngle = (selectedEngine * 360) / 5;
+                      const rotatedAngle = (baseAngle + currentAngle) % 360;
+                      const radius = 175;
+                      const x = Math.cos((rotatedAngle * Math.PI) / 180) * radius + 260;
+                      const y = Math.sin((rotatedAngle * Math.PI) / 180) * radius + 260;
+
+                      // Node left edge (always relative to the visual layout)
+                      const startX = x - 105;
+                      const startY = y;
+
+                      // Popup right anchor at X: 80, Y: 260
+                      const endX = 80;
+                      const endY = 260;
+
+                      const cp1x = startX - 80;
+                      const cp1y = startY;
+                      const cp2x = endX + 80;
+                      const cp2y = endY;
+
+                      return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                    })()}
+                    stroke={engineDetails[selectedEngine].accent}
+                    strokeWidth="2.5"
+                    strokeDasharray="6 6"
+                    fill="none"
+                    initial={{ pathLength: 0, opacity: 0 }}
+                    animate={{ pathLength: 1, opacity: 0.8 }}
+                    transition={{ duration: 0.6, ease: "easeOut" }}
+                  />
+
+                  {/* Pulsing Arrowhead Dot */}
+                  <motion.circle
+                    cx="80"
+                    cy="260"
+                    r="4"
+                    fill={engineDetails[selectedEngine].accent}
+                    initial={{ scale: 0 }}
+                    animate={{ scale: [1, 1.8, 1] }}
+                    transition={{ repeat: Infinity, duration: 1.5 }}
+                  />
+                </svg>
+              )}
+
+              {/* Detailed Pop-up Overlay Card */}
+              {selectedEngine !== null && (
+                <motion.div
+                  initial={{ opacity: 0, x: -40, scale: 0.95 }}
+                  animate={{ opacity: 1, x: 0, scale: 1 }}
+                  exit={{ opacity: 0, x: -40, scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className="absolute left-[-220px] top-[75px] w-[290px] h-[370px] bg-white rounded-[2.5rem] p-6 shadow-2xl z-30 border-l-[6px] text-left flex flex-col justify-between"
+                  style={{
+                    borderColor: engineDetails[selectedEngine].accent,
+                    boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.8)"
+                  }}
+                >
+                  {/* Close button */}
+                  <button
+                    onClick={() => setSelectedEngine(null)}
+                    className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-brand-navy transition-colors cursor-pointer z-40"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+
+                  <div className="overflow-visible">
+                    {/* Header: Icon + Name */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
+                        style={{ background: `${engineDetails[selectedEngine].accent}15`, color: engineDetails[selectedEngine].accent }}
+                      >
+                        {engineDetails[selectedEngine].icon}
+                      </div>
+                      <div>
+                        <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block" style={{ color: engineDetails[selectedEngine].accent }}>
+                          {engineDetails[selectedEngine].label}
+                        </span>
+                        <h3 className="text-base font-black text-brand-navy leading-none">
+                          {engineDetails[selectedEngine].name}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Subtitle */}
+                    <p className="text-[10px] font-extrabold text-[#C7AE6A] uppercase tracking-wider mb-2.5 leading-none">
+                      {engineDetails[selectedEngine].title}
+                    </p>
+
+                    {/* Description */}
+                    <p className="text-xs text-gray-500 leading-relaxed mb-4">
+                      {engineDetails[selectedEngine].desc}
+                    </p>
+
+                    {/* Bullets */}
+                    <ul className="space-y-1.5">
+                      {engineDetails[selectedEngine].bullets.map((bullet, idx) => (
+                        <li key={idx} className="flex items-start gap-1.5 text-[10px] text-gray-600 leading-tight">
+                          <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: engineDetails[selectedEngine].accent }} />
+                          <span>{bullet}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Footer whisper */}
+                  <span className="text-[9px] font-bold text-gray-400 italic mt-2 leading-none border-t border-gray-50 pt-2 block w-full">
+                    {engineDetails[selectedEngine].tagline}
+                  </span>
+                </motion.div>
+              )}
+
+              {/* Rotational Container */}
+              <div
+                className="relative w-[440px] h-[440px] flex items-center justify-center rounded-full border border-white/5 bg-white/[0.01]"
+                style={{ transform: `rotate(${currentAngle}deg)`, transformOrigin: 'center' }}
+              >
+                {engineDetails.map((eng, i) => {
+                  const angle = (i * 360) / 5;
+                  const radius = 175; // radius in px
+                  const x = Math.cos((angle * Math.PI) / 180) * radius;
+                  const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+                  return (
+                    <div
+                      key={i}
+                      className="absolute"
+                      style={{
+                        left: `calc(50% + ${x}px - 105px)`,
+                        top: `calc(50% + ${y}px - 55px)`,
+                        width: "210px",
+                        height: "110px",
+                        transform: `rotate(${-currentAngle}deg)`,
+                        transformOrigin: 'center'
+                      }}
+                    >
+                      {/* Counter-rotating card */}
+                      <div
+                        onClick={() => setSelectedEngine(selectedEngine === i ? null : i)}
+                        className={`w-full h-full bg-white rounded-2xl p-4 shadow-xl border-l-[4px] flex flex-col justify-between text-left select-none group cursor-pointer ${selectedEngine === i ? 'ring-2 ring-offset-2 ring-white/50 scale-[1.03]' : ''}`}
+                        style={{
+                          borderColor: eng.accent,
+                          boxShadow: selectedEngine === i
+                            ? `0 15px 40px ${eng.accent}30`
+                            : `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8)`,
+                        }}
+                      >
+                        {/* Top row: Icon + Label */}
+                        <div className="flex items-center gap-2">
+                          <div
+                            className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
+                            style={{ background: `${eng.accent}15`, color: eng.accent }}
+                          >
+                            {eng.icon}
+                          </div>
+                          <div className="flex flex-col">
+                            <span className="text-[8px] font-black uppercase tracking-widest leading-none mb-1" style={{ color: eng.accent }}>
+                              {eng.label}
+                            </span>
+                            <h4 className="text-xs font-extrabold text-brand-navy leading-none">
+                              {eng.name}
+                            </h4>
+                          </div>
+                        </div>
+                        {/* Description */}
+                        <p className="text-[9px] leading-normal text-gray-500 font-medium line-clamp-2">
+                          {eng.desc}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Mobile/Tablet: Flat Grid fallback */}
+            <div className="lg:hidden w-full grid sm:grid-cols-2 gap-4 mt-8">
+              {engineDetails.map((eng, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-3xl p-6 shadow-md border-l-[5px] text-left"
+                  style={{ borderColor: eng.accent }}
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
+                      style={{ background: `${eng.accent}15`, color: eng.accent }}
+                    >
+                      {eng.icon}
+                    </div>
+                    <div>
+                      <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block" style={{ color: eng.accent }}>
+                        {eng.label}
+                      </span>
+                      <h4 className="text-sm font-extrabold text-brand-navy leading-none">{eng.name}</h4>
+                    </div>
+                  </div>
+                  <p className="text-xs text-gray-500 leading-relaxed mb-4">{eng.desc}</p>
+
+                  {/* Bullets on mobile */}
+                  <ul className="space-y-1.5">
+                    {eng.bullets.map((bullet, idx) => (
+                      <li key={idx} className="flex items-start gap-1.5 text-[10px] text-gray-600 leading-tight">
+                        <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: eng.accent }} />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
 };
+
+
 
 // ─── Features ──────────────────────────────────────────────────────────────────
 
@@ -1020,25 +1256,19 @@ const EcosystemHub = () => {
     { icon: <Users />, title: "Students", desc: "Join the community, upskill through structured paths, and build an undeniable proof-of-work portfolio." },
     { icon: <Briefcase />, title: "Recruiters", desc: "Bypass resumes. Scout and handpick pre-assessed talent directly from a pan-India verified pool." },
     { icon: <ShieldCheck />, title: "Institutions", desc: "Track cohort capability, identify skill gaps, and visualize real-time placement readiness." },
-    { icon: <Code2 />, title: "Educators & Mentors", desc: "Mentor via hiyrED Compass, design capability paths, and earn by creating trackable impact." },
+    { icon: <Code2 />, title: "Educators & Mentors", desc: "Mentor via hiyrED® Compass, design capability paths, and earn by creating trackable impact." },
   ];
 
   return (
     <section className="py-24 bg-[#fbf0cf]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-12" stagger={staggerContainer}>
-          <motion.p
-            className="text-sm font-semibold text-brand-navy/60 uppercase tracking-[0.2em] mb-2"
-            variants={fadeUp}
-          >
-            THE ECOSYSTEM
-          </motion.p>
           <motion.h2
             className="text-4xl lg:text-5xl font-bold text-[#162641]"
             variants={fadeUp}
             transition={{ duration: 0.6 }}
           >
-            Built for everyone to win
+            An ecosystem engineered for success
           </motion.h2>
         </AnimatedSection>
 
@@ -1115,7 +1345,7 @@ const Testimonial = () => {
                     variants={fadeRight}
                     transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
                   >
-                    "We've hired faster and smarter since switching to hiyrED — it&apos;s like having a recruiter built into our hiring process"
+                    "We've hired faster and smarter since switching to hiyrED® — it&apos;s like having a recruiter built into our hiring process"
                   </motion.h3>
 
                   {/* Author Info */}
@@ -1162,10 +1392,10 @@ const Testimonial = () => {
 
 const TalentShowcasePreview = () => {
   const students = [
-    { name: "Alex Rivera", role: "Frontend Developer", capability: "98% Forge Readiness", verified: true },
-    { name: "Sarah Chen", role: "Data Analyst", capability: "92% Forge Readiness", verified: true },
+    { name: "Alex Rivera", role: "Frontend Developer", capability: "84% Forge Readiness", verified: true },
+    { name: "Sarah Chen", role: "Data Analyst", capability: "72% Forge Readiness", verified: true },
     { name: "Rahul Sharma", role: "Backend Engineer", capability: "95% Forge Readiness", verified: true },
-    { name: "Priya Patel", role: "Product Manager", capability: "88% Forge Readiness", verified: false },
+    { name: "Priya Patel", role: "Product Manager", capability: "68% Forge Readiness", verified: false },
   ];
 
   return (
@@ -1243,41 +1473,6 @@ const TalentShowcasePreview = () => {
   );
 };
 
-// ─── Pricing / ISA Banner ──────────────────────────────────────────────────────
-
-const PaymentModel = () => {
-  return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-        <AnimatedSection stagger={staggerContainer}>
-          <motion.h2
-            className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
-            variants={fadeUp}
-          >
-            No upfront costs. <br /><span className="text-green-600">Success aligned with outcomes.</span>
-          </motion.h2>
-          <motion.p
-            className="text-xl text-gray-500 mb-10 max-w-2xl mx-auto"
-            variants={fadeUp}
-          >
-            We believe in your capability so much that we invest in it. You only pay after you get placed, based on a percentage of your CTC. If you don't win, neither do we.
-          </motion.p>
-          <motion.div
-            className="inline-flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm font-medium text-gray-600"
-            variants={fadeUp}
-          >
-            <CheckCircle2 className="w-4 h-4 text-green-500" />
-            Income Share Agreement (ISA)
-          </motion.div>
-        </AnimatedSection>
-      </div>
-
-      {/* Decorative */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[100%] h-[100%] bg-green-50 rounded-full blur-3xl -z-10 opacity-50 pointer-events-none"></div>
-    </section>
-  );
-};
-
 // ─── Final CTA ─────────────────────────────────────────────────────────────────
 
 const FinalCTA = () => {
@@ -1286,43 +1481,86 @@ const FinalCTA = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection variants={scaleIn}>
           <motion.div
-            className="relative p-16 lg:p-24 rounded-[4rem] text-center overflow-hidden gold-gradient"
+            className="relative p-12 lg:p-20 rounded-[4rem] overflow-hidden gold-gradient"
             whileHover={{ scale: 1.01 }}
             transition={{ duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
           >
-            <AnimatedSection stagger={staggerContainer} className="relative z-10">
-              <motion.h2
-                className="text-4xl lg:text-6xl font-bold text-brand-navy mb-6"
+            <div className="relative z-10 grid lg:grid-cols-12 gap-12 items-center text-left">
+              {/* Left Column: CTA */}
+              <AnimatedSection stagger={staggerContainer} className="lg:col-span-7">
+                <motion.h2
+                  className="text-4xl lg:text-5xl font-extrabold text-brand-navy mb-6 leading-tight"
+                  variants={fadeUp}
+                  transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+                >
+                  Ready to build your capability?
+                </motion.h2>
+                <motion.p
+                  className="text-lg text-brand-navy/80 mb-10 max-w-xl"
+                  variants={fadeUp}
+                  transition={{ duration: 0.5 }}
+                >
+                  Join the ecosystem where ambition meets structure. Upskill, prove your worth, and let the industry come to you.
+                </motion.p>
+                <div className="relative inline-block mt-4">
+                  {/* Floating Highlighted Free Tag */}
+                  <motion.span
+                    className="absolute -top-4 left-1/2 -translate-x-1/2 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
+                    animate={{
+                      y: [0, -5, 0],
+                    }}
+                    transition={{
+                      duration: 2.2,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                    Register Free
+                  </motion.span>
+                  <motion.button
+                    className="px-10 py-5 bg-white text-brand-navy font-black rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/10 border border-brand-navy/5"
+                    variants={fadeUp}
+                    whileHover={{ scale: 1.06, boxShadow: "0 20px 60px rgba(22,38,65,0.15)" }}
+                    whileTap={{ scale: 0.97 }}
+                  >
+                    Join the Community
+                  </motion.button>
+                </div>
+              </AnimatedSection>
+
+              {/* Right Column: Outcomes Promise */}
+              <motion.div
+                className="lg:col-span-5 bg-white/40 backdrop-blur-md rounded-[2.5rem] p-8 lg:p-10 border border-white/30 shadow-xl"
                 variants={fadeUp}
-                transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+                transition={{ duration: 0.6, delay: 0.2 }}
               >
-                Ready to build your capability?
-              </motion.h2>
-              <motion.p
-                className="text-xl text-brand-navy/70 mb-12 max-w-2xl mx-auto"
-                variants={fadeUp}
-                transition={{ duration: 0.5 }}
-              >
-                Join the ecosystem where ambition meets structure. Upskill, prove your worth, and let the industry come to you.
-              </motion.p>
-              <motion.button
-                className="px-10 py-5 bg-brand-navy text-white font-bold rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/30"
-                variants={fadeUp}
-                whileHover={{ scale: 1.06, boxShadow: "0 20px 60px rgba(22,38,65,0.4)" }}
-                whileTap={{ scale: 0.97 }}
-              >
-                Join the Community
-              </motion.button>
-            </AnimatedSection>
+                <div className="flex items-center gap-2 mb-4">
+                  <CheckCircle2 className="w-5 h-5 text-brand-navy shrink-0" />
+                  <span className="text-xs font-black uppercase tracking-wider text-brand-navy">
+                    Outcome-Based Success
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-brand-navy mb-4">
+                  No upfront costs.
+                </h3>
+                <p className="text-brand-navy/80 text-sm leading-relaxed mb-6">
+                  We believe in your capability so much that we invest in it. You only pay after you get placed, based on a percentage of your CTC. If you don't win, neither do we.
+                </p>
+                <span className="inline-flex items-center px-4 py-1.5 rounded-full text-xs font-bold bg-brand-navy text-white">
+                  Income Share Agreement (ISA)
+                </span>
+              </motion.div>
+            </div>
 
             {/* Decorative circles */}
             <motion.div
-              className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl"
+              className="absolute top-0 left-0 w-64 h-64 bg-white/10 rounded-full -translate-x-1/2 -translate-y-1/2 blur-3xl pointer-events-none"
               animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.15, 0.1] }}
               transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
             />
             <motion.div
-              className="absolute bottom-0 right-0 w-96 h-96 bg-brand-navy/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl"
+              className="absolute bottom-0 right-0 w-96 h-96 bg-brand-navy/5 rounded-full translate-x-1/3 translate-y-1/3 blur-3xl pointer-events-none"
               animate={{ scale: [1, 1.1, 1], opacity: [0.05, 0.1, 0.05] }}
               transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
             />
@@ -1342,7 +1580,7 @@ const Footer = () => {
         <AnimatedSection stagger={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
           <motion.div className="col-span-2 lg:col-span-2" variants={fadeUp}>
             <div className="flex items-center gap-2 mb-6">
-              <img src="/Logo-Stick-Figure-Hiyred_Txt.svg" alt="hiyrED" className="h-22" />
+              <img src="/Logo-Stick-Figure-Hiyred_Txt.svg" alt="hiyrED®" className="h-22" />
             </div>
             <p className="text-gray-400 max-w-xs mb-8">
               The definitive ecosystem for ambitious students to build verified capabilities and showcase their proof-of-work.
@@ -1422,7 +1660,7 @@ const Footer = () => {
             className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
             variants={fadeUp}
           >
-            <p className="text-gray-500 text-xs">© 2026 hiyrED Inc. All Rights Reserved.</p>
+            <p className="text-gray-500 text-xs">© 2026 hiyrED® Inc. All Rights Reserved.</p>
             <div className="flex gap-8 text-gray-500 text-xs">
               {["Privacy", "Terms", "Cookies"].map(item => (
                 <motion.a
@@ -1454,12 +1692,10 @@ export default function App() {
         <Metrics />
         <SystemShift />
         <HiyredEdge />
-        <BrandStack />
         <TheJourney />
         <EcosystemHub />
         <Testimonial />
         <TalentShowcasePreview />
-        <PaymentModel />
         <FinalCTA />
       </main>
       <Footer />
