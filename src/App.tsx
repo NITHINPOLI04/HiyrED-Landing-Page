@@ -1,4 +1,4 @@
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView, useReducedMotion, AnimatePresence } from "motion/react";
 import { AnimatedLogoReveal } from "./components/AnimatedLogoReveal";
 import {
   CheckCircle2,
@@ -539,15 +539,98 @@ const Metrics = () => {
 
 const TheJourney = () => {
   const steps = [
-    { number: "01", title: "Discover", desc: "Map your raw potential and generate your dynamic Capability Transformation Cortex Path (CTC Path)." },
-    { number: "02", title: "Build", desc: "Follow your CTC Path via Forge. Master coding, core subjects, and tackle real Industry Projects." },
-    { number: "03", title: "Prove", desc: "Earn immutable Skill Badges and compete in the pan-India hiyrED® Premier League." },
-    { number: "04", title: "Showcase", desc: "Enter the Verified Talent Pool where recruiters actively scout your proven capabilities." },
+    {
+      number: "01",
+      title: "Submit Your Application",
+      desc: "Become a member of the hiyrED® Community—via institution or independently—and complete your profile setup. hiyrED® Cortex maps your baseline capability."
+    },
+    {
+      number: "02",
+      title: "Consult with Our Team",
+      desc: "Engage in Cortex-informed, capability-directed career counselling via hiyrED® Compass to align your aspirations with current reality and verify eligibility before the Forge."
+    },
+    {
+      number: "03",
+      title: "Understand Your CTC Path",
+      desc: "Understand your Capability Transformation Cortex Path (CTC Path). hiyrED® Cortex measures the gap between your current skills and recruiter expectations to build your market value."
+    },
+    {
+      number: "04",
+      title: "Start Learning",
+      desc: "Unlock hiyrED® Forge to start structured competency paths (concept → applied practice → real-world output), complete Industry Projects evaluated by hiring organizations, and build verified proof-of-work."
+    }
   ];
 
   return (
-    <section className="py-24 bg-white overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="relative py-24 bg-white overflow-hidden">
+      {/* Winding Road Watermark Background */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none select-none z-0">
+        <svg
+          viewBox="0 0 1440 900"
+          className="w-full h-full opacity-[0.15]"
+          preserveAspectRatio="xMidYMid slice"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          {/* Road Shadow */}
+          <path
+            d="M -100 150 C 300 50 300 450 600 350 C 900 250 900 650 1200 550 C 1350 500 1450 650 1600 650"
+            stroke="#162641"
+            strokeWidth="90"
+            strokeLinecap="round"
+            fill="none"
+          />
+          {/* Road Border (Gold) */}
+          <path
+            d="M -100 150 C 300 50 300 450 600 350 C 900 250 900 650 1200 550 C 1350 500 1450 650 1600 650"
+            stroke="#C7AE6A"
+            strokeWidth="74"
+            strokeLinecap="round"
+            fill="none"
+          />
+          {/* Road Body */}
+          <path
+            d="M -100 150 C 300 50 300 450 600 350 C 900 250 900 650 1200 550 C 1350 500 1450 650 1600 650"
+            stroke="#162641"
+            strokeWidth="70"
+            strokeLinecap="round"
+            fill="none"
+          />
+          {/* Road Dashed Line */}
+          <path
+            d="M -100 150 C 300 50 300 450 600 350 C 900 250 900 650 1200 550 C 1350 500 1450 650 1600 650"
+            stroke="white"
+            strokeWidth="3"
+            strokeDasharray="16 16"
+            strokeLinecap="round"
+            fill="none"
+          />
+
+          {/* Map Pins / Milestones */}
+          {/* Pin 1 */}
+          <g transform="translate(180, 135) scale(1.2)">
+            <path d="M0 0 C-8 -15 -12 -20 -12 -28 A12 12 0 0 1 12 -28 C12 -20 8 -15 0 0 Z" fill="#C7AE6A" />
+            <circle cx="0" cy="-28" r="4" fill="white" />
+          </g>
+          {/* Pin 2 */}
+          <g transform="translate(520, 375) scale(1.2)">
+            <path d="M0 0 C-8 -15 -12 -20 -12 -28 A12 12 0 0 1 12 -28 C12 -20 8 -15 0 0 Z" fill="#162641" />
+            <circle cx="0" cy="-28" r="4" fill="white" />
+          </g>
+          {/* Pin 3 */}
+          <g transform="translate(930, 395) scale(1.2)">
+            <path d="M0 0 C-8 -15 -12 -20 -12 -28 A12 12 0 0 1 12 -28 C12 -20 8 -15 0 0 Z" fill="#C7AE6A" />
+            <circle cx="0" cy="-28" r="4" fill="white" />
+          </g>
+          {/* Pin 4 */}
+          <g transform="translate(1250, 560) scale(1.2)">
+            <path d="M0 0 C-8 -15 -12 -20 -12 -28 A12 12 0 0 1 12 -28 C12 -20 8 -15 0 0 Z" fill="#162641" />
+            <circle cx="0" cy="-28" r="4" fill="white" />
+          </g>
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <AnimatedSection className="text-center mb-20" stagger={staggerContainer}>
           <motion.h2
             className="text-4xl lg:text-5xl font-bold text-brand-navy mb-6"
@@ -565,40 +648,44 @@ const TheJourney = () => {
           </motion.p>
         </AnimatedSection>
 
-        <div className="relative">
-          <div style={{ position: "relative", zIndex: 1 }}>
-            <AnimatedSection stagger={staggerContainerSlow} className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 relative">
-              {steps.map((s, i) => (
-                <motion.div
-                  key={i}
-                  variants={fadeUp}
-                  transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
-                  whileHover={{
-                    y: -10,
-                    boxShadow: "0 20px 60px rgba(22,38,65,0.08)",
-                    transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }
-                  }}
-                  className="p-8 lg:p-10 rounded-[3rem] bg-[#fbf0cf]/20 backdrop-blur-xl border border-[#c7ae6a]/30 shadow-sm hover:bg-[#fbf0cf]/35 hover:border-[#c7ae6a]/50 transition-all duration-300 relative group cursor-default"
-                >
-                  <motion.span
-                    className="text-5xl font-black text-brand-navy/5 absolute top-8 right-8 group-hover:text-brand-gold/10 transition-colors duration-500"
-                  >
-                    {s.number}
-                  </motion.span>
-                  <motion.div
-                    className="w-12 h-12 bg-brand-navy text-white rounded-full flex items-center justify-center font-bold mb-8"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                  >
-                    {i + 1}
-                  </motion.div>
-                  <h4 className="text-xl font-bold text-brand-navy mb-4">{s.title}</h4>
-                  <p className="text-gray-600 leading-relaxed text-sm">{s.desc}</p>
-                </motion.div>
-              ))}
-            </AnimatedSection>
+        <AnimatedSection stagger={staggerContainerSlow} className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center mt-12">
+          {/* Left Column: Steps list */}
+          <div className="lg:col-span-7 flex flex-col">
+            {steps.map((s, i) => (
+              <motion.div
+                key={i}
+                variants={fadeLeft}
+                className="flex gap-6 md:gap-8 py-8 border-b border-gray-100 last:border-0 items-start text-left"
+              >
+                {/* Step Number */}
+                <span className="text-4xl md:text-5xl font-black text-brand-gold shrink-0 leading-none" style={{ fontVariantNumeric: "tabular-nums" }}>
+                  {s.number}
+                </span>
+
+                {/* Content */}
+                <div className="flex-1">
+                  <h4 className="text-xl font-bold text-brand-navy mb-2">{s.title}</h4>
+                  <p className="text-gray-500 text-sm md:text-base leading-relaxed">{s.desc}</p>
+                </div>
+              </motion.div>
+            ))}
           </div>
-        </div>
+
+          {/* Right Column: Image */}
+          <div className="lg:col-span-5 w-full">
+            <motion.div
+              variants={fadeRight}
+              className="relative rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white/50 w-full"
+            >
+              <img
+                src="/student_journey.png"
+                alt="Student preparing with hiyrED"
+                className="w-full h-[480px] object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/10 to-transparent pointer-events-none" />
+            </motion.div>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );
@@ -1527,6 +1614,495 @@ const TalentShowcasePreview = () => {
   );
 };
 
+
+
+// ─── Insights & News ──────────────────────────────────────────────────────────
+
+const InsightsNews = () => {
+  const [activeArticle, setActiveArticle] = useState<any | null>(null);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [visibleCards, setVisibleCards] = useState(3);
+
+  const articles = [
+    {
+      badge: "Trending",
+      badgeColor: "text-amber-500 bg-amber-500/10 border-amber-500/20",
+      title: "Bootcamps vs. Online Courses: Choosing the Right Route into Tech",
+      desc: "Is a structured bootcamp or a self-paced course better for entering tech? We analyze the cost, commitment, and placement outcomes.",
+      content: "Entering the tech industry can feel like standing at a crossroads. On one hand, you have coding bootcamps—structured, fast-paced, highly intensive, and often costing thousands of dollars upfront. On the other hand, self-paced online courses offer ultimate flexibility and low costs, but suffer from a notoriously low completion rate (often under 10%).\n\nSo, which path is the right one for you? Traditional bootcamps force you into a fixed schedule, whereas self-paced platforms lack any real human accountability. At hiyrED®, we bridge this divide by aligning structured capability paths with outcome-based models. We believe the key is not just consuming tutorials, but building verified proof-of-work that hiring teams can actually trust.\n\nWhen evaluating paths, consider three dimensions: feedback loops, structure, and outcome alignment. A successful tech route must challenge you to build real-world systems while testing your coding, design, and problem-solving abilities continuously under time pressure.",
+      author: "Umair Mughal",
+      date: "April 21, 2026",
+      readTime: "5 min read",
+      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      badge: "Deep Dive",
+      badgeColor: "text-sky-400 bg-sky-400/10 border-sky-400/20",
+      title: "AI-Supported Tech Roles: Start with Zero Code Experience",
+      desc: "Discover the new wave of tech roles powered by AI assistants that allow you to start immediately with no previous coding background.",
+      content: "The rise of generative AI has fundamentally changed what it means to be a technology professional. Today, you do not need to spend years mastering complex programming syntax to build valuable software. AI coding assistants, low-code systems, and prompt engineering have opened up a brand-new category of 'AI-supported' tech roles.\n\nThese positions value systems design, logical problem-solving, product thinking, and domain knowledge over raw typing speed. In these roles, human intelligence guides the system, while AI handles the syntax generation. This transition shifts the core value of an engineer from code execution to architectural design and capability validation.\n\nAt hiyrED®, we prepare students for this new reality. Our capability mapping targets multi-disciplinary domains, helping you prove your aptitude, communication skills, and systems engineering mindset, regardless of whether you have a computer science degree. The future of tech is collaborative, and AI is your co-pilot.",
+      author: "Ashwini Zinjurde",
+      date: "March 13, 2026",
+      readTime: "4 min read",
+      image: "https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      badge: "Guides",
+      badgeColor: "text-emerald-400 bg-emerald-400/10 border-emerald-400/20",
+      title: "Eligibility for Fully-Funded Tech Training: A Guide to Forge Paths",
+      desc: "Learn how you can qualify for fully-funded competency paths and corporate-partnered projects through the hiyrED® Forge program.",
+      content: "At hiyrED®, we believe that financial constraints should never stand in the way of talent. That is why our core capability-building paths through the hiyrED® Forge are fully funded. But how does this program work, and who qualifies?\n\nOur outcome-aligned model means we invest in your training upfront. You only contribute back to the community after you secure a high-quality placement, based on a percentage of your actual Cost to Company (CTC). This ensures that our incentives are 100% aligned with your professional success.\n\nTo qualify, students undergo a Cortex-informed assessment on entry to map their baseline skills, cognitive ability, and interest areas. From there, counselors help you establish your target CTC Path. Once eligible, you gain immediate, unrestricted access to specialized domain training, industry hackathons, and certified mentorship sessions.",
+      author: "Umair Mughal",
+      date: "March 10, 2026",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      badge: "Trends",
+      badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+      title: "Resumes are Dead: The Rise of the Capability Profile",
+      desc: "Why traditional resumes fail to capture actual skills, and how hiyrED® Cortex leverages data to build verified proof-of-work profiles.",
+      content: "For decades, the two-page PDF resume has been the default gatekeeper of professional opportunities. Yet, everyone knows its core flaws: resumes are easy to inflate, fail to show how a candidate works under pressure, and say nothing about their communication, attitude, or well-being.\n\nAt hiyrED®, we are rendering resumes redundant. Through hiyrED® Cortex, we synthesize dynamic data points from assessments, Forge activities, Premier League challenges, and mentor feedback into a single, real-time dynamic Capability Profile.\n\nInstead of reading through text claims like 'expert problem solver', recruiters can view verified metrics, CodeLAB performance patterns, and direct evaluations of Industry Projects. By focusing on verified proof-of-work, we remove college tier bias and help companies hire based on demonstrated capabilities rather than pedigree.",
+      author: "Ashwini Zinjurde",
+      date: "February 28, 2026",
+      readTime: "4 min read",
+      image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      badge: "Mentorship",
+      badgeColor: "text-rose-400 bg-rose-400/10 border-rose-400/20",
+      title: "Understanding hiyrED® Compass Career Counselling",
+      desc: "A close look at how hiyrED® Compass connects students with career experts and coaches to guide growth based on actual performance data.",
+      content: "Traditional career counselling is often reactive and generic—resulting in students receiving the same copy-paste advice regardless of their unique cognitive profiles. hiyrED® Compass is designed on a completely different premise: 'Where your capability is, that is where we guide you.'\n\nBy feeding live capability maps from hiyrED® Cortex directly to our career experts and ICF-certified life coaches, we ensure that every session is hyper-personalized. If your data points indicate high mathematical aptitude but lower verbal fluency, our mentors don't just tell you to 'study harder'; they guide you toward roles that leverage your quantitative strengths while suggesting targeted communication paths.\n\nCompass bridges the gap between raw data and human motivation, ensuring that student career decisions are anchored in reality and guided by professionals who understand their actual capability trajectory.",
+      author: "Umair Mughal",
+      date: "January 15, 2026",
+      readTime: "5 min read",
+      image: "https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=600"
+    },
+    {
+      badge: "Well-being",
+      badgeColor: "text-[#c7ae6a] bg-[#c7ae6a]/10 border-[#c7ae6a]/20",
+      title: "Resilience Velocity: How We Measure Responses to Setbacks",
+      desc: "Failed an assessment? Missed a shortlist? Learn how hiyrED® Pulse tracks and supports your resilience velocity to trigger friendly interventions.",
+      content: "Setbacks are an inevitable part of building a career. You might fail a difficult Forge coding test, get dropped from a recruiter shortlist, or find yourself struggling with a project deadline. Traditional learning systems ignore these emotional dips, but hiyrED® Pulse is engineered to support you through them.\n\nWe measure 'resilience velocity'—defined as the speed and quality of a student's re-engagement after a setback. Pulse reads engagement patterns from action, not self-reporting. If the system flags declining resilience or post-rejection disengagement, it alerts mentors via hiyrED® Compass.\n\nRather than putting more placement pressure on you, the platform triggers friendly, supportive human interventions, offering customized pause recommendations and motivation coaching. We believe that true career readiness is built on resilience, and mental well-being is a core performance metric.",
+      author: "Ashwini Zinjurde",
+      date: "December 20, 2025",
+      readTime: "6 min read",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=600"
+    }
+  ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth < 640) setVisibleCards(1);
+      else if (window.innerWidth < 1024) setVisibleCards(2);
+      else setVisibleCards(3);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const nextSlide = () => {
+    if (currentIndex < articles.length - visibleCards) {
+      setCurrentIndex(prev => prev + 1);
+    }
+  };
+
+  const prevSlide = () => {
+    if (currentIndex > 0) {
+      setCurrentIndex(prev => prev - 1);
+    }
+  };
+
+  return (
+    <section
+      className="relative py-28 overflow-hidden text-left"
+      style={{ background: "linear-gradient(160deg, #0b1322 0%, #101c30 60%, #162641 100%)" }}
+    >
+      <style dangerouslySetInnerHTML={{__html: `
+        .no-scrollbar::-webkit-scrollbar {
+          display: none !important;
+        }
+        .no-scrollbar {
+          -ms-overflow-style: none !important;
+          scrollbar-width: none !important;
+        }
+      `}} />
+
+      {/* Background decoration dots and circles */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle, rgba(199,174,106,0.1) 1px, transparent 1px)",
+          backgroundSize: "40px 40px",
+        }}
+      />
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 w-96 h-96 bg-[#c7ae6a]/5 rounded-full blur-3xl pointer-events-none -z-10" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 w-[30rem] h-[30rem] bg-blue-500/5 rounded-full blur-3xl pointer-events-none -z-10" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Header */}
+        <AnimatedSection className="text-center mb-16" stagger={staggerContainer}>
+          <motion.p
+            className="text-xs font-black uppercase tracking-[0.25em] text-[#c7ae6a] mb-3"
+            variants={fadeUp}
+          >
+            Blog & News
+          </motion.p>
+          <motion.h2
+            className="text-4xl lg:text-5xl font-bold text-white mb-4"
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+          >
+            hiyrED® <span className="text-[#c7ae6a]">Insights & News</span>
+          </motion.h2>
+          <motion.p
+            className="text-gray-400 max-w-xl mx-auto text-sm leading-relaxed"
+            variants={fadeUp}
+            transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[] }}
+          >
+            Explore the latest articles, expert insights, and essential updates from hiyrED®. Stay informed about industry trends, capability building, and resources designed to accelerate your career.
+          </motion.p>
+        </AnimatedSection>
+
+        {/* Carousel Slider Outer Wrapper with side arrows */}
+        <div className="relative px-12 md:px-16">
+          {/* Left Arrow (Absolute positioned, centered vertically) */}
+          <button
+            onClick={prevSlide}
+            disabled={currentIndex === 0}
+            className="absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-[#0b1322]/80 backdrop-blur-md flex items-center justify-center text-white hover:border-[#c7ae6a] hover:text-[#c7ae6a] hover:bg-white/5 disabled:opacity-20 disabled:pointer-events-none transition-all cursor-pointer z-20"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
+
+          {/* Slider Viewport */}
+          <div className="overflow-hidden w-full py-12">
+            <motion.div
+              animate={{ x: `-${currentIndex * (100 / visibleCards)}%` }}
+              transition={{ type: "spring", stiffness: 180, damping: 22 }}
+              className="flex"
+              style={{ width: "100%" }}
+            >
+              {articles.map((art, i) => {
+                // Apply vertical stagger translates to break grid monotony on desktop inside track
+                let staggerClass = "";
+                const colIndex = i % 3;
+                if (colIndex === 0) staggerClass = "lg:translate-y-6";
+                if (colIndex === 2) staggerClass = "lg:-translate-y-6";
+
+                return (
+                  <div
+                    key={i}
+                    className="shrink-0 w-full sm:w-1/2 lg:w-1/3 px-4"
+                  >
+                    <motion.div
+                      variants={fadeUp}
+                      transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+                      whileHover={{
+                        y: colIndex === 0 ? 12 : colIndex === 2 ? -36 : -12,
+                        scale: 1.025,
+                        transition: { duration: 0.3, ease: EASE_SMOOTH as unknown as number[] },
+                      }}
+                      className={`group flex flex-col justify-between rounded-[2.5rem] overflow-hidden ${staggerClass} transition-shadow duration-500 relative h-full`}
+                      style={{
+                        background: "rgba(255, 255, 255, 0.02)",
+                        border: "1px solid rgba(255, 255, 255, 0.07)",
+                        backdropFilter: "blur(20px)",
+                      }}
+                    >
+                      {/* Image Container with zoom effect */}
+                      <div className="relative h-56 overflow-hidden rounded-t-[2.5rem] w-full shrink-0">
+                        <img
+                          src={art.image}
+                          alt={art.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                          referrerPolicy="no-referrer"
+                        />
+                        {/* Subtle dark gradient overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0b1322]/80 via-transparent to-transparent pointer-events-none" />
+                        
+                        {/* Category Badge on top of image */}
+                        <span className={`absolute top-6 left-6 px-3.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider border ${art.badgeColor} backdrop-blur-md`}>
+                          {art.badge}
+                        </span>
+                      </div>
+
+                      {/* Content Area */}
+                      <div className="p-8 flex-1 flex flex-col justify-between">
+                        <div>
+                          {/* Meta info */}
+                          <div className="flex items-center gap-2 text-gray-500 text-xs mb-4">
+                            <span>{art.author}</span>
+                            <span className="w-1.5 h-1.5 rounded-full bg-gray-700" />
+                            <span>{art.date}</span>
+                          </div>
+
+                          {/* Title */}
+                          <h3 className="text-xl font-bold text-white group-hover:text-[#c7ae6a] transition-colors duration-300 mb-3 leading-snug">
+                            {art.title}
+                          </h3>
+
+                          {/* Excerpt */}
+                          <p className="text-gray-400 text-sm leading-relaxed mb-6">
+                            {art.desc}
+                          </p>
+                        </div>
+
+                        {/* Read More & Read Time */}
+                        <div className="flex items-center justify-between border-t border-white/5 pt-5 mt-auto">
+                          <span className="text-xs text-gray-500 font-medium">
+                            {art.readTime}
+                          </span>
+                          <span
+                            onClick={() => setActiveArticle(art)}
+                            className="flex items-center gap-1.5 text-xs text-[#c7ae6a] font-bold group-hover:underline cursor-pointer"
+                          >
+                            Read Article
+                            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1.5 transition-transform duration-300" />
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Hover Glow Border */}
+                      <motion.div
+                        className="absolute inset-0 rounded-[2.5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                        style={{
+                          boxShadow: "inset 0 0 0 1.5px rgba(199, 174, 106, 0.25), 0 20px 50px rgba(199, 174, 106, 0.05)",
+                        }}
+                      />
+                    </motion.div>
+                  </div>
+                );
+              })}
+            </motion.div>
+          </div>
+
+          {/* Right Arrow (Absolute positioned, centered vertically) */}
+          <button
+            onClick={nextSlide}
+            disabled={currentIndex >= articles.length - visibleCards}
+            className="absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-white/10 bg-[#0b1322]/80 backdrop-blur-md flex items-center justify-center text-white hover:border-[#c7ae6a] hover:text-[#c7ae6a] hover:bg-white/5 disabled:opacity-20 disabled:pointer-events-none transition-all cursor-pointer z-20"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
+        </div>
+
+        {/* Paging Indicators (Capsule Dots) */}
+        <div className="flex items-center justify-center gap-2 mt-4 z-10 relative">
+          {Array.from({ length: articles.length - visibleCards + 1 }).map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrentIndex(idx)}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                currentIndex === idx ? "w-8 bg-[#c7ae6a]" : "w-2 bg-white/20 hover:bg-white/40"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Glassmorphic Modal with Exit Transition */}
+      <AnimatePresence>
+        {activeArticle && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop (Do not max blur - change blur to light 2px) */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveArticle(null)}
+              className="absolute inset-0 bg-[#0b1322]/75 backdrop-blur-[2px]"
+            />
+            
+            {/* Modal Body (Increased size, no scrollbar) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 25 }}
+              className="relative w-full max-w-5xl max-h-[85vh] overflow-y-auto no-scrollbar rounded-[3rem] p-10 md:p-16 text-left z-10 shadow-2xl border border-white/10"
+              style={{
+                background: "rgba(16, 28, 48, 0.75)",
+                backdropFilter: "blur(40px)",
+              }}
+            >
+              {/* Floating Close Button */}
+              <motion.button
+                onClick={() => setActiveArticle(null)}
+                className="absolute top-8 right-8 w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white/15 hover:text-[#c7ae6a] transition-all cursor-pointer"
+                whileHover={{ scale: 1.1, rotate: 90 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <X className="w-6 h-6" />
+              </motion.button>
+
+              {/* Category Badge */}
+              <span className={`inline-flex px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wider border ${activeArticle.badgeColor} mb-8`}>
+                {activeArticle.badge}
+              </span>
+
+              {/* Title (Increased text size) */}
+              <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
+                {activeArticle.title}
+              </h2>
+
+              {/* Meta Info */}
+              <div className="flex items-center gap-3 text-gray-400 text-sm mb-10">
+                <span className="font-bold text-white text-base">{activeArticle.author}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-600" />
+                <span>{activeArticle.date}</span>
+                <span className="w-1.5 h-1.5 rounded-full bg-gray-600" />
+                <span className="text-[#c7ae6a] font-semibold">{activeArticle.readTime}</span>
+              </div>
+
+              {/* Modal Image */}
+              <div className="relative h-80 md:h-[400px] w-full overflow-hidden rounded-3xl mb-10">
+                <img
+                  src={activeArticle.image}
+                  alt={activeArticle.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#101c30]/60 to-transparent pointer-events-none" />
+              </div>
+
+              {/* Article Body Content (Increased sizing & spacing) */}
+              <div className="text-gray-300 text-base md:text-lg leading-relaxed space-y-8">
+                {activeArticle.content.split("\n\n").map((para: string, idx: number) => (
+                  <p key={idx}>{para}</p>
+                ))}
+              </div>
+
+              {/* Bottom Actions */}
+              <div className="border-t border-white/5 pt-10 mt-10 flex justify-end">
+                <motion.button
+                  onClick={() => setActiveArticle(null)}
+                  className="px-8 py-3.5 bg-brand-navy text-white text-sm font-bold rounded-full border border-white/10 hover:bg-[#c7ae6a] hover:text-brand-navy transition-colors duration-300 shadow-lg cursor-pointer"
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.98 }}
+                >
+                  Close Article
+                </motion.button>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
+};
+
+
+
+// ─── FAQs Section ─────────────────────────────────────────────────────────────
+
+const FAQItem = ({ question, answer, isOpen, onToggle }: { question: string; answer: string; isOpen: boolean; onToggle: () => void; key?: any }) => {
+  return (
+    <div className="border-b border-gray-100 last:border-0 py-5">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between gap-4 text-left group focus:outline-none cursor-pointer"
+      >
+        <span className="font-bold text-brand-navy text-base md:text-lg group-hover:text-brand-gold transition-colors duration-200">
+          {question}
+        </span>
+        <div
+          className={`w-7 h-10 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 ${
+            isOpen ? "bg-brand-navy" : "bg-brand-gold hover:bg-brand-gold-rich"
+          }`}
+        >
+          <motion.span
+            animate={{ rotate: isOpen ? 45 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="font-bold text-xl leading-none select-none"
+          >
+            +
+          </motion.span>
+        </div>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: isOpen ? "auto" : 0, opacity: isOpen ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: EASE_PREMIUM as unknown as number[] }}
+        className="overflow-hidden"
+      >
+        <p className="text-gray-500 text-sm md:text-base leading-relaxed pt-4 pr-10">
+          {answer}
+        </p>
+      </motion.div>
+    </div>
+  );
+};
+
+const FAQs = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const faqs = [
+    {
+      question: "What is hiyrED® and how does it differ from traditional platforms?",
+      answer: "hiyrED® is a community-driven talent ecosystem—built by students, for students—where capability is built, proven, and connected to opportunity. Unlike traditional resume-based portals, we map talent using verified capabilities derived from real-world assessments and industry projects."
+    },
+    {
+      question: "What are the key system engines powering hiyrED®?",
+      answer: "The ecosystem is driven by four key engines: Cortex (synthesizes capability and well-being data into verified profiles), Forge (offers tailored placement readiness paths), Pulse (monitors mental well-being and burnout signals), and Compass (provides cortex-informed mentorship and professional career coaching)."
+    },
+    {
+      question: "What is the Capability Transformation Cortex Path (CTC Path)?",
+      answer: "The CTC Path is a dynamic roadmap generated by hiyrED® Cortex. It analyzes the gap between your current verified skills and requirements from our recruiter network, mapping a structured, step-by-step journey to close that gap and reach role-readiness."
+    },
+    {
+      question: "Is hiyrED® free for students? How does the payment model work?",
+      answer: "Joining the hiyrED® community, building your profile, and completing Forge capability paths is entirely free. We only succeed when you succeed—you only pay after you secure a placement, based on an outcome-aligned percentage of your Cost to Company (CTC)."
+    },
+    {
+      question: "How does hiyrED® support student mental well-being and resilience?",
+      answer: "Through hiyrED® Pulse, the system tracks patterns of stress, burnout, and declining resilience (like re-engagement velocity after a setback). Pulse flags these signals early to coordinate friendly mentor interventions via hiyrED® Compass, offering supportive pauses rather than pressure."
+    },
+    {
+      question: "How can recruiters and institutions verify student capabilities on the platform?",
+      answer: "Recruiters access verified capability profiles in the Talent Pool rather than unverified resumes. They can see concrete performance indicators, including assessed Forge milestones, scores from the hiyrED® Premier League, and direct outcomes from verified Industry Projects evaluated by hiring organizations."
+    }
+  ];
+
+  return (
+    <section className="py-24 bg-[#fbf0cf]/15 overflow-hidden">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <AnimatedSection className="text-center mb-16" stagger={staggerContainer}>
+          <motion.p
+            className="text-sm font-black uppercase tracking-[0.2em] mb-3 text-brand-gold"
+            variants={fadeUp}
+          >
+            FAQs
+          </motion.p>
+          <motion.h2
+            className="text-4xl lg:text-5xl font-bold text-brand-navy mb-4 leading-tight"
+            variants={fadeUp}
+            transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
+          >
+            Got Questions? We've Got Answers
+          </motion.h2>
+        </AnimatedSection>
+
+        <AnimatedSection variants={fadeUp}>
+          <div className="bg-white rounded-[2.5rem] p-6 sm:p-10 border border-gray-100 shadow-sm text-left">
+            {faqs.map((faq, i) => (
+              <FAQItem
+                key={i}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === i}
+                onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+              />
+            ))}
+          </div>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+};
+
 // ─── Final CTA ─────────────────────────────────────────────────────────────────
 
 const FinalCTA = () => {
@@ -1751,6 +2327,8 @@ export default function App() {
         <EcosystemHub />
         <Testimonial />
         <TalentShowcasePreview />
+        <InsightsNews />
+        <FAQs />
         <FinalCTA />
       </main>
       <Footer />
