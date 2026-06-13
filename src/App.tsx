@@ -695,10 +695,11 @@ const TheJourney = () => {
 
 const HiyredEdge = () => {
   const [selectedEngine, setSelectedEngine] = useState<number | null>(null);
+  const [hoveredEngine, setHoveredEngine] = useState<number | null>(null);
   const [currentAngle, setCurrentAngle] = useState(0);
 
   useEffect(() => {
-    if (selectedEngine !== null) return;
+    if (selectedEngine !== null || hoveredEngine !== null) return;
 
     let animationFrameId: number;
     const animate = () => {
@@ -707,7 +708,9 @@ const HiyredEdge = () => {
     };
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [selectedEngine]);
+  }, [selectedEngine, hoveredEngine]);
+
+  const activeEngineIndex = hoveredEngine !== null ? hoveredEngine : selectedEngine;
 
   const shifts = [
     { role: "Students", old: "Unclear prep & zero feedback", new: "CTC Paths & Forge-built readiness", icon: <Users className="text-brand-gold w-5 h-5" /> },
@@ -1004,111 +1007,153 @@ const HiyredEdge = () => {
                 </div>
 
                 {/* Dashed Line Arrow SVG Overlay */}
-                {selectedEngine !== null && (
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none z-15">
-                    <motion.path
-                      d={(() => {
-                        const baseAngle = (selectedEngine * 360) / 5;
-                        const rotatedAngle = (baseAngle + currentAngle) % 360;
-                        const radius = 175;
-                        const x = Math.cos((rotatedAngle * Math.PI) / 180) * radius + 260;
-                        const y = Math.sin((rotatedAngle * Math.PI) / 180) * radius + 260;
+                {activeEngineIndex !== null && (
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none z-15 overflow-visible">
+                    {(() => {
+                      const idx = activeEngineIndex;
+                      return (
+                        <>
+                          <AnimatePresence>
+                            <motion.path
+                              key={idx}
+                              d={(() => {
+                                const baseAngle = (idx * 360) / 5;
+                                const rotatedAngle = (baseAngle + currentAngle) % 360;
+                                const radius = 218;
+                                const x = Math.cos((rotatedAngle * Math.PI) / 180) * radius + 260;
+                                const y = Math.sin((rotatedAngle * Math.PI) / 180) * radius + 260;
 
-                        const startX = x - 105;
-                        const startY = y;
+                                const startX = x;
+                                const startY = y;
 
-                        const endX = 80;
-                        const endY = 260;
+                                const endX = -10;
+                                const endY = 260;
 
-                        const cp1x = startX - 80;
-                        const cp1y = startY;
-                        const cp2x = endX + 80;
-                        const cp2y = endY;
+                                const cp1x = startX - 80;
+                                const cp1y = startY;
+                                const cp2x = endX + 80;
+                                const cp2y = endY;
 
-                        return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
-                      })()}
-                      stroke={engineDetails[selectedEngine].accent}
-                      strokeWidth="2.5"
-                      strokeDasharray="6 6"
-                      fill="none"
-                      initial={{ pathLength: 0, opacity: 0 }}
-                      animate={{ pathLength: 1, opacity: 0.8 }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    />
+                                return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
+                              })()}
+                              stroke={engineDetails[idx].accent}
+                              strokeWidth="2.5"
+                              strokeDasharray="6 6"
+                              fill="none"
+                              initial={{ pathLength: 0, opacity: 0 }}
+                              animate={{ pathLength: 1, opacity: 0.8 }}
+                              exit={{ pathLength: 0, opacity: 0 }}
+                              transition={{ duration: 0.5, ease: "easeOut" }}
+                            />
+                          </AnimatePresence>
 
-                    <motion.circle
-                      cx="80"
-                      cy="260"
-                      r="4"
-                      fill={engineDetails[selectedEngine].accent}
-                      initial={{ scale: 0 }}
-                      animate={{ scale: [1, 1.8, 1] }}
-                      transition={{ repeat: Infinity, duration: 1.5 }}
-                    />
+                          <AnimatePresence>
+                            <motion.circle
+                              key={`dot-${idx}`}
+                              cx="-10"
+                              cy="260"
+                              r="4"
+                              fill={engineDetails[idx].accent}
+                              initial={{ scale: 0 }}
+                              animate={{ scale: [1, 1.8, 1] }}
+                              exit={{ scale: 0 }}
+                              transition={{ repeat: Infinity, duration: 1.5 }}
+                            />
+                          </AnimatePresence>
+                        </>
+                      );
+                    })()}
                   </svg>
                 )}
 
                 {/* Detailed Pop-up Overlay Card */}
-                {selectedEngine !== null && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -40, scale: 0.95 }}
-                    animate={{ opacity: 1, x: 0, scale: 1 }}
-                    exit={{ opacity: 0, x: -40, scale: 0.95 }}
-                    transition={{ type: "spring", stiffness: 300, damping: 25 }}
-                    className="absolute left-[-220px] top-[75px] w-[290px] h-[370px] bg-white rounded-[2.5rem] p-6 shadow-2xl z-30 border-l-[6px] text-left flex flex-col justify-between"
-                    style={{
-                      borderColor: engineDetails[selectedEngine].accent,
-                      boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.8)"
-                    }}
-                  >
-                    <button
-                      onClick={() => setSelectedEngine(null)}
-                      className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-brand-navy transition-colors cursor-pointer z-40"
+                <AnimatePresence>
+                  {activeEngineIndex !== null && (
+                    <motion.div
+                      initial={{ opacity: 0, x: -30, scale: 0.96 }}
+                      animate={{ opacity: 1, x: 0, scale: 1 }}
+                      exit={{ opacity: 0, x: -30, scale: 0.96 }}
+                      transition={{ duration: 0.35, ease: EASE_PREMIUM as unknown as number[] }}
+                      className="absolute left-[-300px] top-[75px] w-[290px] h-[370px] bg-white rounded-[2.5rem] p-6 shadow-2xl z-30 border-l-[6px] text-left flex flex-col justify-between"
+                      style={{
+                        borderColor: engineDetails[activeEngineIndex].accent,
+                        boxShadow: `0 25px 50px -12px rgba(0,0,0,0.25), inset 0 0 0 1px rgba(255,255,255,0.8), 0 0 35px ${engineDetails[activeEngineIndex].accent}15`
+                      }}
                     >
-                      <X className="w-4 h-4" />
-                    </button>
-
-                    <div className="overflow-visible">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div
-                          className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm"
-                          style={{ background: `${engineDetails[selectedEngine].accent}15`, color: engineDetails[selectedEngine].accent }}
+                      {selectedEngine !== null && (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setSelectedEngine(null);
+                          }}
+                          className="absolute top-5 right-5 p-1.5 rounded-full hover:bg-gray-100 text-gray-400 hover:text-brand-navy transition-colors cursor-pointer z-40"
                         >
-                          {engineDetails[selectedEngine].icon}
-                        </div>
-                        <div>
-                          <span className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block" style={{ color: engineDetails[selectedEngine].accent }}>
-                            {engineDetails[selectedEngine].label}
+                          <X className="w-4 h-4" />
+                        </button>
+                      )}
+
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={activeEngineIndex}
+                          initial={{ opacity: 0, y: 8 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -8 }}
+                          transition={{ duration: 0.25, ease: "easeOut" }}
+                          className="h-full flex flex-col justify-between overflow-visible"
+                        >
+                          <div className="overflow-visible">
+                            <div className="flex items-center gap-3 mb-4">
+                              <div
+                                className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-sm transition-colors duration-300"
+                                style={{
+                                  background: `${engineDetails[activeEngineIndex].accent}15`,
+                                  color: engineDetails[activeEngineIndex].accent
+                                }}
+                              >
+                                {engineDetails[activeEngineIndex].icon}
+                              </div>
+                              <div>
+                                <span
+                                  className="text-[9px] font-black uppercase tracking-widest leading-none mb-1 block transition-colors duration-300"
+                                  style={{ color: engineDetails[activeEngineIndex].accent }}
+                                >
+                                  {engineDetails[activeEngineIndex].label}
+                                </span>
+                                <h3 className="text-base font-black text-brand-navy leading-none">
+                                  {engineDetails[activeEngineIndex].name}
+                                </h3>
+                              </div>
+                            </div>
+
+                            <p className="text-[10px] font-extrabold text-[#C7AE6A] uppercase tracking-wider mb-2.5 leading-none">
+                              {engineDetails[activeEngineIndex].title}
+                            </p>
+
+                            <p className="text-xs text-gray-500 leading-relaxed mb-4">
+                              {engineDetails[activeEngineIndex].desc}
+                            </p>
+
+                            <ul className="space-y-1.5">
+                              {engineDetails[activeEngineIndex].bullets.map((bullet, idx) => (
+                                <li key={idx} className="flex items-start gap-1.5 text-[10px] text-gray-600 leading-tight">
+                                  <CheckCircle2
+                                    className="w-3.5 h-3.5 shrink-0 mt-0.5 transition-colors duration-300"
+                                    style={{ color: engineDetails[activeEngineIndex].accent }}
+                                  />
+                                  <span>{bullet}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                          <span className="text-[9px] font-bold text-gray-400 italic mt-2 leading-none border-t border-gray-50 pt-2 block w-full">
+                            {engineDetails[activeEngineIndex].tagline}
                           </span>
-                          <h3 className="text-base font-black text-brand-navy leading-none">
-                            {engineDetails[selectedEngine].name}
-                          </h3>
-                        </div>
-                      </div>
-
-                      <p className="text-[10px] font-extrabold text-[#C7AE6A] uppercase tracking-wider mb-2.5 leading-none">
-                        {engineDetails[selectedEngine].title}
-                      </p>
-
-                      <p className="text-xs text-gray-500 leading-relaxed mb-4">
-                        {engineDetails[selectedEngine].desc}
-                      </p>
-
-                      <ul className="space-y-1.5">
-                        {engineDetails[selectedEngine].bullets.map((bullet, idx) => (
-                          <li key={idx} className="flex items-start gap-1.5 text-[10px] text-gray-600 leading-tight">
-                            <CheckCircle2 className="w-3.5 h-3.5 shrink-0 mt-0.5" style={{ color: engineDetails[selectedEngine].accent }} />
-                            <span>{bullet}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <span className="text-[9px] font-bold text-gray-400 italic mt-2 leading-none border-t border-gray-50 pt-2 block w-full">
-                      {engineDetails[selectedEngine].tagline}
-                    </span>
-                  </motion.div>
-                )}
+                        </motion.div>
+                      </AnimatePresence>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Rotational Container */}
                 <div
@@ -1117,52 +1162,62 @@ const HiyredEdge = () => {
                 >
                   {engineDetails.map((eng, i) => {
                     const angle = (i * 360) / 5;
-                    const radius = 175;
+                    const radius = 218;
                     const x = Math.cos((angle * Math.PI) / 180) * radius;
                     const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+                    const isActive = activeEngineIndex === i;
 
                     return (
                       <div
                         key={i}
                         className="absolute"
                         style={{
-                          left: `calc(50% + ${x}px - 105px)`,
-                          top: `calc(50% + ${y}px - 55px)`,
-                          width: "210px",
-                          height: "110px",
+                          left: `calc(50% + ${x}px - 38px)`,
+                          top: `calc(50% + ${y}px - 38px)`,
+                          width: "76px",
+                          height: "76px",
                           transform: `rotate(${-currentAngle}deg)`,
                           transformOrigin: 'center'
                         }}
                       >
                         <div
                           onClick={() => setSelectedEngine(selectedEngine === i ? null : i)}
-                          className={`w-full h-full bg-white rounded-2xl p-4 shadow-xl border-l-[4px] flex flex-col justify-between text-left select-none group cursor-pointer ${selectedEngine === i ? 'ring-2 ring-offset-2 ring-white/50 scale-[1.03]' : ''}`}
+                          onMouseEnter={() => setHoveredEngine(i)}
+                          onMouseLeave={() => setHoveredEngine(null)}
+                          className={`relative w-full h-full rounded-full flex items-center justify-center shadow-lg border-[3.5px] cursor-pointer select-none transition-all duration-300 bg-white ${
+                            isActive ? "scale-110" : "hover:scale-105"
+                          }`}
                           style={{
                             borderColor: eng.accent,
-                            boxShadow: selectedEngine === i
-                              ? `0 15px 40px ${eng.accent}30`
-                              : `0 10px 30px rgba(0,0,0,0.08), inset 0 0 0 1px rgba(255,255,255,0.8)`,
+                            boxShadow: isActive
+                              ? `0 0 25px ${eng.accent}90, inset 0 0 10px rgba(255,255,255,0.8)`
+                              : `0 4px 12px rgba(0,0,0,0.15)`,
                           }}
                         >
-                          <div className="flex items-center gap-2">
-                            <div
-                              className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 shadow-sm"
-                              style={{ background: `${eng.accent}15`, color: eng.accent }}
-                            >
-                              {eng.icon}
-                            </div>
-                            <div className="flex flex-col">
-                              <span className="text-[8px] font-black uppercase tracking-widest leading-none mb-1" style={{ color: eng.accent }}>
-                                {eng.label}
-                              </span>
-                              <h4 className="text-xs font-extrabold text-brand-navy leading-none">
-                                {eng.name}
-                              </h4>
-                            </div>
+                          {/* Inner Icon */}
+                          <div
+                            className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
+                            style={{
+                              background: isActive ? eng.accent : `${eng.accent}12`,
+                              color: isActive ? '#162641' : eng.accent
+                            }}
+                          >
+                            {eng.icon}
                           </div>
-                          <p className="text-[9px] leading-normal text-gray-500 font-medium line-clamp-2">
-                            {eng.desc}
-                          </p>
+
+                          {/* Orbit Label */}
+                          <div
+                            className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-1 rounded-md text-[10px] font-black tracking-wider transition-all duration-300 pointer-events-none top-[84px]`}
+                            style={{
+                              background: isActive ? `${eng.accent}20` : 'rgba(22, 38, 65, 0.9)',
+                              border: `1px solid ${isActive ? eng.accent : 'rgba(255,255,255,0.1)'}`,
+                              color: isActive ? '#fff' : 'rgba(255,255,255,0.75)',
+                              boxShadow: isActive ? `0 0 10px ${eng.accent}30` : 'none'
+                            }}
+                          >
+                            {eng.name}
+                          </div>
                         </div>
                       </div>
                     );
