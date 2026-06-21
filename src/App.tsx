@@ -900,7 +900,7 @@ const HiyredEdge = () => {
 
                 {/* Horizontal community phrases */}
                 <motion.div
-                  className="flex items-center gap-x-3 text-xs md:text-sm font-semibold whitespace-nowrap overflow-visible"
+                  className="flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs md:text-sm font-semibold whitespace-normal sm:whitespace-nowrap overflow-visible"
                   variants={fadeUp}
                 >
                   <span className="flex items-baseline gap-1">
@@ -933,7 +933,7 @@ const HiyredEdge = () => {
             </div>
 
             {/* Right: Rotational Wheel */}
-            <div className="lg:col-span-6 flex justify-center lg:justify-end items-center relative overflow-visible h-[540px] w-full">
+            <div className="lg:col-span-6 flex justify-center lg:justify-end lg:items-center items-start relative overflow-visible lg:h-[540px] h-auto w-full">
               {/* Desktop: Rotational Wheel */}
               <div className="hidden lg:flex justify-center items-center relative w-[520px] h-[520px] lg:translate-x-16 overflow-visible">
 
