@@ -691,6 +691,43 @@ const TheJourney = () => {
   );
 };
 
+// ─── Atomic Structure Helpers ──────────────────────────────────────────────────
+
+const ORBIT_RADIUS = 200;
+
+const orbitConfig = [
+  { tiltZ: 0, tiltX: 60, engines: [0, 1], speed: 1, startAngles: [0, 180] },
+  { tiltZ: 60, tiltX: 60, engines: [2, 3], speed: -0.7, startAngles: [60, 240] },
+  { tiltZ: -60, tiltX: 60, engines: [4], speed: 0.5, startAngles: [120] },
+];
+
+function getElectronPos(tiltZDeg: number, tiltXDeg: number, thetaDeg: number, R: number) {
+  const tZ = (tiltZDeg * Math.PI) / 180;
+  const tX = (tiltXDeg * Math.PI) / 180;
+  const t = (thetaDeg * Math.PI) / 180;
+  const px = R * Math.cos(t);
+  const py = R * Math.sin(t);
+  const rxX = px;
+  const rxY = py * Math.cos(tX);
+  const rxZ = py * Math.sin(tX);
+  const x = rxX * Math.cos(tZ) - rxY * Math.sin(tZ);
+  const y = rxX * Math.sin(tZ) + rxY * Math.cos(tZ);
+  const z = rxZ;
+  return { x, y, z };
+}
+
+function getEngineScreenPos(engineIdx: number, angle: number) {
+  for (const orbit of orbitConfig) {
+    const eIdx = orbit.engines.indexOf(engineIdx);
+    if (eIdx !== -1) {
+      const theta = orbit.startAngles[eIdx] + angle * orbit.speed;
+      const pos = getElectronPos(orbit.tiltZ, orbit.tiltX, theta, ORBIT_RADIUS);
+      return { x: 260 + pos.x, y: 260 + pos.y, z: pos.z };
+    }
+  }
+  return { x: 260, y: 260, z: 0 };
+}
+
 // ─── Where Hiyred Stands Apart (USP / Differentiators) ──────────────────────────
 
 const HiyredEdge = () => {
@@ -703,7 +740,7 @@ const HiyredEdge = () => {
 
     let animationFrameId: number;
     const animate = () => {
-      setCurrentAngle((prev) => (prev + 0.12) % 360);
+      setCurrentAngle((prev) => prev + 0.3);
       animationFrameId = requestAnimationFrame(animate);
     };
     animationFrameId = requestAnimationFrame(animate);
@@ -822,17 +859,9 @@ const HiyredEdge = () => {
         className="relative py-32 overflow-hidden"
         style={{ background: "linear-gradient(160deg, #0e1a2e 0%, #162641 60%, #1a2d4a 100%)" }}
       >
-        {/* Inline styles for Keyframes slow-spin & counter-spin */}
+        {/* Inline styles for Keyframes */}
         <style dangerouslySetInnerHTML={{
           __html: `
-          @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          @keyframes counter-spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(-360deg); }
-          }
           @keyframes glowWorm {
             0%, 100% {
               box-shadow: 0 0 10px rgba(0, 240, 255, 0.35), inset 0 0 8px rgba(0, 240, 255, 0.15);
@@ -843,14 +872,13 @@ const HiyredEdge = () => {
               filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.95));
             }
           }
-          .slow-spin {
-            animation: spin 50s linear infinite;
+          @keyframes orbit-dash {
+            from { stroke-dashoffset: 0; }
+            to { stroke-dashoffset: -24; }
           }
-          .counter-spin {
-            animation: counter-spin 50s linear infinite;
-          }
-          .spin-paused {
-            animation-play-state: paused !important;
+          @keyframes nucleus-breathe {
+            0%, 100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.85; }
           }
         `}} />
 
@@ -934,108 +962,105 @@ const HiyredEdge = () => {
 
             {/* Right: Rotational Wheel */}
             <div className="lg:col-span-6 flex justify-center lg:justify-end lg:items-center items-start relative overflow-visible lg:h-[540px] h-auto w-full">
-              {/* Desktop: Rotational Wheel */}
+              {/* Desktop: Atomic Structure */}
               <div className="hidden lg:flex justify-center items-center relative w-[520px] h-[520px] lg:translate-x-16 overflow-visible">
 
-                {/* Electrifying Blue Glowing Wheel Outline */}
-                <div className="absolute w-[440px] h-[440px] rounded-full pointer-events-none z-0">
-                  {/* 1. Clockwise spinning glow */}
-                  <div className="absolute inset-0 animate-[spin_12s_linear_infinite]">
-                    <svg className="w-full h-full overflow-visible">
-                      <defs>
-                        <linearGradient id="electricGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-                          <stop offset="0%" stopColor="#00f0ff" stopOpacity="1" />
-                          <stop offset="30%" stopColor="#0072ff" stopOpacity="0.85" />
-                          <stop offset="70%" stopColor="#7c3aed" stopOpacity="0.5" />
-                          <stop offset="100%" stopColor="#00f0ff" stopOpacity="1" />
-                        </linearGradient>
-                        <filter id="neonBlur" x="-20%" y="-20%" width="140%" height="140%">
-                          <feGaussianBlur stdDeviation="8" result="blur" />
-                          <feMerge>
-                            <feMergeNode in="blur" />
-                            <feMergeNode in="SourceGraphic" />
-                          </feMerge>
-                        </filter>
-                      </defs>
-                      <circle
-                        cx="220"
-                        cy="220"
-                        r="218"
-                        fill="none"
-                        stroke="url(#electricGlow)"
-                        strokeWidth="5"
-                        filter="url(#neonBlur)"
-                        className="opacity-70"
-                      />
-                      <circle
-                        cx="220"
-                        cy="220"
-                        r="218"
-                        fill="none"
-                        stroke="url(#electricGlow)"
-                        strokeWidth="1.5"
-                        className="opacity-95"
-                      />
-                    </svg>
-                  </div>
+                {/* SVG Orbit Ellipses */}
+                <svg className="absolute w-[520px] h-[520px] overflow-visible pointer-events-none" viewBox="0 0 520 520" style={{ filter: 'drop-shadow(0 0 6px rgba(0, 240, 255, 0.1))' }}>
+                  <defs>
+                    <linearGradient id="atomOrbitGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#00f0ff" stopOpacity="0.9" />
+                      <stop offset="25%" stopColor="#0072ff" stopOpacity="0.4" />
+                      <stop offset="50%" stopColor="#7c3aed" stopOpacity="0.25" />
+                      <stop offset="75%" stopColor="#0072ff" stopOpacity="0.4" />
+                      <stop offset="100%" stopColor="#00f0ff" stopOpacity="0.9" />
+                    </linearGradient>
+                    <filter id="atomOrbitGlow" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="4" result="blur" />
+                      <feMerge>
+                        <feMergeNode in="blur" />
+                        <feMergeNode in="SourceGraphic" />
+                      </feMerge>
+                    </filter>
+                  </defs>
 
-                  {/* 2. Counter-clockwise spinning dashed tech ring */}
-                  <div className="absolute inset-0 animate-[counter-spin_20s_linear_infinite]">
-                    <svg className="w-full h-full overflow-visible">
-                      <circle
-                        cx="220"
-                        cy="220"
-                        r="210"
-                        fill="none"
-                        stroke="#00f0ff"
-                        strokeWidth="1"
-                        strokeDasharray="4 8"
-                        className="opacity-40"
-                      />
-                    </svg>
-                  </div>
-                </div>
+                  {orbitConfig.map((orbit, i) => {
+                    const ry = ORBIT_RADIUS * Math.cos((orbit.tiltX * Math.PI) / 180);
+                    return (
+                      <g key={i} transform={`rotate(${orbit.tiltZ}, 260, 260)`}>
+                        <ellipse cx="260" cy="260" rx={ORBIT_RADIUS} ry={ry}
+                          fill="none" stroke="#00f0ff" strokeWidth="6" opacity="0.06"
+                          filter="url(#atomOrbitGlow)" />
+                        <ellipse cx="260" cy="260" rx={ORBIT_RADIUS} ry={ry}
+                          fill="none" stroke="url(#atomOrbitGrad)" strokeWidth="1.5"
+                          strokeDasharray="12 6" opacity="0.55"
+                          style={{ animation: `orbit-dash ${8 + i * 3}s linear infinite` }} />
+                        <ellipse cx="260" cy="260" rx={ORBIT_RADIUS} ry={ry}
+                          fill="none" stroke="#00f0ff" strokeWidth="0.5" opacity="0.15" />
+                      </g>
+                    );
+                  })}
+                </svg>
 
-                {/* Central Hub Glow Backdrop */}
-                <div className="absolute w-32 h-32 rounded-full bg-gradient-to-r from-[#00f0ff]/30 to-[#0072ff]/30 blur-xl animate-[pulse_2.5s_ease-in-out_infinite] z-0 pointer-events-none" />
+                {/* Central Nucleus Glow */}
+                <div className="absolute w-36 h-36 rounded-full bg-[#00f0ff]/15 blur-2xl pointer-events-none z-0"
+                  style={{
+                    animation: 'nucleus-breathe 4s ease-in-out infinite',
+                  }} />
 
-                {/* Central Hub anchor */}
-                <div className="absolute w-24 h-24 rounded-full bg-white/5 backdrop-blur-md border border-white/10 flex items-center justify-center shadow-lg z-10">
-                  <div className="w-18 h-18 rounded-full bg-white flex items-center justify-center shadow-md animate-[glowWorm_3s_ease-in-out_infinite]">
+                {/* Central Hub */}
+                <div className="absolute w-24 h-24 rounded-full flex items-center justify-center z-10">
+                  <div className="w-18 h-18 rounded-full bg-white flex items-center justify-center shadow-md" style={{ animation: 'glowWorm 3s ease-in-out infinite' }}>
                     <img src="/Logo-Stick-Figure.svg" alt="hiyrED® Hub" className="w-11 h-11 object-contain" />
                   </div>
                 </div>
 
-                {/* Dashed Line Arrow SVG Overlay */}
+                {/* Energy Particles */}
+                {orbitConfig.map((orbit, oi) =>
+                  [0, 120, 240].map((baseAngle) => {
+                    const theta = baseAngle + currentAngle * orbit.speed * 1.8;
+                    const pos = getElectronPos(orbit.tiltZ, orbit.tiltX, theta, ORBIT_RADIUS);
+                    const inFront = pos.z >= 0;
+                    return (
+                      <div
+                        key={`p-${oi}-${baseAngle}`}
+                        className="absolute rounded-full pointer-events-none"
+                        style={{
+                          left: `${260 + pos.x - 2}px`,
+                          top: `${260 + pos.y - 2}px`,
+                          width: '4px',
+                          height: '4px',
+                          background: '#00f0ff',
+                          opacity: inFront ? 0.6 : 0.1,
+                          boxShadow: inFront ? '0 0 8px 2px rgba(0,240,255,0.6)' : 'none',
+                          zIndex: inFront ? 12 : 3,
+                          transition: 'opacity 0.3s ease',
+                        }}
+                      />
+                    );
+                  })
+                )}
+
+                {/* Connector Line to Popup */}
                 {activeEngineIndex !== null && (
-                  <svg className="absolute inset-0 w-full h-full pointer-events-none z-15 overflow-visible">
+                  <svg className="absolute inset-0 w-full h-full pointer-events-none overflow-visible" style={{ zIndex: 15 }}>
                     {(() => {
                       const idx = activeEngineIndex;
+                      const ePos = getEngineScreenPos(idx, currentAngle);
+                      const startX = ePos.x;
+                      const startY = ePos.y;
+                      const endX = -10;
+                      const endY = 260;
+                      const cp1x = startX - 80;
+                      const cp1y = startY;
+                      const cp2x = endX + 80;
+                      const cp2y = endY;
                       return (
                         <>
                           <AnimatePresence>
                             <motion.path
                               key={idx}
-                              d={(() => {
-                                const baseAngle = (idx * 360) / 5;
-                                const rotatedAngle = (baseAngle + currentAngle) % 360;
-                                const radius = 218;
-                                const x = Math.cos((rotatedAngle * Math.PI) / 180) * radius + 260;
-                                const y = Math.sin((rotatedAngle * Math.PI) / 180) * radius + 260;
-
-                                const startX = x;
-                                const startY = y;
-
-                                const endX = -10;
-                                const endY = 260;
-
-                                const cp1x = startX - 80;
-                                const cp1y = startY;
-                                const cp2x = endX + 80;
-                                const cp2y = endY;
-
-                                return `M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`;
-                              })()}
+                              d={`M ${startX} ${startY} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${endX} ${endY}`}
                               stroke={engineDetails[idx].accent}
                               strokeWidth="2.5"
                               strokeDasharray="6 6"
@@ -1046,7 +1071,6 @@ const HiyredEdge = () => {
                               transition={{ duration: 0.5, ease: "easeOut" }}
                             />
                           </AnimatePresence>
-
                           <AnimatePresence>
                             <motion.circle
                               key={`dot-${idx}`}
@@ -1155,47 +1179,45 @@ const HiyredEdge = () => {
                   )}
                 </AnimatePresence>
 
-                {/* Rotational Container */}
-                <div
-                  className="relative w-[440px] h-[440px] flex items-center justify-center rounded-full bg-white/[0.01]"
-                  style={{ transform: `rotate(${currentAngle}deg)`, transformOrigin: 'center' }}
-                >
-                  {engineDetails.map((eng, i) => {
-                    const angle = (i * 360) / 5;
-                    const radius = 218;
-                    const x = Math.cos((angle * Math.PI) / 180) * radius;
-                    const y = Math.sin((angle * Math.PI) / 180) * radius;
-
-                    const isActive = activeEngineIndex === i;
+                {/* Electron Nodes (Engines) */}
+                {orbitConfig.flatMap((orbit) =>
+                  orbit.engines.map((engineIdx, ei) => {
+                    const theta = orbit.startAngles[ei] + currentAngle * orbit.speed;
+                    const pos = getElectronPos(orbit.tiltZ, orbit.tiltX, theta, ORBIT_RADIUS);
+                    const screenX = 260 + pos.x;
+                    const screenY = 260 + pos.y;
+                    const isInFront = pos.z >= 0;
+                    const eng = engineDetails[engineIdx];
+                    const isActive = activeEngineIndex === engineIdx;
 
                     return (
                       <div
-                        key={i}
+                        key={engineIdx}
                         className="absolute"
                         style={{
-                          left: `calc(50% + ${x}px - 38px)`,
-                          top: `calc(50% + ${y}px - 38px)`,
-                          width: "76px",
-                          height: "76px",
-                          transform: `rotate(${-currentAngle}deg)`,
-                          transformOrigin: 'center'
+                          left: `${screenX - 38}px`,
+                          top: `${screenY - 38}px`,
+                          width: '76px',
+                          height: '76px',
+                          zIndex: isInFront ? 20 : 5,
+                          transition: 'opacity 0.3s ease',
                         }}
                       >
                         <div
-                          onClick={() => setSelectedEngine(selectedEngine === i ? null : i)}
-                          onMouseEnter={() => setHoveredEngine(i)}
+                          onClick={() => setSelectedEngine(selectedEngine === engineIdx ? null : engineIdx)}
+                          onMouseEnter={() => setHoveredEngine(engineIdx)}
                           onMouseLeave={() => setHoveredEngine(null)}
                           className={`relative w-full h-full rounded-full flex items-center justify-center shadow-lg border-[3.5px] cursor-pointer select-none transition-all duration-300 bg-white ${
-                            isActive ? "scale-110" : "hover:scale-105"
+                            isActive ? 'scale-110' : 'hover:scale-105'
                           }`}
                           style={{
                             borderColor: eng.accent,
                             boxShadow: isActive
                               ? `0 0 25px ${eng.accent}90, inset 0 0 10px rgba(255,255,255,0.8)`
                               : `0 4px 12px rgba(0,0,0,0.15)`,
+                            opacity: isInFront || isActive ? 1 : 0.5,
                           }}
                         >
-                          {/* Inner Icon */}
                           <div
                             className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300"
                             style={{
@@ -1208,7 +1230,7 @@ const HiyredEdge = () => {
 
                           {/* Orbit Label */}
                           <div
-                            className={`absolute left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-1 rounded-md text-[10px] font-black tracking-wider transition-all duration-300 pointer-events-none top-[84px]`}
+                            className="absolute left-1/2 -translate-x-1/2 whitespace-nowrap px-2.5 py-1 rounded-md text-[10px] font-black tracking-wider transition-all duration-300 pointer-events-none top-[84px]"
                             style={{
                               background: isActive ? `${eng.accent}20` : 'rgba(22, 38, 65, 0.9)',
                               border: `1px solid ${isActive ? eng.accent : 'rgba(255,255,255,0.1)'}`,
@@ -1221,8 +1243,9 @@ const HiyredEdge = () => {
                         </div>
                       </div>
                     );
-                  })}
-                </div>
+                  })
+                )}
+
               </div>
 
               {/* Mobile/Tablet: Flat Grid fallback */}
