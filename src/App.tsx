@@ -174,108 +174,334 @@ const Navbar = () => {
   }, []);
 
   return (
-    <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-        ? "bg-white/90 backdrop-blur-xl border-b border-gray-100 shadow-sm"
-        : "bg-white/80 backdrop-blur-md border-b border-gray-100"
-        }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <motion.div
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.2 }}
+    <>
+      {/* Liquid Glass CSS — injected once */}
+      <style>{`
+        @keyframes liquidShimmer {
+          0% { background-position: -200% 0; }
+          100% { background-position: 200% 0; }
+        }
+        .liquid-glass-nav {
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          z-index: 50;
+          transition:
+            top 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+            left 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+            right 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+            margin 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+            border-radius 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+            background 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+            backdrop-filter 0.5s ease,
+            -webkit-backdrop-filter 0.5s ease,
+            box-shadow 0.55s cubic-bezier(0.16, 1, 0.3, 1),
+            border-color 0.5s ease,
+            border 0.5s ease,
+            max-width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        /* Default state — full-width clean bar */
+        .liquid-glass-nav.nav-default {
+          top: 0;
+          left: 0;
+          right: 0;
+          max-width: 100%;
+          margin: 0 auto;
+          border-radius: 0;
+          background: rgba(255, 255, 255, 0.82);
+          -webkit-backdrop-filter: blur(12px) saturate(1.2);
+          backdrop-filter: blur(12px) saturate(1.2);
+          border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+          box-shadow: none;
+        }
+        /* Scrolled state — floating liquid glass pill */
+        .liquid-glass-nav.nav-scrolled {
+          top: 0;
+          left: 0;
+          right: 0;
+          max-width: 1050px;
+          margin: 12px auto 0 auto;
+          border-radius: 999px;
+          /* Apple liquid glass: translucent white with heavy blur */
+          background: rgba(255, 255, 255, 0.45);
+          -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.05);
+          backdrop-filter: blur(40px) saturate(1.8) brightness(1.05);
+          border: 1px solid rgba(255, 255, 255, 0.55);
+          box-shadow:
+            0 4px 30px rgba(22, 38, 65, 0.08),
+            0 1px 3px rgba(22, 38, 65, 0.05),
+            inset 0 1px 1px rgba(255, 255, 255, 0.7),
+            inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+        }
+        /* Specular highlight — top edge refraction */
+        .liquid-glass-nav.nav-scrolled::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 15%;
+          right: 15%;
+          height: 1px;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.9) 20%,
+            rgba(255, 255, 255, 1) 50%,
+            rgba(255, 255, 255, 0.9) 80%,
+            transparent
+          );
+          border-radius: 999px;
+          pointer-events: none;
+        }
+        /* Subtle inner glow for depth */
+        .liquid-glass-nav.nav-scrolled::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          border-radius: 999px;
+          background: linear-gradient(
+            180deg,
+            rgba(255, 255, 255, 0.25) 0%,
+            transparent 40%,
+            transparent 70%,
+            rgba(199, 174, 106, 0.04) 100%
+          );
+          pointer-events: none;
+        }
+        /* Shimmer animation on the glass surface */
+        .liquid-glass-nav.nav-scrolled .glass-shimmer {
+          position: absolute;
+          inset: 0;
+          border-radius: 999px;
+          background: linear-gradient(
+            120deg,
+            transparent 0%,
+            rgba(255, 255, 255, 0.08) 25%,
+            rgba(255, 255, 255, 0.15) 50%,
+            rgba(255, 255, 255, 0.08) 75%,
+            transparent 100%
+          );
+          background-size: 200% 100%;
+          animation: liquidShimmer 8s ease-in-out infinite;
+          pointer-events: none;
+        }
+        .nav-inner {
+          transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                      padding 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-logo {
+          transition: height 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+                      filter 0.4s ease;
+        }
+        /* Circular logo container for scrolled state */
+        .logo-circle {
+          width: 38px;
+          height: 38px;
+          border-radius: 50%;
+          background: rgba(22, 38, 65, 0.9);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          box-shadow:
+            0 2px 8px rgba(22, 38, 65, 0.15),
+            inset 0 1px 1px rgba(255, 255, 255, 0.1);
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .logo-circle:hover {
+          background: rgba(22, 38, 65, 1);
+          box-shadow:
+            0 4px 16px rgba(22, 38, 65, 0.25),
+            inset 0 1px 1px rgba(255, 255, 255, 0.15);
+        }
+        .logo-circle img {
+          width: 24px;
+          height: 24px;
+        }
+        .logo-brand-text {
+          font-weight: 700;
+          font-size: 17px;
+          color: #162641;
+          letter-spacing: -0.02em;
+          line-height: 1;
+          white-space: nowrap;
+        }
+        /* ── Mobile responsive adjustments ── */
+        @media (max-width: 767px) {
+          .liquid-glass-nav.nav-scrolled {
+            max-width: calc(100% - 24px);
+            margin: 8px auto 0 auto;
+            border-radius: 24px;
+          }
+          .liquid-glass-nav.nav-scrolled::before {
+            border-radius: 24px;
+          }
+          .liquid-glass-nav.nav-scrolled::after {
+            border-radius: 24px;
+          }
+          .liquid-glass-nav.nav-scrolled .glass-shimmer {
+            border-radius: 24px;
+          }
+          /* When mobile menu is open, flatten bottom radius */
+          .liquid-glass-nav.nav-scrolled.nav-menu-open {
+            border-radius: 24px 24px 0 0;
+          }
+          .liquid-glass-nav.nav-scrolled.nav-menu-open::after {
+            border-radius: 24px 24px 0 0;
+          }
+          /* Mobile dropdown glass effect */
+          .mobile-menu-glass {
+            background: rgba(255, 255, 255, 0.55) !important;
+            -webkit-backdrop-filter: blur(40px) saturate(1.8) brightness(1.05);
+            backdrop-filter: blur(40px) saturate(1.8) brightness(1.05);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+          }
+          .liquid-glass-nav.nav-scrolled .mobile-menu-glass {
+            border-radius: 0 0 24px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.55);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+          }
+        }
+      `}</style>
+
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.6, ease: EASE_PREMIUM as unknown as number[], delay: 0.1 }}
+        className={`liquid-glass-nav ${scrolled ? "nav-scrolled" : "nav-default"}${isOpen ? " nav-menu-open" : ""}`}
+      >
+        {/* Shimmer layer */}
+        <div className="glass-shimmer" />
+
+        <div
+          className="relative z-10 mx-auto"
+          style={{
+            maxWidth: scrolled ? "100%" : "80rem",
+            padding: scrolled ? "0 16px" : "0 24px",
+            transition: "max-width 0.5s cubic-bezier(0.16, 1, 0.3, 1), padding 0.5s cubic-bezier(0.16, 1, 0.3, 1)",
+          }}
+        >
+          <div
+            className="nav-inner flex justify-between items-center"
+            style={{ height: scrolled ? "52px" : "80px" }}
           >
-            <img src="/logo_Txt.svg" alt="hiyrED®" className="h-22" />
-          </motion.div>
+            {/* Logo */}
+            <motion.div
+              className="flex items-center gap-2.5"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
+            >
+              {scrolled ? (
+                /* Scrolled: Circle icon + brand name text */
+                <>
+                  <div className="logo-circle">
+                    <img src="/favicon.svg" alt="" />
+                  </div>
+                  <span className="logo-brand-text">hiyrED<sup style={{ fontSize: '9px', verticalAlign: 'super', marginLeft: '1px' }}>®</sup></span>
+                </>
+              ) : (
+                /* Default: Full logo SVG */
+                <img
+                  src="/logo_Txt.svg"
+                  alt="hiyrED®"
+                  className="nav-logo"
+                  style={{ height: "88px" }}
+                />
+              )}
+            </motion.div>
 
-          <div className="hidden md:flex items-center space-x-8">
-            {["Community", "For Recruiters", "For Institutions", "For Educators", "Contact"].map((item, i) => (
-              <motion.a
-                key={item}
-                href="#"
-                className="text-sm font-medium text-gray-600 hover:text-brand-navy transition-colors relative group"
-                initial={{ opacity: 0, y: -10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 + i * 0.06, duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
+            {/* Desktop Nav Links */}
+            <div className="hidden md:flex items-center space-x-7">
+              {["Community", "For Recruiters", "For Institutions", "For Educators", "Contact"].map((item, i) => (
+                <motion.a
+                  key={item}
+                  href="#"
+                  className="text-sm font-medium text-gray-600 hover:text-brand-navy transition-colors relative group"
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + i * 0.06, duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
+                >
+                  {item}
+                  <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-gold group-hover:w-full transition-all duration-300 ease-out" />
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Desktop CTA Buttons */}
+            <div className="hidden md:flex items-center space-x-4">
+              <motion.button
+                className="px-6 py-2 text-sm font-semibold text-brand-navy hover:text-brand-gold transition-colors"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.4 }}
               >
-                {item}
-                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-brand-gold group-hover:w-full transition-all duration-300 ease-out" />
-              </motion.a>
-            ))}
-          </div>
+                Sign In
+              </motion.button>
+              <motion.button
+                className="px-6 py-2.5 bg-brand-navy text-white text-sm font-semibold rounded-full hover:bg-brand-navy/90 transition-all shadow-lg shadow-brand-navy/20"
+                whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(22,38,65,0.3)" }}
+                whileTap={{ scale: 0.97 }}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.55, duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
+              >
+                Join hiyrED®
+              </motion.button>
+            </div>
 
-          <div className="hidden md:flex items-center space-x-4">
-            <motion.button
-              className="px-6 py-2 text-sm font-semibold text-brand-navy hover:text-brand-gold transition-colors"
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.97 }}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5, duration: 0.4 }}
-            >
-              Sign In
-            </motion.button>
-            <motion.button
-              className="px-6 py-2.5 bg-brand-navy text-white text-sm font-semibold rounded-full hover:bg-brand-navy/90 transition-all shadow-lg shadow-brand-navy/20"
-              whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(22,38,65,0.3)" }}
-              whileTap={{ scale: 0.97 }}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.55, duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
-            >
-              Join hiyrED®
-            </motion.button>
-          </div>
-
-          <div className="md:hidden">
-            <motion.button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 text-gray-600"
-              whileTap={{ scale: 0.9 }}
-            >
-              {isOpen ? <X /> : <Menu />}
-            </motion.button>
+            {/* Mobile menu toggle */}
+            <div className="md:hidden">
+              <motion.button
+                onClick={() => setIsOpen(!isOpen)}
+                className="p-2 text-gray-600"
+                whileTap={{ scale: 0.9 }}
+              >
+                {isOpen ? <X /> : <Menu />}
+              </motion.button>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }}
-          className="md:hidden bg-white border-b border-gray-100 px-4 pt-2 pb-6 space-y-4 overflow-hidden"
-        >
-          {["Community", "For Recruiters", "For Institutions", "For Educators"].map((item, i) => (
-            <motion.a
-              key={item}
-              href="#"
-              className="block text-base font-medium text-gray-600"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: i * 0.06, duration: 0.3 }}
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }}
+              className={`md:hidden px-4 pt-2 pb-6 space-y-4 overflow-hidden relative z-10 mobile-menu-glass ${scrolled
+                  ? "rounded-b-3xl"
+                  : "border-b border-gray-100"
+                }`}
             >
-              {item}
-            </motion.a>
-          ))}
-          <motion.button
-            className="w-full px-6 py-3 bg-brand-navy text-white font-semibold rounded-xl"
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.25, duration: 0.3 }}
-          >
-            Join hiyrED®
-          </motion.button>
-        </motion.div>
-      )}
-    </motion.nav>
+              {["Community", "For Recruiters", "For Institutions", "For Educators"].map((item, i) => (
+                <motion.a
+                  key={item}
+                  href="#"
+                  className="block text-base font-medium text-gray-600"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.06, duration: 0.3 }}
+                >
+                  {item}
+                </motion.a>
+              ))}
+              <motion.button
+                className="w-full px-6 py-3 bg-brand-navy text-white font-semibold rounded-xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.3 }}
+              >
+                Join hiyrED®
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.nav>
+    </>
   );
 };
 
@@ -853,7 +1079,7 @@ const HiyredEdge = () => {
     }
   ];
 
-    return (
+  return (
     <>
       <section
         className="relative py-32 overflow-hidden"
@@ -1207,9 +1433,8 @@ const HiyredEdge = () => {
                           onClick={() => setSelectedEngine(selectedEngine === engineIdx ? null : engineIdx)}
                           onMouseEnter={() => setHoveredEngine(engineIdx)}
                           onMouseLeave={() => setHoveredEngine(null)}
-                          className={`relative w-full h-full rounded-full flex items-center justify-center shadow-lg border-[3.5px] cursor-pointer select-none transition-all duration-300 bg-white ${
-                            isActive ? 'scale-110' : 'hover:scale-105'
-                          }`}
+                          className={`relative w-full h-full rounded-full flex items-center justify-center shadow-lg border-[3.5px] cursor-pointer select-none transition-all duration-300 bg-white ${isActive ? 'scale-110' : 'hover:scale-105'
+                            }`}
                           style={{
                             borderColor: eng.accent,
                             boxShadow: isActive
@@ -1798,7 +2023,8 @@ const InsightsNews = () => {
       className="relative py-28 overflow-hidden text-left"
       style={{ background: "linear-gradient(160deg, #0b1322 0%, #101c30 60%, #162641 100%)" }}
     >
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         .no-scrollbar::-webkit-scrollbar {
           display: none !important;
         }
@@ -1901,7 +2127,7 @@ const InsightsNews = () => {
                         />
                         {/* Subtle dark gradient overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0b1322]/80 via-transparent to-transparent pointer-events-none" />
-                        
+
                         {/* Category Badge on top of image */}
                         <span className={`absolute top-6 left-6 px-3.5 py-1 rounded-full text-[9px] font-black uppercase tracking-wider border ${art.badgeColor} backdrop-blur-md`}>
                           {art.badge}
@@ -1974,9 +2200,8 @@ const InsightsNews = () => {
             <button
               key={idx}
               onClick={() => setCurrentIndex(idx)}
-              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
-                currentIndex === idx ? "w-8 bg-[#c7ae6a]" : "w-2 bg-white/20 hover:bg-white/40"
-              }`}
+              className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${currentIndex === idx ? "w-8 bg-[#c7ae6a]" : "w-2 bg-white/20 hover:bg-white/40"
+                }`}
             />
           ))}
         </div>
@@ -1994,7 +2219,7 @@ const InsightsNews = () => {
               onClick={() => setActiveArticle(null)}
               className="absolute inset-0 bg-[#0b1322]/75 backdrop-blur-[2px]"
             />
-            
+
             {/* Modal Body (Increased size, no scrollbar) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
@@ -2087,9 +2312,8 @@ const FAQItem = ({ question, answer, isOpen, onToggle }: { question: string; ans
           {question}
         </span>
         <div
-          className={`w-7 h-10 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 ${
-            isOpen ? "bg-brand-navy" : "bg-brand-gold hover:bg-brand-gold-rich"
-          }`}
+          className={`w-7 h-10 rounded-2xl flex items-center justify-center text-white shrink-0 shadow-sm transition-all duration-300 ${isOpen ? "bg-brand-navy" : "bg-brand-gold hover:bg-brand-gold-rich"
+            }`}
         >
           <motion.span
             animate={{ rotate: isOpen ? 45 : 0 }}
