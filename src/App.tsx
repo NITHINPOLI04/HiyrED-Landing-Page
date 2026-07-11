@@ -574,109 +574,133 @@ const Hero = () => {
             </motion.div>
           </motion.div>
 
-          {/* Right: Floating Cards */}
+          {/* Right: Redesigned Hero Illustration */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: EASE_PREMIUM as unknown as number[] }}
-            className="relative"
+            className="relative flex items-center justify-center min-h-[450px] sm:min-h-[500px] lg:min-h-[600px] w-full"
           >
-            <div className="relative z-10 grid grid-cols-2 gap-4">
-              <motion.div
-                initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.5, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                className="glass-card p-6 rounded-[2.5rem]"
-              >
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-brand-gold/20 flex items-center justify-center">
-                      <Users className="text-brand-gold w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500">Student Profile</p>
-                      <p className="font-bold text-brand-navy">Alex Rivera</p>
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <div className="h-2 w-full bg-gray-100 rounded-full overflow-hidden">
-                      <motion.div
-                        className="h-full bg-brand-gold rounded-full"
-                        initial={{ width: 0 }}
-                        animate={{ width: "85%" }}
-                        transition={{ delay: 1, duration: 1.2, ease: EASE_SMOOTH as unknown as number[] }}
-                      />
-                    </div>
-                    <p className="text-[10px] text-gray-400">Capability Path: Frontend Eng.</p>
-                  </div>
-                </motion.div>
-              </motion.div>
+            {/* Background Blob Shape */}
+            <motion.div
+              animate={{ 
+                rotate: [0, 6, -6, 0],
+                scale: [1, 1.03, 0.97, 1],
+              }}
+              transition={{ 
+                duration: 15, 
+                repeat: Infinity, 
+                ease: "easeInOut" 
+              }}
+              className="absolute w-[85%] sm:w-[75%] lg:w-[90%] max-w-[500px] aspect-[589/648] -z-10"
+            >
+              <img 
+                src="/blob.svg" 
+                alt="Background Blob" 
+                className="w-full h-full object-contain select-none pointer-events-none opacity-90" 
+              />
+            </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 50, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.65, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                className="glass-card p-6 rounded-[2.5rem] mt-8"
-              >
-                <motion.div
-                  animate={{ y: [0, 8, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-brand-navy/10 flex items-center justify-center">
-                      <Code2 className="text-brand-navy w-5 h-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs text-gray-500">Forge Assessment</p>
-                      <p className="font-bold text-brand-navy">DSA Mastery</p>
-                    </div>
-                  </div>
-                  <motion.span
-                    className="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full inline-block"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 1.2, duration: 0.4, type: "spring", stiffness: 300 }}
-                  >
-                    Skill Verified
-                  </motion.span>
-                </motion.div>
-              </motion.div>
+            {/* Foreground Avatar Illustration */}
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.8, ease: EASE_PREMIUM as unknown as number[] }}
+              className="relative w-[75%] sm:w-[65%] lg:w-[80%] max-w-[420px] aspect-[604/871] z-10 flex items-center justify-center"
+            >
+              <img 
+                src="/avtar.svg" 
+                alt="Student coding avatar" 
+                className="w-full h-full object-contain select-none pointer-events-none drop-shadow-[0_20px_50px_rgba(22,38,65,0.25)]" 
+              />
+            </motion.div>
 
-              <motion.div
-                initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ delay: 0.8, duration: 0.6, ease: EASE_PREMIUM as unknown as number[] }}
-                className="glass-card p-6 rounded-[2.5rem] col-span-2 mx-auto w-3/4"
-              >
-                <motion.div
-                  animate={{ x: [0, -6, 0] }}
-                  transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-                >
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center">
-                        <Code2 className="text-purple-600 w-4 h-4" />
-                      </div>
-                      <p className="text-sm font-medium text-brand-navy">Fullstack Project Deployed</p>
-                    </div>
-                    <motion.p
-                      className="text-xs text-gray-400"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1.5, duration: 0.5 }}
-                    >
-                      Just now
-                    </motion.p>
-                  </div>
-                </motion.div>
-              </motion.div>
-            </div>
+            {/* Liquid Glass Badge 1 (Top Left) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: -20, y: -20 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                x: [0, 8, -4, 0],
+                y: [0, -12, 6, 0],
+                rotate: [0, 2, -2, 0]
+              }}
+              transition={{
+                delay: 0.7,
+                duration: 7,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror"
+              }}
+              className="absolute top-[8%] left-[2%] lg:left-[-5%] z-20 bg-white/20 backdrop-blur-xl border border-white/30 rounded-[1.5rem_2.5rem_2rem_3rem] p-4 shadow-[0_15px_35px_rgba(22,38,65,0.15)] flex items-center gap-3 hover:scale-105 hover:bg-white/35 transition-all duration-300 pointer-events-auto select-none"
+            >
+              <div className="w-9 h-9 rounded-full bg-brand-gold/30 flex items-center justify-center shadow-inner">
+                <Users className="text-brand-navy w-4.5 h-4.5" />
+              </div>
+              <div className="text-left">
+                <p className="text-[9px] text-brand-navy/60 font-semibold tracking-wide uppercase">Student Profile</p>
+                <p className="font-bold text-brand-navy text-xs sm:text-sm">Alex Rivera</p>
+              </div>
+            </motion.div>
 
-            {/* Background decorative elements */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-gold/5 rounded-full blur-3xl -z-10"></div>
+            {/* Liquid Glass Badge 2 (Top Right / Middle Right) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: 20, y: -10 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                x: [0, -6, 6, 0],
+                y: [0, 14, -8, 0],
+                rotate: [0, -3, 3, 0]
+              }}
+              transition={{
+                delay: 0.9,
+                duration: 8,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror"
+              }}
+              className="absolute top-[25%] right-[2%] lg:right-[-5%] z-20 bg-white/20 backdrop-blur-xl border border-white/30 rounded-[2.5rem_1.5rem_3rem_2rem] p-4 shadow-[0_15px_35px_rgba(22,38,65,0.15)] flex items-center gap-3 hover:scale-105 hover:bg-white/35 transition-all duration-300 pointer-events-auto select-none"
+            >
+              <div className="w-9 h-9 rounded-full bg-emerald-500/20 flex items-center justify-center shadow-inner">
+                <ShieldCheck className="text-emerald-700 w-4.5 h-4.5" />
+              </div>
+              <div className="text-left">
+                <p className="text-[9px] text-brand-navy/60 font-semibold tracking-wide uppercase">DSA Mastery</p>
+                <p className="font-bold text-emerald-700 text-xs sm:text-sm">Skill Verified</p>
+              </div>
+            </motion.div>
+
+            {/* Liquid Glass Badge 3 (Bottom Left) */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, x: -10, y: 20 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                x: [0, -8, 8, 0],
+                y: [0, -10, 12, 0],
+                rotate: [0, 2, -1, 0]
+              }}
+              transition={{
+                delay: 1.1,
+                duration: 9,
+                ease: "easeInOut",
+                repeat: Infinity,
+                repeatType: "mirror"
+              }}
+              className="absolute bottom-[10%] left-[5%] lg:left-[-2%] z-20 bg-white/20 backdrop-blur-xl border border-white/30 rounded-[2rem_2rem_2.5rem_1.5rem] p-4 shadow-[0_15px_35px_rgba(22,38,65,0.15)] flex items-center gap-3 hover:scale-105 hover:bg-white/35 transition-all duration-300 pointer-events-auto select-none"
+            >
+              <div className="w-9 h-9 rounded-full bg-purple-500/20 flex items-center justify-center shadow-inner">
+                <Code2 className="text-purple-700 w-4.5 h-4.5" />
+              </div>
+              <div className="text-left">
+                <p className="text-[9px] text-brand-navy/60 font-semibold tracking-wide uppercase">GitHub Project</p>
+                <p className="font-bold text-purple-700 text-xs sm:text-sm">Fullstack Deployed</p>
+              </div>
+            </motion.div>
+
+            {/* Soft background glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-brand-gold/10 rounded-full blur-3xl -z-20"></div>
           </motion.div>
         </div>
       </div>

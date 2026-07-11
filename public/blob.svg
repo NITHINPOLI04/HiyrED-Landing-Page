@@ -1,0 +1,22 @@
+<svg width="589" height="648" viewBox="0 0 589 648" fill="none" xmlns="http://www.w3.org/2000/svg">
+<foreignObject x="-44.4004" y="-44.4" width="657" height="716"><div xmlns="http://www.w3.org/1999/xhtml" style="backdrop-filter:blur(25px);clip-path:url(#bgblur_0_2059_77_clip_path);height:100%;width:100%"></div></foreignObject><g filter="url(#filter0_d_2059_77)" data-figma-bg-blur-radius="50">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M272.883 5.66462C366.032 7.3007 459.01 50.8981 514.001 144.676C566.673 234.497 578.617 360.346 539.531 460.38C506.68 544.455 417.023 543.633 346.158 574.238C291.514 597.837 238.574 638.805 184.34 613.776C124.549 586.182 88.6242 517.249 63.8898 443.968C29.841 343.092 -21.761 230.127 23.0952 136.053C71.6328 34.2598 177.928 3.99682 272.883 5.66462Z" fill="url(#paint0_radial_2059_77)" fill-opacity="0.75" shape-rendering="crispEdges"/>
+</g>
+<defs>
+<filter id="filter0_d_2059_77" x="-44.4004" y="-44.4" width="657" height="716" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dx="10" dy="10"/>
+<feGaussianBlur stdDeviation="7.8"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0.0862745 0 0 0 0 0.14902 0 0 0 0 0.254902 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_2059_77"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_2059_77" result="shape"/>
+</filter>
+<clipPath id="bgblur_0_2059_77_clip_path" transform="translate(44.4004 44.4)"><path fill-rule="evenodd" clip-rule="evenodd" d="M272.883 5.66462C366.032 7.3007 459.01 50.8981 514.001 144.676C566.673 234.497 578.617 360.346 539.531 460.38C506.68 544.455 417.023 543.633 346.158 574.238C291.514 597.837 238.574 638.805 184.34 613.776C124.549 586.182 88.6242 517.249 63.8898 443.968C29.841 343.092 -21.761 230.127 23.0952 136.053C71.6328 34.2598 177.928 3.99682 272.883 5.66462Z"/>
+</clipPath><radialGradient id="paint0_radial_2059_77" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(89.5996 222.6) rotate(24.1546) scale(499.756 451.89)">
+<stop stop-color="#C7AE6A"/>
+<stop offset="1" stop-color="#D5C28F"/>
+</radialGradient>
+</defs>
+</svg>
