@@ -412,23 +412,11 @@ const Navbar = () => {
 
             {/* Desktop Nav Links */}
             <div className="hidden md:flex items-center space-x-7">
-              {["Community", "For Recruiters", "For Institutions", "For Educators", "Contact"].map((item, i) => (
+              {["Community", "For Recruiters", "For Institutions", "For Educators"].map((item, i) => (
                 <motion.a
                   key={item}
                   href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    if (item === "For Recruiters") {
-                      (window as any).triggerWaitlist("Recruiters");
-                    } else if (item === "For Institutions") {
-                      (window as any).triggerWaitlist("Institutions");
-                    } else if (item === "Contact") {
-                      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-                    } else {
-                      (window as any).triggerWaitlist("Community");
-                    }
-                  }}
-                  className="text-sm font-medium text-gray-600 hover:text-brand-navy transition-colors relative group cursor-pointer"
+                  className="text-sm font-medium text-gray-600 hover:text-brand-navy transition-colors relative group"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + i * 0.06, duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
@@ -494,17 +482,7 @@ const Navbar = () => {
                 <motion.a
                   key={item}
                   href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsOpen(false);
-                    if (item === "For Recruiters") {
-                      (window as any).triggerWaitlist("Recruiters");
-                    } else if (item === "For Institutions") {
-                      (window as any).triggerWaitlist("Institutions");
-                    } else {
-                      (window as any).triggerWaitlist("Community");
-                    }
-                  }}
+                  onClick={() => setIsOpen(false)}
                   className="block text-base font-medium text-gray-600 cursor-pointer"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -2641,16 +2619,14 @@ interface WaitlistPopupProps {
   onClose: () => void;
   onProceed: (data: { category: string; name: string; email: string; phone: string }) => void;
   initialCategory: string;
-  anchorEl: HTMLElement | null;
 }
 
-const WaitlistPopup = ({ isOpen, onClose, onProceed, initialCategory, anchorEl }: WaitlistPopupProps) => {
+const WaitlistPopup = ({ isOpen, onClose, onProceed, initialCategory }: WaitlistPopupProps) => {
   const [category, setCategory] = useState(initialCategory);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [coords, setCoords] = useState<{ top: number; left: number; isFloating: boolean }>({ top: 0, left: 0, isFloating: false });
 
   useEffect(() => {
     setCategory(initialCategory);
@@ -2669,46 +2645,6 @@ const WaitlistPopup = ({ isOpen, onClose, onProceed, initialCategory, anchorEl }
     };
   }, [isOpen, onClose]);
 
-  useEffect(() => {
-    if (!isOpen || !anchorEl) {
-      setCoords({ top: 0, left: 0, isFloating: false });
-      return;
-    }
-
-    const updatePosition = () => {
-      if (window.innerWidth < 768) {
-        setCoords({ top: 0, left: 0, isFloating: false });
-        return;
-      }
-
-      const rect = anchorEl.getBoundingClientRect();
-      const popupWidth = 420;
-      
-      // Calculate top
-      const top = rect.bottom + window.scrollY + 8;
-      
-      // Calculate left (align right side of popup with right side of button)
-      let left = rect.right + window.scrollX - popupWidth;
-      
-      // Prevent left edge overflow
-      if (left < 16) left = 16;
-      // Prevent right edge overflow
-      if (left + popupWidth > window.innerWidth - 16) {
-        left = window.innerWidth - popupWidth - 16;
-      }
-
-      setCoords({ top, left, isFloating: true });
-    };
-
-    updatePosition();
-    window.addEventListener("resize", updatePosition);
-    window.addEventListener("scroll", updatePosition);
-    return () => {
-      window.removeEventListener("resize", updatePosition);
-      window.removeEventListener("scroll", updatePosition);
-    };
-  }, [isOpen, anchorEl]);
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newErrors: Record<string, string> = {};
@@ -2726,46 +2662,26 @@ const WaitlistPopup = ({ isOpen, onClose, onProceed, initialCategory, anchorEl }
 
   if (!isOpen) return null;
 
-  const wrapperStyle: React.CSSProperties = coords.isFloating
-    ? {
-        position: "absolute",
-        top: coords.top,
-        left: coords.left,
-        transformOrigin: "top right",
-      }
-    : {
-        position: "relative",
-        transformOrigin: "center",
-      };
-
   return (
     <AnimatePresence>
       <div 
-        className={`fixed inset-0 z-50 p-4 ${
-          coords.isFloating ? "pointer-events-none" : "bg-brand-navy/60 backdrop-blur-md flex items-center justify-center"
-        }`}
+        className="fixed inset-0 z-50 p-4 bg-brand-navy/60 backdrop-blur-md flex items-center justify-center"
         onClick={(e) => {
-          if (e.target === e.currentTarget && !coords.isFloating) onClose();
+          if (e.target === e.currentTarget) onClose();
         }}
       >
-        {/* Backdrop overlay for floating state so click outside closes it */}
-        {coords.isFloating && (
-          <div className="fixed inset-0 z-0 pointer-events-auto" onClick={onClose} />
-        )}
-
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.92 }}
+          initial={{ opacity: 0, scale: 0.92, y: 10 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.92, y: 10 }}
           transition={{ duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
           className="relative max-w-md w-full rounded-3xl p-8 overflow-hidden text-left shadow-2xl pointer-events-auto"
           style={{
-            ...wrapperStyle,
             background: "rgba(255, 255, 255, 0.65)",
             backdropFilter: "blur(40px) saturate(1.8) brightness(1.05)",
             WebkitBackdropFilter: "blur(40px) saturate(1.8) brightness(1.05)",
             border: "1px solid rgba(255, 255, 255, 0.6)",
-            boxShadow: "0 20px 50px rgba(22, 38, 65, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.6)",
+            boxShadow: "0 25px 60px rgba(22, 38, 65, 0.15), inset 0 1px 1px rgba(255, 255, 255, 0.6)",
           }}
         >
           {/* Specular highlight overlay */}
@@ -3558,7 +3474,7 @@ const WaitlistFullForm = ({ isOpen, category, basicInfo, onClose }: WaitlistFull
 // ─── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
-  const [waitlistPopup, setWaitlistPopup] = useState({ isOpen: false, initialCategory: "Community", anchorEl: null as HTMLElement | null });
+  const [waitlistPopup, setWaitlistPopup] = useState({ isOpen: false, initialCategory: "Community" });
   const [waitlistFullForm, setWaitlistFullForm] = useState({
     isOpen: false,
     category: "Community",
@@ -3566,8 +3482,8 @@ export default function App() {
   });
 
   useEffect(() => {
-    (window as any).triggerWaitlist = (category: string = "Community", anchorEl: HTMLElement | null = null) => {
-      setWaitlistPopup({ isOpen: true, initialCategory: category, anchorEl });
+    (window as any).triggerWaitlist = (category: string = "Community") => {
+      setWaitlistPopup({ isOpen: true, initialCategory: category });
     };
     return () => {
       delete (window as any).triggerWaitlist;
@@ -3575,7 +3491,7 @@ export default function App() {
   }, []);
 
   const handleProceedToFullForm = (data: { category: string; name: string; email: string; phone: string }) => {
-    setWaitlistPopup({ isOpen: false, initialCategory: data.category, anchorEl: null });
+    setWaitlistPopup({ isOpen: false, initialCategory: data.category });
     setWaitlistFullForm({
       isOpen: true,
       category: data.category,
@@ -3606,7 +3522,6 @@ export default function App() {
         onClose={() => setWaitlistPopup({ ...waitlistPopup, isOpen: false })}
         onProceed={handleProceedToFullForm}
         initialCategory={waitlistPopup.initialCategory}
-        anchorEl={waitlistPopup.anchorEl}
       />
       <WaitlistFullForm
         isOpen={waitlistFullForm.isOpen}
