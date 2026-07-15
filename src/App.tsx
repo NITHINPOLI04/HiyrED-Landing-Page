@@ -16,7 +16,7 @@ import {
   X,
   Award
 } from "lucide-react";
-import { useState, useRef, useEffect, type ReactNode, type RefObject } from "react";
+import React, { useState, useRef, useEffect, type ReactNode, type RefObject } from "react";
 
 // ─── Reusable Animation Variants ───────────────────────────────────────────────
 
@@ -416,7 +416,19 @@ const Navbar = () => {
                 <motion.a
                   key={item}
                   href="#"
-                  className="text-sm font-medium text-gray-600 hover:text-brand-navy transition-colors relative group"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    if (item === "For Recruiters") {
+                      (window as any).triggerWaitlist("Recruiters");
+                    } else if (item === "For Institutions") {
+                      (window as any).triggerWaitlist("Institutions");
+                    } else if (item === "Contact") {
+                      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+                    } else {
+                      (window as any).triggerWaitlist("Community");
+                    }
+                  }}
+                  className="text-sm font-medium text-gray-600 hover:text-brand-navy transition-colors relative group cursor-pointer"
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 + i * 0.06, duration: 0.4, ease: EASE_SMOOTH as unknown as number[] }}
@@ -429,7 +441,7 @@ const Navbar = () => {
 
             {/* Desktop CTA Buttons */}
             <div className="hidden md:flex items-center space-x-4">
-              <motion.button
+              {/*<motion.button
                 className="px-6 py-2 text-sm font-semibold text-brand-navy hover:text-brand-gold transition-colors"
                 whileHover={{ scale: 1.03 }}
                 whileTap={{ scale: 0.97 }}
@@ -438,9 +450,10 @@ const Navbar = () => {
                 transition={{ delay: 0.5, duration: 0.4 }}
               >
                 Sign In
-              </motion.button>
+              </motion.button>*/}
               <motion.button
-                className="px-6 py-2.5 bg-brand-navy text-white text-sm font-semibold rounded-full hover:bg-brand-navy/90 transition-all shadow-lg shadow-brand-navy/20"
+                onClick={() => (window as any).triggerWaitlist("Community")}
+                className="px-6 py-2.5 bg-brand-navy text-white text-sm font-semibold rounded-full hover:bg-brand-navy/90 transition-all shadow-lg shadow-brand-navy/20 cursor-pointer"
                 whileHover={{ scale: 1.05, boxShadow: "0 10px 40px rgba(22,38,65,0.3)" }}
                 whileTap={{ scale: 0.97 }}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -473,15 +486,26 @@ const Navbar = () => {
               exit={{ opacity: 0, height: 0 }}
               transition={{ duration: 0.3, ease: EASE_SMOOTH as unknown as number[] }}
               className={`md:hidden px-4 pt-2 pb-6 space-y-4 overflow-hidden relative z-10 mobile-menu-glass ${scrolled
-                  ? "rounded-b-3xl"
-                  : "border-b border-gray-100"
+                ? "rounded-b-3xl"
+                : "border-b border-gray-100"
                 }`}
             >
               {["Community", "For Recruiters", "For Institutions", "For Educators"].map((item, i) => (
                 <motion.a
                   key={item}
                   href="#"
-                  className="block text-base font-medium text-gray-600"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsOpen(false);
+                    if (item === "For Recruiters") {
+                      (window as any).triggerWaitlist("Recruiters");
+                    } else if (item === "For Institutions") {
+                      (window as any).triggerWaitlist("Institutions");
+                    } else {
+                      (window as any).triggerWaitlist("Community");
+                    }
+                  }}
+                  className="block text-base font-medium text-gray-600 cursor-pointer"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.06, duration: 0.3 }}
@@ -490,7 +514,11 @@ const Navbar = () => {
                 </motion.a>
               ))}
               <motion.button
-                className="w-full px-6 py-3 bg-brand-navy text-white font-semibold rounded-xl"
+                onClick={() => {
+                  setIsOpen(false);
+                  (window as any).triggerWaitlist("Community");
+                }}
+                className="w-full px-6 py-3 bg-brand-navy text-white font-semibold rounded-xl cursor-pointer"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.3 }}
@@ -538,7 +566,7 @@ const Hero = () => {
               transition={{ duration: 0.5, ease: EASE_PREMIUM as unknown as number[], delay: 0.2 }}
             >
               <div className="relative inline-block mt-4">
-                {/* Floating Highlighted Free Tag */}
+                {/* Floating Highlighted Free Tag
                 <motion.span
                   className="absolute -top-4 left-6 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
                   animate={{
@@ -554,9 +582,10 @@ const Hero = () => {
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                   Free
-                </motion.span>
+                </motion.span>*/}
                 <motion.button
-                  className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20 flex items-center gap-2 group"
+                  onClick={() => (window as any).triggerWaitlist("Community")}
+                  className="px-8 py-4 bg-brand-navy text-white font-bold rounded-full hover:bg-brand-navy/90 transition-all shadow-xl shadow-brand-navy/20 flex items-center gap-2 group cursor-pointer"
                   whileHover={{ scale: 1.04, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
                   whileTap={{ scale: 0.97 }}
                 >
@@ -564,13 +593,13 @@ const Hero = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </motion.button>
               </div>
-              <motion.button
+              {/*<motion.button
                 className="px-8 py-4 bg-white text-brand-navy font-bold rounded-full border-2 border-brand-navy/10 hover:border-brand-navy/20 transition-all"
                 whileHover={{ scale: 1.04, borderColor: "rgba(22,38,65,0.25)" }}
                 whileTap={{ scale: 0.97 }}
               >
                 Hire Verified Talent
-              </motion.button>
+              </motion.button>*/}
             </motion.div>
           </motion.div>
 
@@ -583,21 +612,21 @@ const Hero = () => {
           >
             {/* Background Blob Shape */}
             <motion.div
-              animate={{ 
+              animate={{
                 rotate: [0, 6, -6, 0],
                 scale: [1, 1.03, 0.97, 1],
               }}
-              transition={{ 
-                duration: 15, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
+              transition={{
+                duration: 15,
+                repeat: Infinity,
+                ease: "easeInOut"
               }}
               className="absolute w-[85%] sm:w-[75%] lg:w-[90%] max-w-[500px] aspect-[589/648] -z-10"
             >
-              <img 
-                src="/blob.svg" 
-                alt="Background Blob" 
-                className="w-full h-full object-contain select-none pointer-events-none opacity-90" 
+              <img
+                src="/blob.svg"
+                alt="Background Blob"
+                className="w-full h-full object-contain select-none pointer-events-none opacity-90"
               />
             </motion.div>
 
@@ -608,18 +637,18 @@ const Hero = () => {
               transition={{ delay: 0.5, duration: 0.8, ease: EASE_PREMIUM as unknown as number[] }}
               className="relative w-[75%] sm:w-[65%] lg:w-[80%] max-w-[420px] aspect-[604/871] z-10 flex items-center justify-center"
             >
-              <img 
-                src="/avtar.svg" 
-                alt="Student coding avatar" 
-                className="w-full h-full object-contain select-none pointer-events-none drop-shadow-[0_20px_50px_rgba(22,38,65,0.25)]" 
+              <img
+                src="/avtar.svg"
+                alt="Student coding avatar"
+                className="w-full h-full object-contain select-none pointer-events-none drop-shadow-[0_20px_50px_rgba(22,38,65,0.25)]"
               />
             </motion.div>
 
             {/* Liquid Glass Badge 1 (Top Left) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8, x: -20, y: -20 }}
-              animate={{ 
-                opacity: 1, 
+              animate={{
+                opacity: 1,
                 scale: 1,
                 x: [0, 8, -4, 0],
                 y: [0, -12, 6, 0],
@@ -646,8 +675,8 @@ const Hero = () => {
             {/* Liquid Glass Badge 2 (Top Right / Middle Right) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8, x: 20, y: -10 }}
-              animate={{ 
-                opacity: 1, 
+              animate={{
+                opacity: 1,
                 scale: 1,
                 x: [0, -6, 6, 0],
                 y: [0, 14, -8, 0],
@@ -674,8 +703,8 @@ const Hero = () => {
             {/* Liquid Glass Badge 3 (Bottom Left) */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8, x: -10, y: 20 }}
-              animate={{ 
-                opacity: 1, 
+              animate={{
+                opacity: 1,
                 scale: 1,
                 x: [0, -8, 8, 0],
                 y: [0, -10, 12, 0],
@@ -2459,7 +2488,7 @@ const FinalCTA = () => {
                   Join the ecosystem where ambition meets structure. Upskill, prove your worth, and let the industry come to you.
                 </motion.p>
                 <div className="relative inline-block mt-4">
-                  {/* Floating Highlighted Free Tag */}
+                  {/* Floating Highlighted Free Tag 
                   <motion.span
                     className="absolute -top-4 left-6 z-20 px-3.5 py-1 bg-emerald-500 text-white text-[9px] font-black uppercase tracking-widest rounded-full shadow-lg border-2 border-white flex items-center gap-1.5 whitespace-nowrap"
                     animate={{
@@ -2475,9 +2504,10 @@ const FinalCTA = () => {
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
                     Free
-                  </motion.span>
+                  </motion.span>*/}
                   <motion.button
-                    className="px-10 py-5 bg-brand-navy text-white font-black rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/20 border border-brand-navy/5"
+                    onClick={() => (window as any).triggerWaitlist("Community")}
+                    className="px-10 py-5 bg-brand-navy text-white font-black rounded-full hover:scale-105 transition-all shadow-2xl shadow-brand-navy/20 border border-brand-navy/5 cursor-pointer"
                     variants={fadeUp}
                     whileHover={{ scale: 1.06, boxShadow: "0 20px 60px rgba(22,38,65,0.3)" }}
                     whileTap={{ scale: 0.97 }}
@@ -2532,116 +2562,1027 @@ const FinalCTA = () => {
 // ─── Footer ────────────────────────────────────────────────────────────────────
 
 const Footer = () => {
+  const navLinks = ["Community", "For Recruiters", "For Institutions", "Contact"];
+  const legalLinks = ["Privacy", "Terms", "Cookies"];
+
   return (
-    <footer className="bg-brand-dark pt-20 pb-10 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection stagger={staggerContainer} className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-12 mb-20">
-          <motion.div className="col-span-2 lg:col-span-2" variants={fadeUp}>
-            <div className="flex items-center gap-2 mb-6">
-              <img src="/Logo-Stick-Figure-Hiyred_Txt.svg" alt="hiyrED®" className="h-22" />
+    <footer className="bg-brand-dark text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Top Row */}
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-8 mb-8">
+          {/* Left: Logo + Tagline */}
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+              <img src="/favicon.svg" alt="" className="w-6 h-6" />
             </div>
-            <p className="text-gray-400 max-w-xs mb-8">
-              The definitive ecosystem for ambitious students to build verified capabilities and showcase their proof-of-work.
-            </p>
-            <div className="flex gap-4">
-              {/* Social Icons */}
-              {[1, 2, 3, 4].map(i => (
-                <motion.div
-                  key={i}
-                  className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-brand-gold hover:text-brand-navy transition-all cursor-pointer"
-                  whileHover={{ scale: 1.15, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <div className="w-4 h-4 rounded-sm border border-current"></div>
-                </motion.div>
-              ))}
+            <div>
+              <span className="text-lg font-bold tracking-tight">hiyrED<sup className="text-[8px] ml-0.5">®</sup></span>
+              <p className="text-white/40 text-xs mt-0.5">Futures Empowered</p>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div variants={fadeUp}>
-            <h4 className="font-bold mb-6">Learn More</h4>
-            <ul className="space-y-4 text-gray-400 text-sm">
-              {["About Us", "How It Works", "Client Results", "Press & Mentions"].map(item => (
-                <li key={item}>
-                  <motion.a
-                    href="#"
-                    className="hover:text-brand-gold transition-colors inline-block"
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {item}
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div variants={fadeUp}>
-            <h4 className="font-bold mb-6">For Partners</h4>
-            <ul className="space-y-4 text-gray-400 text-sm">
-              {["For Colleges", "For Students", "For Recruiters", "Pricing Plans"].map(item => (
-                <li key={item}>
-                  <motion.a
-                    href="#"
-                    className="hover:text-brand-gold transition-colors inline-block"
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {item}
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-
-          <motion.div variants={fadeUp}>
-            <h4 className="font-bold mb-6">Support</h4>
-            <ul className="space-y-4 text-gray-400 text-sm">
-              {["Contact Us", "FAQs", "Privacy Policy", "Terms of Service"].map(item => (
-                <li key={item}>
-                  <motion.a
-                    href="#"
-                    className="hover:text-brand-gold transition-colors inline-block"
-                    whileHover={{ x: 4 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {item}
-                  </motion.a>
-                </li>
-              ))}
-            </ul>
-          </motion.div>
-        </AnimatedSection>
-
-        <AnimatedSection>
-          <motion.div
-            className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
-            variants={fadeUp}
-          >
-            <p className="text-gray-500 text-xs">© 2026 hiyrED® Inc. All Rights Reserved.</p>
-            <div className="flex gap-8 text-gray-500 text-xs">
-              {["Privacy", "Terms", "Cookies"].map(item => (
-                <motion.a
+          {/* Right: Nav Links + Socials */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
+            <nav className="flex flex-wrap gap-x-6 gap-y-2">
+              {navLinks.map((item) => (
+                <a
                   key={item}
                   href="#"
-                  className="hover:text-white transition-colors"
-                  whileHover={{ y: -2 }}
-                  transition={{ duration: 0.2 }}
+                  className="text-sm text-white/50 hover:text-brand-gold transition-colors duration-200"
                 >
                   {item}
-                </motion.a>
+                </a>
               ))}
+            </nav>
+            <div className="flex items-center gap-3">
+              {/* Twitter / X */}
+              <a href="#" className="w-8 h-8 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-all duration-200 text-white/40 hover:scale-110">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              </a>
+              {/* LinkedIn */}
+              <a href="#" className="w-8 h-8 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-all duration-200 text-white/40 hover:scale-110">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              {/* Instagram */}
+              <a href="#" className="w-8 h-8 rounded-full bg-white/5 hover:bg-brand-gold hover:text-brand-navy flex items-center justify-center transition-all duration-200 text-white/40 hover:scale-110">
+                <svg className="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+              </a>
             </div>
-          </motion.div>
-        </AnimatedSection>
+          </div>
+        </div>
+
+        {/* Gold Accent Divider */}
+        <div className="h-px bg-gradient-to-r from-transparent via-brand-gold/40 to-transparent mb-6" />
+
+        {/* Bottom Row */}
+        <div className="flex flex-col sm:flex-row justify-between items-center gap-3">
+          <p className="text-white/25 text-xs">© 2026 hiyrED® Inc. All Rights Reserved.</p>
+          <div className="flex gap-6">
+            {legalLinks.map((item) => (
+              <a
+                key={item}
+                href="#"
+                className="text-white/25 text-xs hover:text-white/60 transition-colors duration-200"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </footer>
+  );
+};
+
+// ─── Waitlist Popup (Stage 1) ──────────────────────────────────────────────────
+
+interface WaitlistPopupProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onProceed: (data: { category: string; name: string; email: string; phone: string }) => void;
+  initialCategory: string;
+  anchorEl: HTMLElement | null;
+}
+
+const WaitlistPopup = ({ isOpen, onClose, onProceed, initialCategory, anchorEl }: WaitlistPopupProps) => {
+  const [category, setCategory] = useState(initialCategory);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [coords, setCoords] = useState<{ top: number; left: number; isFloating: boolean }>({ top: 0, left: 0, isFloating: false });
+
+  useEffect(() => {
+    setCategory(initialCategory);
+  }, [initialCategory]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  useEffect(() => {
+    if (!isOpen || !anchorEl) {
+      setCoords({ top: 0, left: 0, isFloating: false });
+      return;
+    }
+
+    const updatePosition = () => {
+      if (window.innerWidth < 768) {
+        setCoords({ top: 0, left: 0, isFloating: false });
+        return;
+      }
+
+      const rect = anchorEl.getBoundingClientRect();
+      const popupWidth = 420;
+      
+      // Calculate top
+      const top = rect.bottom + window.scrollY + 8;
+      
+      // Calculate left (align right side of popup with right side of button)
+      let left = rect.right + window.scrollX - popupWidth;
+      
+      // Prevent left edge overflow
+      if (left < 16) left = 16;
+      // Prevent right edge overflow
+      if (left + popupWidth > window.innerWidth - 16) {
+        left = window.innerWidth - popupWidth - 16;
+      }
+
+      setCoords({ top, left, isFloating: true });
+    };
+
+    updatePosition();
+    window.addEventListener("resize", updatePosition);
+    window.addEventListener("scroll", updatePosition);
+    return () => {
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition);
+    };
+  }, [isOpen, anchorEl]);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors: Record<string, string> = {};
+    if (!name.trim()) newErrors.name = "Name is required";
+    if (!email.trim() || !/\S+@\S+\.\S+/.test(email)) newErrors.email = "Valid email is required";
+    if (!phone.trim()) newErrors.phone = "Phone is required";
+    
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setErrors({});
+    onProceed({ category, name, email, phone });
+  };
+
+  if (!isOpen) return null;
+
+  const wrapperStyle: React.CSSProperties = coords.isFloating
+    ? {
+        position: "absolute",
+        top: coords.top,
+        left: coords.left,
+        transformOrigin: "top right",
+      }
+    : {
+        position: "relative",
+        transformOrigin: "center",
+      };
+
+  return (
+    <AnimatePresence>
+      <div 
+        className={`fixed inset-0 z-50 p-4 ${
+          coords.isFloating ? "pointer-events-none" : "bg-brand-navy/60 backdrop-blur-md flex items-center justify-center"
+        }`}
+        onClick={(e) => {
+          if (e.target === e.currentTarget && !coords.isFloating) onClose();
+        }}
+      >
+        {/* Backdrop overlay for floating state so click outside closes it */}
+        {coords.isFloating && (
+          <div className="fixed inset-0 z-0 pointer-events-auto" onClick={onClose} />
+        )}
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.92 }}
+          transition={{ duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
+          className="relative max-w-md w-full rounded-3xl p-8 overflow-hidden text-left shadow-2xl pointer-events-auto"
+          style={{
+            ...wrapperStyle,
+            background: "rgba(255, 255, 255, 0.65)",
+            backdropFilter: "blur(40px) saturate(1.8) brightness(1.05)",
+            WebkitBackdropFilter: "blur(40px) saturate(1.8) brightness(1.05)",
+            border: "1px solid rgba(255, 255, 255, 0.6)",
+            boxShadow: "0 20px 50px rgba(22, 38, 65, 0.12), inset 0 1px 1px rgba(255, 255, 255, 0.6)",
+          }}
+        >
+          {/* Specular highlight overlay */}
+          <div 
+            className="absolute inset-x-0 top-0 h-px pointer-events-none"
+            style={{
+              background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8) 30%, rgba(255, 255, 255, 0.8) 70%, transparent)"
+            }}
+          />
+
+          {/* Close button */}
+          <button onClick={onClose} className="absolute top-4 right-4 p-2 text-brand-navy/60 hover:text-brand-navy transition-colors cursor-pointer z-10">
+            <X className="w-5 h-5" />
+          </button>
+
+          <h3 className="text-2xl font-extrabold text-brand-navy mb-6 flex items-center gap-2">
+            <span>🔥</span> Join the Waitlist
+          </h3>
+
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-brand-navy/70 mb-2">I am joining as a:</label>
+              <div className="grid grid-cols-3 gap-2">
+                {[
+                  { id: "Community", label: "Community", sub: "Student" },
+                  { id: "Recruiters", label: "Recruiter", sub: "Company" },
+                  { id: "Institutions", label: "Institution", sub: "HEI" }
+                ].map((cat) => {
+                  const isSelected = category === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      onClick={() => setCategory(cat.id)}
+                      className={`py-3 px-2 rounded-xl border text-center transition-all duration-300 cursor-pointer ${
+                        isSelected
+                          ? "bg-brand-navy text-white border-brand-navy shadow-lg shadow-brand-navy/15 scale-102"
+                          : "bg-white/40 border-white/50 text-gray-700 hover:bg-white/60"
+                      }`}
+                    >
+                      <p className="text-sm font-bold leading-tight">{cat.label}</p>
+                      <p className={`text-[10px] ${isSelected ? "text-brand-gold" : "text-brand-navy/55"}`}>{cat.sub}</p>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Full Name</label>
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="John Doe"
+                style={{
+                  background: "rgba(255, 255, 255, 0.35)",
+                  backdropFilter: "blur(10px)",
+                  border: errors.name ? "1px solid rgba(239, 68, 68, 0.5)" : "1px solid rgba(255, 255, 255, 0.5)",
+                  color: "#162641",
+                }}
+                className="w-full px-4 py-3 rounded-xl focus:bg-white/60 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/40 placeholder-brand-navy/40 font-medium"
+              />
+              {errors.name && <p className="text-red-500 text-[10px] mt-1 font-semibold">{errors.name}</p>}
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Email Address</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="john@company.com"
+                style={{
+                  background: "rgba(255, 255, 255, 0.35)",
+                  backdropFilter: "blur(10px)",
+                  border: errors.email ? "1px solid rgba(239, 68, 68, 0.5)" : "1px solid rgba(255, 255, 255, 0.5)",
+                  color: "#162641",
+                }}
+                className="w-full px-4 py-3 rounded-xl focus:bg-white/60 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/40 placeholder-brand-navy/40 font-medium"
+              />
+              {errors.email && <p className="text-red-500 text-[10px] mt-1 font-semibold">{errors.email}</p>}
+            </div>
+
+            <div>
+              <label className="block text-xs font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Phone Number</label>
+              <input
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="+91 98765 43210"
+                style={{
+                  background: "rgba(255, 255, 255, 0.35)",
+                  backdropFilter: "blur(10px)",
+                  border: errors.phone ? "1px solid rgba(239, 68, 68, 0.5)" : "1px solid rgba(255, 255, 255, 0.5)",
+                  color: "#162641",
+                }}
+                className="w-full px-4 py-3 rounded-xl focus:bg-white/60 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-gold/40 placeholder-brand-navy/40 font-medium"
+              />
+              {errors.phone && <p className="text-red-500 text-[10px] mt-1 font-semibold">{errors.phone}</p>}
+            </div>
+
+            <motion.button
+              type="submit"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full py-4 bg-brand-navy hover:bg-brand-navy/95 text-white font-bold rounded-xl transition-all shadow-xl shadow-brand-navy/10 flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Proceed to Full Form</span>
+              <ArrowRight className="w-4 h-4" />
+            </motion.button>
+          </form>
+        </motion.div>
+      </div>
+    </AnimatePresence>
+  );
+};
+
+// ─── Waitlist Full Form (Stage 2) ──────────────────────────────────────────────
+
+interface WaitlistFullFormProps {
+  isOpen: boolean;
+  category: string;
+  basicInfo: { name: string; email: string; phone: string };
+  onClose: () => void;
+}
+
+const WaitlistFullForm = ({ isOpen, category, basicInfo, onClose }: WaitlistFullFormProps) => {
+  const [success, setSuccess] = useState(false);
+  const [joinedCount, setJoinedCount] = useState(1134);
+
+  // Community State
+  const [college, setCollege] = useState("");
+  const [branch, setBranch] = useState("");
+  const [yearOfStudy, setYearOfStudy] = useState("3rd Year");
+  const [domains, setDomains] = useState<string[]>(["Tech"]);
+  const [linkedin, setLinkedin] = useState("");
+
+  // Recruiter State
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [recruiterDomains, setRecruiterDomains] = useState<string[]>(["Tech"]);
+  const [volume, setVolume] = useState("10-50");
+
+  // Institution State
+  const [instName, setInstName] = useState("");
+  const [instRole, setInstRole] = useState("");
+  const [cityState, setCityState] = useState("");
+  const [strength, setStrength] = useState("500-2000");
+  const [branchesOffered, setBranchesOffered] = useState("");
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!isOpen) {
+      setSuccess(false);
+      return;
+    }
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        onClose();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    // Animate the joined counter on open
+    let start = 1100;
+    const end = 1248;
+    const duration = 2000;
+    const startTime = performance.now();
+
+    const animate = (currentTime: number) => {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const current = Math.round(start + progress * (end - start));
+      setJoinedCount(current);
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+    requestAnimationFrame(animate);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isOpen, onClose]);
+
+  const toggleDomain = (dom: string, isRecruiter: boolean) => {
+    const list = isRecruiter ? recruiterDomains : domains;
+    const setList = isRecruiter ? setRecruiterDomains : setDomains;
+    if (list.includes(dom)) {
+      setList(list.filter(d => d !== dom));
+    } else {
+      setList([...list, dom]);
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const newErrors: Record<string, string> = {};
+
+    if (category === "Community") {
+      if (!college.trim()) newErrors.college = "College Name is required";
+      if (!branch.trim()) newErrors.branch = "Branch is required";
+    } else if (category === "Recruiters") {
+      if (!company.trim()) newErrors.company = "Company Name is required";
+      if (!role.trim()) newErrors.role = "Designation/Role is required";
+    } else if (category === "Institutions") {
+      if (!instName.trim()) newErrors.instName = "Institution Name is required";
+      if (!instRole.trim()) newErrors.instRole = "Your Role is required";
+      if (!cityState.trim()) newErrors.cityState = "City / State is required";
+    }
+
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+
+    setErrors({});
+    setSuccess(true);
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <AnimatePresence>
+      <div className="fixed inset-0 z-50 bg-brand-navy/65 backdrop-blur-2xl overflow-y-auto flex items-center justify-center p-3 md:p-6">
+        {/* Background Dot Grid & Glass Ambient Glows */}
+        <div 
+          className="absolute inset-0 pointer-events-none opacity-[0.08]" 
+          style={{
+            backgroundImage: "radial-gradient(rgba(255, 255, 255, 0.4) 1px, transparent 1px)",
+            backgroundSize: "24px 24px"
+          }}
+        />
+
+        {/* Ambient Light Spheres for Liquid Glass Refraction */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-[#00f0ff]/15 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full bg-[#c7ae6a]/15 blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] rounded-full bg-purple-500/10 blur-[140px] pointer-events-none" />
+
+        {/* Floating Badges (Objective Engines & Placement/Community Widgets) */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden select-none hidden lg:block">
+          
+          {/* Cortex Engine */}
+          <motion.div
+            animate={{ y: [0, -12, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[10%] left-[6%] bg-white/20 backdrop-blur-2xl border border-white/40 px-5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#00f0ff]/20 flex items-center justify-center text-[#00f0ff]">
+              <BarChart3 className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[10px] text-[#00f0ff] font-bold uppercase tracking-wider">Cortex</p>
+              <p className="text-xs font-bold text-white">Think</p>
+            </div>
+          </motion.div>
+
+          {/* Widget 1: Google Shortlisted Status */}
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+            className="absolute top-[28%] left-[10%] bg-emerald-500/15 backdrop-blur-2xl border border-emerald-400/30 px-4.5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-emerald-500/25 flex items-center justify-center text-emerald-300">
+              <CheckCircle2 className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[9px] text-emerald-300 font-extrabold uppercase tracking-wide">Shortlisted</p>
+              <p className="text-[11px] font-bold text-white">Google Drive · 3 CSE</p>
+            </div>
+          </motion.div>
+
+          {/* Forge Engine */}
+          <motion.div
+            animate={{ y: [0, 15, 0] }}
+            transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute top-[12%] right-[8%] bg-white/20 backdrop-blur-2xl border border-white/40 px-5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#c7ae6a]/20 flex items-center justify-center text-[#c7ae6a]">
+              <Code2 className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[10px] text-[#c7ae6a] font-bold uppercase tracking-wider">Forge</p>
+              <p className="text-xs font-bold text-white">Build</p>
+            </div>
+          </motion.div>
+
+          {/* Widget 2: Placements Live */}
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 6.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute top-[32%] right-[12%] bg-[#c7ae6a]/15 backdrop-blur-2xl border border-[#c7ae6a]/30 px-4.5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-[#c7ae6a]/25 flex items-center justify-center text-[#c7ae6a]">
+              <Briefcase className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[9px] text-[#c7ae6a] font-extrabold uppercase tracking-wide">Placements Live</p>
+              <p className="text-[11px] font-bold text-white">18 Hiring Partners</p>
+            </div>
+          </motion.div>
+
+          {/* Pulse Engine */}
+          <motion.div
+            animate={{ y: [0, -15, 0] }}
+            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-[16%] left-[6%] bg-white/20 backdrop-blur-2xl border border-white/40 px-5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-300">
+              <ShieldCheck className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[10px] text-emerald-300 font-bold uppercase tracking-wider">Pulse</p>
+              <p className="text-xs font-bold text-white">Feel</p>
+            </div>
+          </motion.div>
+
+          {/* Widget 3: Community Activity */}
+          <motion.div
+            animate={{ y: [0, 9, 0] }}
+            transition={{ duration: 7.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+            className="absolute bottom-[32%] left-[10%] bg-blue-500/15 backdrop-blur-2xl border border-blue-400/30 px-4.5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-blue-500/25 flex items-center justify-center text-blue-300">
+              <Users className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[9px] text-blue-300 font-extrabold uppercase tracking-wide">Community Hub</p>
+              <p className="text-[11px] font-bold text-white">4.2K+ Members Active</p>
+            </div>
+          </motion.div>
+
+          {/* Compass Engine */}
+          <motion.div
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute bottom-[14%] right-[6%] bg-white/20 backdrop-blur-2xl border border-white/40 px-5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-300">
+              <Award className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[10px] text-purple-300 font-bold uppercase tracking-wider">Compass</p>
+              <p className="text-xs font-bold text-white">Guide</p>
+            </div>
+          </motion.div>
+
+          {/* Widget 4: Premier League */}
+          <motion.div
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.2 }}
+            className="absolute bottom-[28%] right-[10%] bg-purple-500/15 backdrop-blur-2xl border border-purple-400/30 px-4.5 py-3 rounded-2xl shadow-[0_15px_35px_rgba(0,0,0,0.15)] flex items-center gap-3"
+          >
+            <div className="w-8 h-8 rounded-full bg-purple-500/25 flex items-center justify-center text-purple-300">
+              <Award className="w-4 h-4" />
+            </div>
+            <div>
+              <p className="text-[9px] text-purple-300 font-extrabold uppercase tracking-wide">Premier League</p>
+              <p className="text-[11px] font-bold text-white">24 Teams Registered</p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Main Content Card */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.94, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.94, y: 15 }}
+          transition={{ duration: 0.4, ease: EASE_PREMIUM as unknown as number[] }}
+          className="relative max-w-xl w-full rounded-3xl p-5 md:p-7 text-left overflow-hidden shadow-2xl z-10"
+          style={{
+            background: "rgba(255, 255, 255, 0.78)",
+            backdropFilter: "blur(50px) saturate(2.2) brightness(1.04)",
+            WebkitBackdropFilter: "blur(50px) saturate(2.2) brightness(1.04)",
+            border: "1px solid rgba(255, 255, 255, 0.85)",
+            boxShadow: "0 25px 80px rgba(15, 23, 42, 0.22), inset 0 1px 2px rgba(255, 255, 255, 0.95), inset 0 -1px 2px rgba(0, 0, 0, 0.04)",
+          }}
+        >
+          {/* Specular highlight line */}
+          <div 
+            className="absolute inset-x-0 top-0 h-px pointer-events-none"
+            style={{
+              background: "linear-gradient(90deg, transparent, rgba(255, 255, 255, 1) 20%, rgba(255, 255, 255, 1) 80%, transparent)"
+            }}
+          />
+
+          {/* Header */}
+          <div className="flex justify-between items-start mb-4">
+            <div>
+              <div className="flex items-center gap-1.5 mb-1">
+                <img src="/favicon.svg" alt="" className="w-5 h-5 drop-shadow-sm" />
+                <span className="text-xs font-black text-brand-navy tracking-wide">hiyrED®</span>
+              </div>
+              <h2 className="text-xl md:text-2xl font-extrabold text-brand-navy tracking-tight leading-tight">
+                {success ? "Welcome to hiyrED®!" : "Complete Your Profile"}
+              </h2>
+              <p className="text-[11px] text-brand-navy/60 mt-0.5 font-medium">
+                {success ? "Your waitlist spot is confirmed." : "Unlock verified capability-based talent pathways."}
+              </p>
+            </div>
+            <button onClick={onClose} className="p-1.5 text-brand-navy/60 hover:text-brand-navy transition-all rounded-full hover:bg-white/50 backdrop-blur-md cursor-pointer hover:scale-105 active:scale-95 border border-transparent hover:border-white/60">
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          {success ? (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="text-center py-5"
+            >
+              <div className="w-14 h-14 rounded-full bg-emerald-500/15 backdrop-blur-xl flex items-center justify-center mx-auto mb-4 border border-emerald-500/30 shadow-lg shadow-emerald-500/10">
+                <CheckCircle2 className="w-7 h-7 text-emerald-600" />
+              </div>
+              <h3 className="text-xl font-bold text-brand-navy mb-1.5">Application Received Successfully</h3>
+              <p className="text-xs text-brand-navy/70 max-w-sm mx-auto mb-6 font-medium">
+                Thank you for joining, <span className="font-bold text-brand-navy">{basicInfo.name}</span>. We've sent details of confirmation to <span className="font-semibold text-brand-navy">{basicInfo.email}</span>.
+              </p>
+
+              {/* Spot position */}
+              <div 
+                className="inline-block rounded-2xl px-6 py-4 shadow-xl mb-6 border border-white/40"
+                style={{
+                  background: "linear-gradient(135deg, rgba(22, 38, 65, 0.95), rgba(15, 23, 42, 0.95))",
+                  backdropFilter: "blur(20px)",
+                  boxShadow: "0 15px 35px rgba(22, 38, 65, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.3)"
+                }}
+              >
+                <p className="text-[9px] font-bold uppercase tracking-wider text-brand-gold mb-0.5">Your Waitlist Spot</p>
+                <p className="text-2xl font-black text-white">#{joinedCount}</p>
+              </div>
+
+              <div>
+                <button
+                  onClick={onClose}
+                  className="px-6 py-2.5 bg-white/60 hover:bg-white/90 text-brand-navy font-bold text-xs rounded-full transition-all duration-300 cursor-pointer backdrop-blur-md border border-white/80 shadow-md hover:shadow-lg hover:scale-105 active:scale-95"
+                >
+                  Return to Home
+                </button>
+              </div>
+            </motion.div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-3.5">
+              {/* Basic Info Read-Only Banner */}
+              <div 
+                className="rounded-xl p-3 flex flex-wrap gap-x-5 gap-y-1 text-xs border"
+                style={{
+                  background: "rgba(255, 255, 255, 0.55)",
+                  backdropFilter: "blur(16px)",
+                  border: "1px solid rgba(255, 255, 255, 0.8)",
+                  boxShadow: "0 4px 15px rgba(22, 38, 65, 0.03), inset 0 1px 1px rgba(255, 255, 255, 0.8)"
+                }}
+              >
+                <div>
+                  <span className="text-brand-navy/50 font-semibold text-[11px]">NAME:</span>{" "}
+                  <span className="text-brand-navy font-bold">{basicInfo.name}</span>
+                </div>
+                <div>
+                  <span className="text-brand-navy/50 font-semibold text-[11px]">EMAIL:</span>{" "}
+                  <span className="text-brand-navy font-bold">{basicInfo.email}</span>
+                </div>
+                <div>
+                  <span className="text-brand-navy/50 font-semibold text-[11px]">ROLE:</span>{" "}
+                  <span className="text-brand-gold font-extrabold uppercase tracking-wider text-[11px]">{category}</span>
+                </div>
+              </div>
+
+              {/* Category-Specific Form Body */}
+              {category === "Community" && (
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">College / University</label>
+                      <input
+                        type="text"
+                        value={college}
+                        onChange={(e) => setCollege(e.target.value)}
+                        placeholder="e.g. IIT Madras"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: errors.college ? "1px solid rgba(239, 68, 68, 0.6)" : "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                      {errors.college && <p className="text-red-500 text-[10px] mt-0.5 font-semibold">{errors.college}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">Branch / Department</label>
+                      <input
+                        type="text"
+                        value={branch}
+                        onChange={(e) => setBranch(e.target.value)}
+                        placeholder="e.g. Computer Science"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: errors.branch ? "1px solid rgba(239, 68, 68, 0.6)" : "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                      {errors.branch && <p className="text-red-500 text-[10px] mt-0.5 font-semibold">{errors.branch}</p>}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Year of Study</label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["1st Year", "2nd Year", "3rd Year", "4th Year", "Graduated"].map((yr) => (
+                        <button
+                          key={yr}
+                          type="button"
+                          onClick={() => setYearOfStudy(yr)}
+                          className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer backdrop-blur-md ${
+                            yearOfStudy === yr
+                              ? "bg-brand-navy text-white border-white/30 shadow-md shadow-brand-navy/20 scale-102"
+                              : "bg-white/40 border-white/70 text-brand-navy hover:bg-white/70 hover:shadow-sm"
+                          }`}
+                        >
+                          {yr}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Domain Interest (Select all that apply)</label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["Tech", "Core subjects", "Business", "Multi-disciplinary"].map((dom) => {
+                        const isSel = domains.includes(dom);
+                        return (
+                          <button
+                            key={dom}
+                            type="button"
+                            onClick={() => toggleDomain(dom, false)}
+                            className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer backdrop-blur-md ${
+                              isSel
+                                ? "bg-brand-navy text-white border-white/30 shadow-md shadow-brand-navy/20 scale-102"
+                                : "bg-white/40 border-white/70 text-brand-navy hover:bg-white/70 hover:shadow-sm"
+                            }`}
+                          >
+                            {dom} {isSel && "✓"}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">LinkedIn Profile URL (Optional)</label>
+                    <input
+                      type="url"
+                      value={linkedin}
+                      onChange={(e) => setLinkedin(e.target.value)}
+                      placeholder="https://linkedin.com/in/username"
+                      style={{
+                        background: "rgba(255, 255, 255, 0.5)",
+                        backdropFilter: "blur(12px)",
+                        border: "1px solid rgba(255, 255, 255, 0.75)",
+                        color: "#162641",
+                        boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                      }}
+                      className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                    />
+                  </div>
+                </div>
+              )}
+
+              {category === "Recruiters" && (
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">Company Name</label>
+                      <input
+                        type="text"
+                        value={company}
+                        onChange={(e) => setCompany(e.target.value)}
+                        placeholder="e.g. Google India"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: errors.company ? "1px solid rgba(239, 68, 68, 0.6)" : "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                      {errors.company && <p className="text-red-500 text-[10px] mt-0.5 font-semibold">{errors.company}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">Designation / Role</label>
+                      <input
+                        type="text"
+                        value={role}
+                        onChange={(e) => setRole(e.target.value)}
+                        placeholder="e.g. Talent Acquisition Lead"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: errors.role ? "1px solid rgba(239, 68, 68, 0.6)" : "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                      {errors.role && <p className="text-red-500 text-[10px] mt-0.5 font-semibold">{errors.role}</p>}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Hiring Domains (Select all that apply)</label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["Tech", "Core subjects", "Business", "Multi-disciplinary"].map((dom) => {
+                        const isSel = recruiterDomains.includes(dom);
+                        return (
+                          <button
+                            key={dom}
+                            type="button"
+                            onClick={() => toggleDomain(dom, true)}
+                            className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer backdrop-blur-md ${
+                              isSel
+                                ? "bg-brand-navy text-white border-white/30 shadow-md shadow-brand-navy/20 scale-102"
+                                : "bg-white/40 border-white/70 text-brand-navy hover:bg-white/70 hover:shadow-sm"
+                            }`}
+                          >
+                            {dom} {isSel && "✓"}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Approx. Annual Hiring Volume</label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["1-10", "10-50", "50-200", "200+"].map((vol) => (
+                        <button
+                          key={vol}
+                          type="button"
+                          onClick={() => setVolume(vol)}
+                          className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer backdrop-blur-md ${
+                            volume === vol
+                              ? "bg-brand-navy text-white border-white/30 shadow-md shadow-brand-navy/20 scale-102"
+                              : "bg-white/40 border-white/70 text-brand-navy hover:bg-white/70 hover:shadow-sm"
+                          }`}
+                        >
+                          {vol} hires/year
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {category === "Institutions" && (
+                <div className="space-y-3">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">Institution Name</label>
+                      <input
+                        type="text"
+                        value={instName}
+                        onChange={(e) => setInstName(e.target.value)}
+                        placeholder="e.g. VIT University"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: errors.instName ? "1px solid rgba(239, 68, 68, 0.6)" : "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                      {errors.instName && <p className="text-red-500 text-[10px] mt-0.5 font-semibold">{errors.instName}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">Your Role / Designation</label>
+                      <input
+                        type="text"
+                        value={instRole}
+                        onChange={(e) => setInstRole(e.target.value)}
+                        placeholder="e.g. Placement Director"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: errors.instRole ? "1px solid rgba(239, 68, 68, 0.6)" : "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                      {errors.instRole && <p className="text-red-500 text-[10px] mt-0.5 font-semibold">{errors.instRole}</p>}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">City / State</label>
+                      <input
+                        type="text"
+                        value={cityState}
+                        onChange={(e) => setCityState(e.target.value)}
+                        placeholder="e.g. Vellore, Tamil Nadu"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: errors.cityState ? "1px solid rgba(239, 68, 68, 0.6)" : "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                      {errors.cityState && <p className="text-red-500 text-[10px] mt-0.5 font-semibold">{errors.cityState}</p>}
+                    </div>
+
+                    <div>
+                      <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-0.5">Branches Offered (e.g. CSE, ECE, Mech)</label>
+                      <input
+                        type="text"
+                        value={branchesOffered}
+                        onChange={(e) => setBranchesOffered(e.target.value)}
+                        placeholder="e.g. CSE, ECE, EEE, Mech, Civil"
+                        style={{
+                          background: "rgba(255, 255, 255, 0.5)",
+                          backdropFilter: "blur(12px)",
+                          border: "1px solid rgba(255, 255, 255, 0.75)",
+                          color: "#162641",
+                          boxShadow: "inset 0 1px 2px rgba(0, 0, 0, 0.03)"
+                        }}
+                        className="w-full px-3.5 py-2 text-xs rounded-lg focus:bg-white/80 transition-all focus:outline-none focus:ring-2 focus:ring-brand-gold/40 focus:border-brand-gold/60 placeholder-brand-navy/40 font-medium"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-[11px] font-bold uppercase tracking-wider text-brand-navy/70 mb-1">Approx. Student Strength (Total in current cohort)</label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {["<500", "500-2000", "2000-5000", ">5000"].map((str) => (
+                        <button
+                          key={str}
+                          type="button"
+                          onClick={() => setStrength(str)}
+                          className={`px-3 py-1.5 rounded-full text-[11px] font-bold border transition-all duration-200 cursor-pointer backdrop-blur-md ${
+                            strength === str
+                              ? "bg-brand-navy text-white border-white/30 shadow-md shadow-brand-navy/20 scale-102"
+                              : "bg-white/40 border-white/70 text-brand-navy hover:bg-white/70 hover:shadow-sm"
+                          }`}
+                        >
+                          {str} students
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {/* Bottom bar & Submit */}
+              <div className="pt-3.5 border-t border-white/60 flex flex-col md:flex-row justify-between items-center gap-3">
+                <p className="text-[11px] text-brand-navy/70 font-semibold">
+                  🔥 <span className="font-extrabold text-brand-navy">{joinedCount}</span> ambition-driven leaders joined the waitlist
+                </p>
+
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.03, boxShadow: "0 15px 35px rgba(22, 38, 65, 0.2)" }}
+                  whileTap={{ scale: 0.97 }}
+                  className="px-7 py-3 bg-brand-navy hover:bg-brand-navy/90 text-white text-xs font-bold rounded-xl transition-all shadow-lg shadow-brand-navy/15 border border-white/20 flex items-center justify-center gap-2 w-full md:w-auto cursor-pointer backdrop-blur-md"
+                >
+                  <span>Submit Application</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </motion.button>
+              </div>
+            </form>
+          )}
+        </motion.div>
+      </div>
+    </AnimatePresence>
   );
 };
 
 // ─── App ───────────────────────────────────────────────────────────────────────
 
 export default function App() {
+  const [waitlistPopup, setWaitlistPopup] = useState({ isOpen: false, initialCategory: "Community", anchorEl: null as HTMLElement | null });
+  const [waitlistFullForm, setWaitlistFullForm] = useState({
+    isOpen: false,
+    category: "Community",
+    basicInfo: { name: "", email: "", phone: "" }
+  });
+
+  useEffect(() => {
+    (window as any).triggerWaitlist = (category: string = "Community", anchorEl: HTMLElement | null = null) => {
+      setWaitlistPopup({ isOpen: true, initialCategory: category, anchorEl });
+    };
+    return () => {
+      delete (window as any).triggerWaitlist;
+    };
+  }, []);
+
+  const handleProceedToFullForm = (data: { category: string; name: string; email: string; phone: string }) => {
+    setWaitlistPopup({ isOpen: false, initialCategory: data.category, anchorEl: null });
+    setWaitlistFullForm({
+      isOpen: true,
+      category: data.category,
+      basicInfo: { name: data.name, email: data.email, phone: data.phone }
+    });
+  };
+
   return (
     <div className="min-h-screen font-sans selection:bg-brand-gold/30">
       <Navbar />
@@ -2658,6 +3599,22 @@ export default function App() {
         <FinalCTA />
       </main>
       <Footer />
+
+      {/* Waitlist Dialog Modals */}
+      <WaitlistPopup
+        isOpen={waitlistPopup.isOpen}
+        onClose={() => setWaitlistPopup({ ...waitlistPopup, isOpen: false })}
+        onProceed={handleProceedToFullForm}
+        initialCategory={waitlistPopup.initialCategory}
+        anchorEl={waitlistPopup.anchorEl}
+      />
+      <WaitlistFullForm
+        isOpen={waitlistFullForm.isOpen}
+        category={waitlistFullForm.category}
+        basicInfo={waitlistFullForm.basicInfo}
+        onClose={() => setWaitlistFullForm({ ...waitlistFullForm, isOpen: false })}
+      />
     </div>
   );
 }
+
